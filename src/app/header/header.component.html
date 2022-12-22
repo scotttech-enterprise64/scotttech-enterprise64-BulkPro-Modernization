@@ -1,0 +1,7 @@
+<p>header works!</p>
+
+<div class="overlay" *ngIf="spinnerService.visibility | async">
+    <div class="center">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+</div>
