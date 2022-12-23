@@ -21,6 +21,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
     exports: [
         MatButtonModule,
@@ -44,7 +45,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         MatPaginatorModule,
         MatRadioModule,
         MatProgressSpinnerModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatGridListModule
     ]
 })
 export class MaterialModule { }
