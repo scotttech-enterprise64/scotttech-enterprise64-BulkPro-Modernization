@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SpinnerService } from '../services/spinner/spinner.service';
+import { SessionHandlerService } from '../services/sessionHandler/session-handler.service';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -14,11 +15,14 @@ export class LoginComponent implements OnInit {
 
   loginForm             : FormGroup;
   error_msg             : any;
+  displayDropDowns      = true;
+  userData              = this.session.userData();
 
   constructor(public spinnerService   : SpinnerService,
               public formBuilder      : FormBuilder,
               private api             : ApiHandlerService,
-              private router          : Router) { 
+              private router          : Router,
+              private session         : SessionHandlerService ) { 
 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', Validators.compose([
@@ -33,6 +37,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.error_msg = "";
+    if(this.userData.DeviceID&&this.userData.DSName)
+    {
+      this.displayDropDowns = false; 
+    }
+    else 
+    {
+      this.displayDropDowns = true; 
+    }
+    this.loadDSNameList();
+  }
+
+  loadDSNameList()
+  {
+    alert("TRIGGERED");
+    var test = this.api.post("/device/DeviceAPI","{\"Request\":{\"SessionID\":\"\",\"Status\":\"\",\"RequestType\":\"GETDSNAMESLIST\",\"ResponseType\":\"\",\"LoggedInUserName\":\"\",\"PW\":\"\",\"PCName\":\"DEV\",\"DSName\":\"\",\"AppName\":\"\",\"isADLDS\":\"false\",\"Data\":\"\"}}");
+    console.log(test);
   }
 
   async OnLogin() {

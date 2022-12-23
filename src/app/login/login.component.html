@@ -8,13 +8,13 @@
             <label for="Password">Password</label>
             <input formControlName="password" id="Password" class="form-control" type="password" placeholder="Enter Password" required autocomplete="off"/>
             
-            <label id="DSNameLabel" for="DeviceID" class="d-none">Data Source</label>
-            <select id="DSName" class="form-control d-none" required>
+            <label id="DSNameLabel" for="DeviceID" *ngIf="displayDropDowns">Data Source</label>
+            <select id="DSName" class="form-control" *ngIf="displayDropDowns" required>
                 <option></option>
             </select>
 
-            <label id="DeviceIDLabel" for="DeviceID" class="d-none">Device ID</label>
-            <select id="DeviceID" class="form-control d-none" required>
+            <label id="DeviceIDLabel" for="DeviceID" *ngIf="displayDropDowns">Device ID</label>
+            <select id="DeviceID" class="form-control" *ngIf="displayDropDowns" required>
                 <option></option>
             </select>
 
