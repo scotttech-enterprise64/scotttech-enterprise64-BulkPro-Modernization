@@ -13,6 +13,7 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpInterceptor } from './services/interceptor/http-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomHttpInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
