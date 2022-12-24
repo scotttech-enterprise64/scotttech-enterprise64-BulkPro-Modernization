@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { MaterialModule } from '../../material-module';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { PickComponent } from './pick/pick.component';
 // import { GeneralModule } from '../gen-module';
 
 
@@ -19,6 +20,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MainComponent,
     DashboardComponent,
     SidebarComponent,
+    PickComponent,
     // MainComponent
   ],
   imports: [
