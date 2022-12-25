@@ -132,7 +132,7 @@ background-color: #7B42AC;
 .mat-sidenav-container {
   background: #F3F4F4;
   height: 100%;
-  
+
 }
 .mat-drawer-inner-container{
   overflow: hidden !important;
@@ -462,7 +462,7 @@ mat-toolbar {
 }
 
 .mat-form-field.action-dropdown .mat-form-field-flex {
-  border-radius: 20px;
+  border-radius: 8px;
   background: #fff;
   border: 1px solid #D7D7F9;
   padding: 0.18em .75em 0 .75em;
@@ -486,6 +486,16 @@ mat-toolbar {
 .mat-form-field.action-dropdown .mat-select-arrow-wrapper {
   transform: translateY(-20%);
 }
+
+.mat-select-arrow-wrapper {
+  background-image: url("./assets/images/chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+ }
+
+ .mat-select-arrow {
+   opacity: 0;
+ }
 
 .mat-form-field-underline {
   visibility: hidden;
@@ -689,6 +699,10 @@ table.g-card-table th.mat-header-cell {
 
 .mat-drawer-content{
   overflow: initial;
+}
+
+table {
+  width: 100%;
 }
 
 table.dataTable{
