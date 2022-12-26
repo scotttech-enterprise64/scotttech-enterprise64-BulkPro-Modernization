@@ -199,10 +199,14 @@ background-color: #7B42AC;
   }
 }
 .mat-subheader {
-  color: #818cf8;
-  font-size: 0.6rem;
-  font-weight: 100;
+  color: #090948;
+  font-size: 20px !important;
+  font-weight: 700 !important;
   letter-spacing: 1px;
+}
+
+span.mat-subheader-space {
+  margin-left: 1em;
 }
 
 
@@ -461,11 +465,36 @@ mat-toolbar {
   font-weight: 700 !important;
 }
 
-.mat-form-field.action-dropdown .mat-form-field-flex {
-  border-radius: 8px;
-  background: #fff;
-  border: 1px solid #D7D7F9;
-  padding: 0.18em .75em 0 .75em;
+
+.mat-form-field.action-dropdown{
+  width: 100%;
+}
+
+span.mat-select-min-line {
+  font-size: 16px;
+  color: #090948;
+  font-weight: 500;
+}
+
+// .mat-form-field.action-dropdown .mat-form-field-flex {
+//   border-radius: 8px;
+//   background: #fff;
+//   border: 1px solid #D7D7F9;
+//   padding: 0.18em .75em 0 .75em;
+// }
+
+// .action-dropdown.mat-form-field-appearance-outline .mat-form-field-label {
+//   top: 1.5em;
+// }
+
+.mat-form-field-label {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500 !important;
+}
+
+.mat-form-field-appearance-outline.action-dropdown.mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.79375em) scale(0.75);
 }
 
 .mat-form-field.action-dropdown .mat-form-field-wrapper{
@@ -478,13 +507,13 @@ mat-toolbar {
 .mat-form-field.action-dropdown .mat-form-field-label-wrapper {
   top: -0.74375em;
 }
-.mat-form-field.action-dropdown .mat-form-field-label {
-  font-size: 16px;
-  font-weight: 500;
-}
+// .mat-form-field.action-dropdown .mat-form-field-label {
+//   font-size: 16px;
+//   font-weight: 500;
+// }
 
 .mat-form-field.action-dropdown .mat-select-arrow-wrapper {
-  transform: translateY(-20%);
+  transform: translateY(-13%);
 }
 
 .mat-select-arrow-wrapper {
@@ -503,6 +532,15 @@ mat-toolbar {
 .mat-form-field.mat-focused.action-dropdown .mat-form-field-flex {
   border-color: #8b65cf;
 }
+
+.mat-form-field.mat-focused .mat-form-field-label,
+.mat-form-field.action-dropdown .mat-form-field-label:not(.mat-empty) mat-label {
+  font-size: 14px;
+   font-weight:700 !important;
+   color: #090948;
+}
+
+
 
 // .mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-fill.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
 //   transform: translateY(0em) scale(0.95);
@@ -524,10 +562,10 @@ mat-toolbar {
 }
 
 .mat-icon-wrap {
-  background: #F2F2FF;
+  background: #fff;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -537,6 +575,7 @@ mat-toolbar {
   font-size: 18px;
   width: auto;
   height: auto;
+  font-weight: 700;
 }
 
 .g-tab{
@@ -652,6 +691,16 @@ button.button-add-all {
 button.button-remove-all .mat-icon {
   font-size: 20px;
   color: #DE2654;
+}
+
+.mat-card.g-card {
+  padding: 25px;
+}
+
+span.action-dropdown-icon {
+  font-size: 27px;
+  font-weight: 700;
+  color: #090948;
 }
 
 .g-card-list .mat-list-item-content {
