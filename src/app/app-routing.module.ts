@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GuardGuard } from './guards/guard.guard';
 import { LoginComponent } from './login/login.component';
+import { CycleCountComponent } from './user/dashboard/cycle-count/cycle-count.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { MainComponent } from './user/dashboard/main/main.component';
 import { PickComponent } from './user/dashboard/pick/pick.component';
@@ -28,6 +29,11 @@ const routes: Routes = [
       {
         path: 'pick',
         component: PickComponent,
+        // canActivate:[GuardGuard]
+      },
+      {
+        path: 'cyclecount',
+        component: CycleCountComponent,
         // canActivate:[GuardGuard]
       },
 
