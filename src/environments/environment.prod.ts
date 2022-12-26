@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  getDeviceInfo: "/device/DeviceAPI",
+  login: "/login/LoginAPI"
 };

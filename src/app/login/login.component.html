@@ -1,27 +1,74 @@
 <div class="container">
-    <form [formGroup]="loginForm">
+
+    <form class="" [formGroup]="loginForm" (submit)="OnLogin()">
+
         <div class="form-group">
-            
+
             <label for="UserName">User Name</label>
-            <input id="UserName" formControlName="username" class="form-control" type="text" placeholder="Enter User Name"  maxlength="100" required autocomplete="off"/>
-            
+            <input id="UserName" formControlName="username" class="form-control" type="text"
+                placeholder="Enter User Name" maxlength="100" required autocomplete="off" />
+            <div *ngIf="error_msg">
+                <ng-container *ngFor="let error of error_messages.username">
+                    <span class="text-error-500"
+                        *ngIf="loginForm.get('username')?.hasError(error.type) && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+                        {{ error.message }}
+                    </span>
+                </ng-container>
+            </div>
+
             <label for="Password">Password</label>
-            <input formControlName="password" id="Password" class="form-control" type="password" placeholder="Enter Password" required autocomplete="off"/>
-            
+            <input formControlName="password" id="Password" class="form-control" type="password"
+                placeholder="Enter Password" required autocomplete="off" />
+            <div *ngIf="error_msg">
+                <ng-container *ngFor="let error of error_messages.password">
+                    <span class="text-error-500"
+                        *ngIf="loginForm.get('password')?.hasError(error.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                        {{ error.message }}
+                    </span>
+                </ng-container>
+            </div>
+
+
             <label id="DSNameLabel" for="DeviceID" *ngIf="displayDropDowns">Data Source</label>
-            <select id="DSName" class="form-control" *ngIf="displayDropDowns" required>
-                <option></option>
+
+            <select class="form-control" *ngIf="displayDropDowns" (change)="changeDsName($event)" formControlName="dsName">
+                <option value=""></option>
+                <option *ngFor="let dsName of dsNamesDropDownValues" [ngValue]="dsName">
+                    {{ dsName }}
+                </option>
             </select>
+
+
+            <div *ngIf="error_msg">
+                <ng-container *ngFor="let error of error_messages.dsName">
+                    <span class="text-error-500"
+                        *ngIf="loginForm.get('dsName')?.hasError(error.type) && (loginForm.get('dsName')?.dirty || loginForm.get('dsName')?.touched)">
+                        {{ error.message }}
+                    </span>
+                </ng-container>
+            </div>
 
             <label id="DeviceIDLabel" for="DeviceID" *ngIf="displayDropDowns">Device ID</label>
-            <select id="DeviceID" class="form-control" *ngIf="displayDropDowns" required>
-                <option></option>
+
+            <select id="DeviceID" class="form-control" *ngIf="displayDropDowns" (change)="changeDeviceID($event)" formControlName="deviceID">
+                <option value=""></option>
+                <option *ngFor="let deviceID of deviceIDDropDownValues" [ngValue]="deviceID">
+                    {{ deviceID }}
+                </option>
             </select>
 
-        </div>
 
+            <div *ngIf="error_msg">
+                <ng-container *ngFor="let error of error_messages.deviceID">
+                    <span class="text-error-500"
+                        *ngIf="loginForm.get('deviceID')?.hasError(error.type) && (loginForm.get('deviceID')?.dirty || loginForm.get('deviceID')?.touched)">
+                        {{ error.message }}
+                    </span>
+                </ng-container>
+            </div>
+        </div>
         <div class="form-group">
-            <button id="loginButton" type="button" class="btn btn-primary mb-2">Login</button>
+            <button id="loginButton" type="submit" class="btn btn-primary mb-2">Login</button>
         </div>
     </form>
 </div>
