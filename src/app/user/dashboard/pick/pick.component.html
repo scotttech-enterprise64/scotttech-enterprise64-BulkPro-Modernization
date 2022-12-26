@@ -45,7 +45,7 @@
                 </div>
 
 
-                <!-- Scan Order -->
+                <!-- Scan Order/Tote/Batch -->
                 <div class="mt-0 bp-inline-step step-scan-order">
                     <mat-card class="mat-elevation-z g-card mb-3">
                         <mat-card-content>
@@ -74,7 +74,9 @@
                                         (matSortChange)="announceSortChange($event)"
                                         class="mat-elevation-z bp-inline-table">
 
-                                        <!-- Position Column -->
+                                        <ng-scrollbar style="height: 300px">
+
+                                            <!-- Position Column -->
                                         <ng-container matColumnDef="tote">
                                             <th mat-header-cell *matHeaderCellDef mat-sort-header
                                                 sortActionDescription="Sort by Tote">
@@ -105,6 +107,10 @@
 
                                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                            <!-- ... -->
+                                          </ng-scrollbar>
+
+                                        
                                     </table>
                                 </mat-card-content>
                             </mat-card>
@@ -146,14 +152,52 @@
                 </div>
 
 
+                <!-- Scan Tote ID -->
+                <div class="mt-0 bp-inline-step step-scan-tote-id">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
+                                    <mat-label>Scan Tote ID</mat-label>
+                                    <input type="text" placeholder="Scan Tote ID" aria-label="Scan Tote ID" matInput>
+                                </mat-form-field>
+                                <div class="action-des-icon-wrap">
+                                    <span class="scan-option-wrap">
+                                        <img src="./assets/images/scan-option.svg" width="58" height="32">
+                                    </span>
+                                </div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            <div class="table-responsive">
+                                <table class="table action-table-info">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-symbols-outlined">
+                                                        pin_drop
+                                                    </span>
+                                                    <span class="">Location:</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span><strong class="spacer">Kithd-21302</strong></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
             </div>
-
-
-
-
-
-
-
         </div>
     </div>
 </div>

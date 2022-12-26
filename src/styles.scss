@@ -341,6 +341,21 @@ table.bp-inline-table tr td.mat-cell {
   border-bottom: none;
 }
 
+table.action-table-info {
+  width: auto;
+}
+
+table.action-table-info tr td {
+  color: #090948;
+  border-bottom: none;
+  font-size: 16px;
+}
+
+table.action-table-info .spacer {
+  position: relative;
+  top: 2px;
+}
+
 .action-list-wrap {
   color: #090948;
   font-size: 16px;
