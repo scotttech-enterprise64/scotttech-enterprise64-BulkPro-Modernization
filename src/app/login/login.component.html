@@ -69,7 +69,7 @@
                                         style="float: none;margin: 0 auto;">
                                         <mat-form-field appearance="outline" style=" width: 100%;">
                                             <mat-label>Data Source</mat-label>
-                                            <mat-select (change)="changeDsName($event)" formControlName="dsName">
+                                            <mat-select (selectionChange)="changeDsName($event)" formControlName="dsName">
                                                 <mat-option *ngFor="let dsName of dsNamesDropDownValues"
                                                     [value]="dsName">
                                                     {{ dsName }}

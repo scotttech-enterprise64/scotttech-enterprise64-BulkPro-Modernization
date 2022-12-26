@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgControlStatus, Validators } from '@angular/forms';
 import { SpinnerService } from '../services/spinner/spinner.service';
 import { SessionHandlerService } from '../services/sessionHandler/session-handler.service';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
@@ -80,15 +80,15 @@ export class LoginComponent implements OnInit {
 
 
   changeDeviceID(e: any) {
-    this.global.setCookie("DeviceID", e.target.value, 1000000);
+    this.global.setCookie("DeviceID", e.value, 1000000);
   }
 
 
   changeDsName(e: any) {
     this.loginForm.patchValue({
-      'dsName': e.target.value
+      'dsName': e.value
     });
-    this.global.setCookie("DSName", e.target.value, 1000000);
+    this.global.setCookie("DSName",e.value, 1000000);
     this.loadDeviceIDList();
   }
 
@@ -163,8 +163,9 @@ export class LoginComponent implements OnInit {
           this.global.setCookie("PW", this.loginForm.get("password")?.value.toString().trim(), 15);
           //Hit Login API
           var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"LOGIN\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"(LOGGEDIN_USERNAME)\\\",\\\"PW\\\":\\\"(PW)\\\",\\\"PCName\\\":\\\"(PCNAME)\\\",\\\"DSName\\\":\\\"(DSName)\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
-          payload = payload.replace("(PCNAME)", this.loginForm.get("deviceID")?.value.split(":")[1].toString().trim());
-          payload = payload.replace("(DSName)", this.loginForm.get("dsName")?.value.split(":")[1].toString().trim());
+
+          payload = payload.replace("(PCNAME)", this.loginForm.get("deviceID")?.value);
+          payload = payload.replace("(DSName)", this.loginForm.get("dsName")?.value);
           payload = payload.replace("(LOGGEDIN_USERNAME)", this.loginForm.get("username")?.value);
           payload = payload.replace("(PW)", this.loginForm.get("password")?.value);
 
@@ -192,6 +193,7 @@ export class LoginComponent implements OnInit {
 
       }
     } catch (error) {
+      console.log(error);
     }
   }
 
