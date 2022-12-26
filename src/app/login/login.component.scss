@@ -16,3 +16,57 @@
     left: 0;
     position: fixed;
 }
+
+mat-grid-tile {
+    background: lightblue;
+}
+
+.login-section {
+    position: relative;
+    // width: 1440px;
+    // height: 100%;
+  
+    /* Tertiary 900 */
+  
+    background: #090948;
+  }
+  
+  .app-heading {
+    font-family: 'Mulish' !important;
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 20px;
+    // line-height: 64px;
+  
+  
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.4px;
+  
+    color: #090948;
+  }
+  
+  .account_login {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 64px;
+    /* identical to box height, or 213% */
+  
+    // display: flex;
+    align-items: center;
+    letter-spacing: -0.4px;
+  
+    color: #090948;
+  }
+  ::ng-deep .mat-form-field {
+    font-size: 15px; // example
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-wrapper{
+    margin: 0px !important;
+  }
+  .mat-form-field-wrapper{
+    padding-bottom: 2px !important;
+  }

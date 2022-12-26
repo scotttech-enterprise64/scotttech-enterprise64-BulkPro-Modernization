@@ -3,18 +3,36 @@ import { RouterModule, Routes } from '@angular/router';
 import { GuardGuard } from './guards/guard.guard';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
+import { MainComponent } from './user/dashboard/main/main.component';
+import { PickComponent } from './user/dashboard/pick/pick.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     redirectTo: 'login',
     pathMatch: 'full',
   },
-  { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard',
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
     component: DashboardComponent,
-    canActivate: [GuardGuard]
+    children: [
+      {
+        path: 'dashboard',
+        component: MainComponent,
+        // canActivate:[GuardGuard]
+      },
+      {
+        path: 'pick',
+        component: PickComponent,
+        // canActivate:[GuardGuard]
+      },
+
+    ],
+    // canActivate: [GuardGuard]
   },
 ];
 

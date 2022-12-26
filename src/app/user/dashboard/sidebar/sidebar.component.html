@@ -1,0 +1,16 @@
+<mat-nav-list *ngIf="isParentMenu">
+    <ng-container *ngFor="let menu of menus;">
+      <mat-list-item  routerLinkActive="active" routerLink="{{menu.route}}" (click)="loadMenus(menu)">
+        <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+        <div class="sidenav-item">{{menu.title}}</div>
+      </mat-list-item>
+    </ng-container>
+  </mat-nav-list>
+  <mat-nav-list *ngIf="isChildMenu">
+    <ng-container *ngFor="let childMenu of childMenus;">
+      <mat-list-item  routerLinkActive="active" routerLink="{{childMenu.route}}" (click)="loadMenus(childMenu)">
+        <mat-icon mat-list-icon>{{childMenu.icon}}</mat-icon>
+        <div class="sidenav-item">{{childMenu.title}}</div>
+      </mat-list-item>
+    </ng-container>
+  </mat-nav-list>
