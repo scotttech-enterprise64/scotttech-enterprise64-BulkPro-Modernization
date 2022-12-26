@@ -70,11 +70,13 @@
                         <div class="col-8">
                             <mat-card class="mat-elevation-z g-card mb-3">
                                 <mat-card-content>
-                                    <table mat-table [dataSource]="dataSource" matSort
+                                    
+                                    <ng-scrollbar style="height: 200px">
+                                        <table mat-table [dataSource]="dataSource" matSort
                                         (matSortChange)="announceSortChange($event)"
                                         class="mat-elevation-z bp-inline-table">
 
-                                            <!-- Position Column -->
+                                                <!-- Position Column -->
                                         <ng-container matColumnDef="tote">
                                             <th mat-header-cell *matHeaderCellDef mat-sort-header
                                                 sortActionDescription="Sort by Tote">
@@ -103,12 +105,12 @@
 
 
 
-                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                             <!-- ... -->
-
                                         
                                     </table>
+                                        </ng-scrollbar>
                                 </mat-card-content>
                             </mat-card>
                         </div>
@@ -173,27 +175,137 @@
                     <mat-card class="mat-elevation-z g-card mb-3">
                         <mat-card-content>
                             <div class="table-responsive">
-                                <table class="table action-table-info">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="material-symbols-outlined">
-                                                        pin_drop
-                                                    </span>
-                                                    <span class="">Location:</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span><strong class="spacer">Kithd-21302</strong></span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <ng-scrollbar style="height: 200px">
+                                    <table class="table action-table-info">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            pin_drop
+                                                        </span>
+                                                        <span class="">Location:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            category
+                                                        </span>
+                                                        <span class="">Item No:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            text_snippet
+                                                        </span>
+                                                        <span class="">Description:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">Kit Item</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            scale
+                                                        </span>
+                                                        <span class="">Unit of Measure:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            pin_drop
+                                                        </span>
+                                                        <span class="">Location:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            category
+                                                        </span>
+                                                        <span class="">Item No:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            text_snippet
+                                                        </span>
+                                                        <span class="">Description:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">Kit Item</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            scale
+                                                        </span>
+                                                        <span class="">Unit of Measure:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </ng-scrollbar>
                             </div>
                         </mat-card-content>
                     </mat-card>
                 </div>
+
+                <div class="action-buttons-wrap">
+                    <button mat-flat-button color="primary" (click)="openAlertDialog()">Task Complete</button>
+                    <button mat-flat-button color="primary" >Process Picks</button>
+                    <button mat-stroked-button color="primary">Print Picks</button>
+                    <button mat-flat-button color="primary">Skip Transaction</button>
+                    <button mat-stroked-button color="primary">Shorts to 0</button>
+                    <button mat-stroked-button color="warn">Exit</button>
+                </div>
+
             </div>
         </div>
     </div>

@@ -99,6 +99,20 @@ h1, h2, h3, h4, h5, h6, p, strong, span, b, u, a, div
   'opsz' 48
 }
 
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background: #000080;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  color: #000080;
+  border: 1px solid #000080;
+}
+
+.mat-button.mat-warn, .mat-icon-button.mat-warn, .mat-stroked-button.mat-warn {
+  color: #de2654;
+  border: 1px solid #de2654;
+}
+
 #pickpro {
   font-family: 'Mulish', sans-serif;
   font-size: 16px;
@@ -355,6 +369,25 @@ table.action-table-info .spacer {
   position: relative;
   top: 2px;
 }
+
+table.action-table-info span.material-symbols-outlined {
+  margin-right: 0.3em;
+}
+
+.action-buttons-wrap {
+  direction: rtl;
+}
+
+.action-buttons-wrap button {
+  margin-left: 1.4em;
+  min-width: 202px;
+  height: 56px;
+  border-radius: 100px;
+  font-size: 18px;
+  margin-bottom: 1.2em;
+}
+
+
 
 .action-list-wrap {
   color: #090948;
@@ -1067,3 +1100,16 @@ button.default-btn{
   border-radius: 14px !important;
 }
 
+h3.action-header-title {
+  font-size: 18px;
+  margin-bottom: 1.3em;
+}
+
+.action-dialog-info {
+  padding: 16px;
+}
+
+button.bp-action-button {
+  border-radius: 100px;
+  min-width: 202px;
+}
