@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
+
+
+<mat-sidenav-container autosize class="main-container">
+  <mat-sidenav #sidenav mode="side" [opened]="sideBarOpen">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="dashboard-section">
+      <!-- <div class="breadcrumb-menu">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
+          </ol>
+        </nav>
+      </div> -->
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

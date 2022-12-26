@@ -14,14 +14,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomHttpInterceptor } from './services/interceptor/http-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DashboardModule } from './user/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    LoginComponent,
-    DashboardComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +29,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    DashboardModule
   ],
   providers: [
     {

@@ -53,20 +53,17 @@ export class ApiHandlerService {
 
   public post(endPoint: string, reqPaylaod: any) : any 
   {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       
       const headers = new HttpHeaders({
         'Content-Type'      : 'application/json',
         'Authorization'     : `Bearer `
       });
+      let response = await this.http.post(`${environment.apiUrl}${endPoint}`, reqPaylaod, { headers: headers });
 
-      this.http.post(`${environment.apiUrl}${endPoint}`, reqPaylaod, { headers: headers })
-      .subscribe({
-        next: data => {
-          resolve(data);
-        },
-        error: error => {
-          resolve(error);
+      response.subscribe((data) => {
+        if(data) {
+           resolve(data);
         }
       });
       
