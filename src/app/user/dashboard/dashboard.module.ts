@@ -10,7 +10,6 @@ import { MaterialModule } from '../../material-module';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PickComponent } from './pick/pick.component';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 // import { GeneralModule } from '../gen-module';
 
 
@@ -34,7 +33,6 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     // ReactiveFormsModule,
     MaterialModule,
     //GeneralModule
-    NgScrollbarModule
   ]
 })
 export class DashboardModule { }

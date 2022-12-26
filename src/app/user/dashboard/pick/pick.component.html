@@ -74,8 +74,6 @@
                                         (matSortChange)="announceSortChange($event)"
                                         class="mat-elevation-z bp-inline-table">
 
-                                        <ng-scrollbar style="height: 300px">
-
                                             <!-- Position Column -->
                                         <ng-container matColumnDef="tote">
                                             <th mat-header-cell *matHeaderCellDef mat-sort-header
@@ -108,7 +106,6 @@
                                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                             <!-- ... -->
-                                          </ng-scrollbar>
 
                                         
                                     </table>
