@@ -19,17 +19,17 @@ export class MainComponent implements OnInit {
   ];
 
   bulkProMenus: any = [
-    { name: 'Cycle Count', icon: 'dock' },
-    { name: 'Pick', icon: 'insert_drive_file' },
-    { name: 'Put Away', icon: 'playlist_add_check' },
-    { name: 'Recieve', icon: 'phonelink_setup' },
-    { name: 'Hot Pick', icon: 'exit_to_app' },
-    { name: 'Hot Put Away', icon: 'exit_to_app' },
-    { name: 'Hot Move', icon: 'exit_to_app' },
-    { name: 'Item Location', icon: 'exit_to_app' },
-    { name: 'Location Status', icon: 'exit_to_app' },
-    { name: 'About', icon: 'exit_to_app' },
-    { name: 'Back', icon: 'exit_to_app' }
+    { name: 'Cycle Count', icon: 'dock', route: '/cyclecount' },
+    { name: 'Pick', icon: 'insert_drive_file', route: '/cyclecount' },
+    { name: 'Put Away', icon: 'playlist_add_check', route: '/cyclecount' },
+    { name: 'Recieve', icon: 'phonelink_setup', route: '/cyclecount' },
+    { name: 'Hot Pick', icon: 'exit_to_app', route: '/cyclecount' },
+    { name: 'Hot Put Away', icon: 'exit_to_app', route: '/cyclecount' },
+    { name: 'Hot Move', icon: 'exit_to_app', route: '/cyclecount' },
+    { name: 'Item Location', icon: 'exit_to_app', route: '/cyclecount' },
+    { name: 'Location Status', icon: 'exit_to_app', route: '/cyclecount' },
+    { name: 'About', icon: 'exit_to_app', route: '/cyclecount' },
+    { name: 'Back', icon: 'exit_to_app', route: '/cyclecount' }
   ];
 
   isParentMenu: boolean = true;
