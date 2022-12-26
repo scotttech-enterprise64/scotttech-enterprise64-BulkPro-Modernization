@@ -20,7 +20,7 @@
         </h2>
 
         <!-- Main Section Option (Import Export) -->
-        <div class="col-sm-12 col-md-3" *ngFor="let tab of mainMenu" [style.display]="isParentMenu ? '' : 'none'">
+        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of mainMenu" [style.display]="isParentMenu ? '' : 'none'">
             <div matRipple [matRippleColor]="tab_hover_color" class="main-section-option bg-white" (click)="loadMenus(tab)">
                 
                 <a class="main-section-option-link" href="#"></a>
@@ -35,7 +35,7 @@
         </div>
 
         <!-- Main Section Option (Import Export) -->
-        <div class="col-sm-12 col-md-3" *ngFor="let tab of bulkProMenus" [style.display]="isChildMenu ? '' : 'none'">
+        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of bulkProMenus" [style.display]="isChildMenu ? '' : 'none'">
             <div matRipple [matRippleColor]="tab_hover_color" class="main-section-option bg-white" (click)="loadMenus(tab)">
                 
                 <a class="main-section-option-link" href="#"></a>

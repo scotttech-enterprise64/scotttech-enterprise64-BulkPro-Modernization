@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgControlStatus, Validators } from '@angular/forms';
 import { SpinnerService } from '../services/spinner/spinner.service';
 import { SessionHandlerService } from '../services/sessionHandler/session-handler.service';
@@ -6,6 +6,7 @@ import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.servi
 import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   userData = this.session.userData();
   dsNamesDropDownValues = [""];
   deviceIDDropDownValues = [""];
+  elem :  any;
 
   error_messages = {
     'username': [
@@ -44,7 +46,8 @@ export class LoginComponent implements OnInit {
     private api: ApiHandlerService,
     private router: Router,
     private session: SessionHandlerService,
-    private global: GlobalFunctionsService) {
+    private global: GlobalFunctionsService,
+    @Inject(DOCUMENT) private document: any) {
 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', Validators.compose([
@@ -64,6 +67,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.elem = document.documentElement;
+    // this.openFullscreen();
+
     this.error_msg = "";
     if (this.global.getCookie("DeviceID") && this.global.getCookie("DSName")) {
       this.displayDropDowns = false;
@@ -75,6 +81,37 @@ export class LoginComponent implements OnInit {
 
     if (this.global.getCookie("DSName") != "") {
       this.loadDeviceIDList();
+    }
+  }
+
+  openFullscreen() {
+    if (this.elem.requestFullscreen) {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
+  }
+
+  /* Close fullscreen */
+  closeFullscreen() {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
     }
   }
 
