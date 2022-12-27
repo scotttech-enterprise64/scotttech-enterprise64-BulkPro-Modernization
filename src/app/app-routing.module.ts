@@ -32,7 +32,7 @@ const routes: Routes = [
         canActivate:[GuardGuard]
       },
       {
-        path: 'cyclecount',
+        path: 'cycle-count',
         component: CycleCountComponent,
         canActivate:[GuardGuard]
       },

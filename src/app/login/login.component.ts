@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgControlStatus, Validators } from '@angular/forms';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgControlStatus, UntypedFormControl, Validators } from '@angular/forms';
 import { SpinnerService } from '../services/spinner/spinner.service';
 import { SessionHandlerService } from '../services/sessionHandler/session-handler.service';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
