@@ -10,6 +10,8 @@ import { MaterialModule } from '../../material-module';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PickComponent } from './pick/pick.component';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+// import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
 import { CycleCountComponent } from './cycle-count/cycle-count.component';
 // import { GeneralModule } from '../gen-module';
 
@@ -21,9 +23,12 @@ import { CycleCountComponent } from './cycle-count/cycle-count.component';
     MainComponent,
     DashboardComponent,
     SidebarComponent,
+    // MainComponents
     PickComponent,
     CycleCountComponent,
     // MainComponent
+    // Dialogs
+    // BatchCompletedComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 export interface IPickData {
@@ -10,16 +10,16 @@ export interface IPickData {
   order: number;
 }
 const PickData: IPickData[] = [
-  {tote: 1, tr: 'Hydrogen', order: 1.0079},
-  {tote: 2, tr: 'Helium', order: 4.0026},
-  {tote: 3, tr: 'Lithium', order: 6.941},
-  {tote: 4, tr: 'Beryllium', order: 9.0122},
-  {tote: 5, tr: 'Boron', order: 10.811},
-  {tote: 6, tr: 'Carbon', order: 12.0107},
-  {tote: 7, tr: 'Nitrogen', order: 14.0067},
-  {tote: 8, tr: 'Oxygen', order: 15.9994},
-  {tote: 9, tr: 'Fluorine', order: 18.9984},
-  {tote: 10, tr: 'Neon', order: 20.1797},
+  { tote: 1, tr: 'Hydrogen', order: 1.0079 },
+  { tote: 2, tr: 'Helium', order: 4.0026 },
+  { tote: 3, tr: 'Lithium', order: 6.941 },
+  { tote: 4, tr: 'Beryllium', order: 9.0122 },
+  { tote: 5, tr: 'Boron', order: 10.811 },
+  { tote: 6, tr: 'Carbon', order: 12.0107 },
+  { tote: 7, tr: 'Nitrogen', order: 14.0067 },
+  { tote: 8, tr: 'Oxygen', order: 15.9994 },
+  { tote: 9, tr: 'Fluorine', order: 18.9984 },
+  { tote: 10, tr: 'Neon', order: 20.1797 },
 ];
 
 @Component({
@@ -34,7 +34,7 @@ export class CycleCountComponent implements OnInit {
 
   private code: string = '';
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  constructor(private _liveAnnouncer: LiveAnnouncer) { }
 
   @HostListener('window:keypress', ['$event'])
   keyEvent(event: KeyboardEvent): void {
@@ -50,7 +50,7 @@ export class CycleCountComponent implements OnInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
 
-  ngOnInit() : void {
+  ngOnInit(): void {
   }
 
   ngAfterViewInit() {
@@ -68,6 +68,7 @@ export class CycleCountComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-  }
 
+
+  }
 }

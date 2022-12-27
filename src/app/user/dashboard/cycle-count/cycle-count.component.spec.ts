@@ -14,6 +14,7 @@ describe('CycleCountComponent', () => {
   });
 
   beforeEach(() => {
+
     fixture = TestBed.createComponent(CycleCountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
