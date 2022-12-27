@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
+import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,55 +11,158 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  menus: any = [
-    { icon: 'desktop_mac', title: 'Device Apps', route: '/dashboard' },
-    { icon: 'dock', title: 'BulkPro Menu', route: '#' },
-    { icon: 'insert_drive_file', title: 'Config', route: '#' },
-    { icon: 'playlist_add_check', title: 'Consolidation', route: '/admin' },
-    { icon: 'phonelink_setup', title: 'Device Config', route: '#' },
-    { icon: 'exit_to_app', title: 'Exit', route: '#' }
-  ];
-  
-  bulkProMenus: any = [
-    { icon: 'arrow_back', title: 'Admin', route: '/dashboard', class: 'back-class' },
-    { icon: 'assignment_ind', title: 'Employee', route: '/admin/employees' },
-    { icon: 'tune', title: 'Preferences', route: '#' },
-    { icon: 'published_with_changes', title: 'System Replenishment', route: '#' },
-    { icon: 'directions_alt', title: 'Inventery Map', route: '/admin/inventoryMap' },
-    { icon: 'list_alt', title: 'Batch Manager', route: '/admin/batchManager' },
-    { icon: 'analytics', title: 'Reports', route: '#' },
-    { icon: 'my_location', title: 'Location Assignment', route: '#' },
-    { icon: 'low_priority', title: 'Cycle Count', route: '#' },
-    { icon: 'trolley', title: 'Move Item', route: '#' },
-    { icon: 'dvr', title: 'Transactions', route: '#' },
-    { icon: 'ads_click', title: 'manual Transactions', route: '#' },
-    { icon: 'event_note', title: 'Event Logs', route: '#' },
-    { icon: 'airline_stops', title: 'De-allocate Orders', route: '#' },
-    { icon: 'dashboard', title: 'Inventory', route: '/admin/inventoryMaster' }
-  ];
+  selectedMenu : any = {
+    icon : "",
+    AppDisplayName : ""
+  };
+
+  attrMenuList : any = this.global.getAttrMenuList();
+
+  parentMenu: any = [];
+  childMenu : any = [];
 
   isParentMenu: boolean = true;
   isChildMenu: boolean = false;
-  childMenus: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private api : ApiHandlerService,
+              private global: GlobalFunctionsService,) { }
 
   ngOnInit(): void {
-    this.loadMenus({route: this.router.url});
+    this.deviceApps();
   }
 
-  loadMenus(menu: any) {
+  async deviceApps() {
+    try {
+      var payload = {
+        Request : {
+          "SessionID"         : "",
+          "Status"            : "",
+          "RequestType"       : "GETAPPLIST",
+          "ResponseType"      : "",
+          "LoggedInUserName"  : this.global.getCookie("UserID"),
+          "PW"                : this.global.getCookie("PW"),
+          "PCName"            : this.global.getCookie("DeviceID"),
+          "DSName"            : this.global.getCookie("DSName"),
+          "AppName"           : "",
+          "isADLDS"           : this.global.getCookie("isADLDS"),
+          "Data"              : ""
+        }
+      };      
+      var convertPayload = JSON.stringify(JSON.stringify(payload));
+      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, convertPayload));
+      const { Data, ResponseType, Status } = res.Response;
 
-    if (menu.route.includes('/admin')) {
-      this.childMenus = this.bulkProMenus;
+      if (ResponseType == "OK" && Status == "OK") {
+        
+        this.parentMenu.push({ AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" });
+        this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };
+
+        Data.forEach((i : any) => {
+          let info = this.attrMenuList.filter((e : any) => e.name == i.AppName);
+          this.parentMenu.push(
+            {
+              ...i, 
+              icon  : info[0].icon
+            }
+          );
+        });
+      }
+      
+      this.parentMenu.push(
+        {
+          ...this.attrMenuList.filter((e : any) => e.name == "Exit")[0],
+          AppDisplayName : "Exit", 
+          AppName : "Exit",          
+        }
+      );
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async loadMenus(menu: any) {
+
+    try {
+
+      // If User has clicked on Child Menu
+      if (menu.MenuDisplayName) {                
+        if (menu.MenuDisplayName == "Back") {
+          this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };
+          this.showMenu("parent");
+        } else {
+          this.router.navigate([menu.route]);  
+        }
+        return;
+      }
+
+      if (menu.AppName == "Exit") {
+        this.global.deleteAllCookies();
+        this.router.navigate(['/login']);
+      }
+
+      var payload = {
+        Request : {
+          "SessionID"         : menu.AppName + new Date().getTime(),
+          "Status"            : "",
+          "RequestType"       : "GETUSERAPPMENU",
+          "ResponseType"      : "",
+          "LoggedInUserName"  : this.global.getCookie("UserID"),
+          "PW"                : this.global.getCookie("PW"),
+          "PCName"            : this.global.getCookie("DeviceID"),
+          "DSName"            : this.global.getCookie("DSName"),
+          "AppName"           : menu.AppName,
+          "isADLDS"           : this.global.getCookie("isADLDS"),
+          "Data"              : menu.AppName
+        }
+      };
+      var convertPayload = JSON.stringify(JSON.stringify(payload));
+      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, convertPayload));
+      const { Data, ResponseType, Status } = res.Response;
+
+      if (ResponseType == "OK" && Status == "OK") {
+
+        this.childMenu = [];
+        this.selectedMenu = menu;
+
+        Data.forEach((i : any) => {          
+          let info = this.attrMenuList.filter((e : any) => e.name == i.MenuDisplayName);
+          this.childMenu.push(
+            {
+              ...i, 
+              icon  : info.length > 0 ? info[0].icon : "",
+              route : info.length > 0 ? info[0].route : ""
+            }
+          );
+        });
+      }
+
+      this.childMenu.push(
+        {
+          ...this.attrMenuList.filter((e : any) => e.name == "Back")[0],
+          AppDisplayName : "Back", 
+          AppName : "Back",
+          MenuDisplayName : "Back"
+        }
+      );
+
+      this.showMenu("child");
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  showMenu(name : string) {
+    if (name == "parent") {
+      this.isParentMenu = true;
+      this.isChildMenu = false;
+    } else {
       this.isParentMenu = false;
       this.isChildMenu = true;
     }
-    if (menu.route === '/dashboard') {
-      this.isParentMenu = true;
-      this.isChildMenu = false;
-    }
-
   }
 
 }
