@@ -51,8 +51,13 @@
                                         <mat-form-field appearance="outline" style=" width: 100%;">
                                             <mat-label>Password</mat-label>
                                             <input formControlName="password" id="Password" class="form-control"
-                                                type="password" matInput placeholder="Enter Password" required
+                                            [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" required
                                                 autocomplete="off" />
+                                            
+                                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                            
                                             <div *ngIf="error_msg">
                                                 <ng-container *ngFor="let error of error_messages.password">
                                                     <span class="text-error-500"
