@@ -12,6 +12,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PickComponent } from './pick/pick.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
+import { CycleCountComponent } from './cycle-count/cycle-count.component';
 // import { GeneralModule } from '../gen-module';
 
 
@@ -24,7 +25,7 @@ import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-c
     SidebarComponent,
     // MainComponents
     PickComponent,
-    // CycleCountComponent,
+    CycleCountComponent,
     // MainComponent
     BatchCompletedComponent
   ],

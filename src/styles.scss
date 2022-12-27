@@ -412,17 +412,41 @@ table.action-table-info span.material-symbols-outlined {
 }
 
 .action-notification-wrapper .alert {
-  height: 36px;
-  margin-bottom: 0;
+  min-height: 36px;
   padding: 6px;
   font-size: 14px;
 }
 
 .alert.alert-danger {
-  color: #de2654;
+  background-color: #F5BECC;
+  color: #4D0D1D;
 }
-.alert .material-symbols-outlined {
+.alert.alert-warning {
+  background-color: #FFEDCD;
+  color: #4D3B1A;
+}
+
+.alert.alert-success {
+  background-color: #BADBCE;
+  color: #114D35;
+}
+
+.alert.alert-info {
+  background-color: #BEE6EE;
+  color: #00404D;
+}
+
+.alert .action-alert-icon {
   margin-right: 0.5em;
+}
+
+.action-info-wrap{
+  min-height: 217px;
+}
+
+span.action-info-desc-icon {
+  margin-right: 0.3em;
+  font-size: 20px;
 }
 
 #pickpro .toast-container .ngx-toastr {
@@ -1118,3 +1142,4 @@ button.bp-action-button {
   border-radius: 100px;
   min-width: 202px;
 }
+

@@ -1,1 +1,433 @@
-<p>cycle-count works!</p>
+<div class="bp-pick-option">
+    <div class="container-fluid">
+        <div class="row g-4">
+            <div class="mt-0 col-12">
+                <h2 mat-subheader class="bp-option-heading mt-3 mb-0">
+                    <div class="mat-icon-wrap">
+                        <span class="material-symbols-outlined mat-icon"> low_priority </span>
+                    </div>
+                    <span class="mat-subheader-space">Cycle Count</span>
+                </h2>
+
+                <!-- Notification Wrapper -->
+                <div class="action-notification-wrapper">
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <span class="action-alert-icon material-symbols-outlined">
+                            notification_important
+                        </span>
+                        <span>
+                            Error Notification here
+                        </span>
+                    </div>
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <span class="action-alert-icon material-symbols-outlined">
+                            notification_important
+                        </span>
+                        <span>
+                            Warning Notification here
+                        </span>
+                    </div>
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <span class="action-alert-icon material-symbols-outlined">
+                            notification_important
+                        </span>
+                        <span>
+                            Success Notification here
+                        </span>
+                    </div>
+                    <div class="alert alert-info d-flex align-items-center" role="alert">
+                        <span class="action-alert-icon material-symbols-outlined">
+                            notification_important
+                        </span>
+                        <span>
+                            Info Notification here
+                        </span>
+                    </div>
+                </div>
+
+                
+
+
+                <!-- Scan Order -->
+                <div class="mt-0 bp-inline-step step-scan-order">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
+                                    <mat-label>Scan Order</mat-label>
+                                    <input type="text" placeholder="Scan Order"
+                                        aria-label="Scan Order" matInput>
+                                </mat-form-field>
+                                <div class="action-des-icon-wrap">
+                                    <span class="scan-option-wrap">
+                                        <img src="./assets/images/scan-option.svg" width="58" height="32">
+                                    </span>
+                                </div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            
+                            <ng-scrollbar style="height: 200px">
+                                <table class="action-table-info" mat-table [dataSource]="dataSource" matSort
+                                (matSortChange)="announceSortChange($event)"
+                                class="mat-elevation-z bp-inline-table">
+
+                                        <!-- Order Column -->
+                                <ng-container matColumnDef="order">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                        sortActionDescription="Sort by order">
+                                        Order #
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.order}} </td>
+                                </ng-container>
+
+                                <!-- Tr Column -->
+                                <ng-container matColumnDef="tr">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                        sortActionDescription="Sort by Tr">
+                                        Tr #
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.tr}} </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    <!-- ... -->
+                                
+                            </table>
+                                </ng-scrollbar>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+
+
+                <!-- Scan Verify Location -->
+                <div class="mt-0 bp-inline-step step-scan-verify-location">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
+                                    <mat-label>Scan Verify Location</mat-label>
+                                    <input type="text" placeholder="Scan Verify Location" aria-label="Scan Verify Location" matInput>
+                                </mat-form-field>
+                                <div class="action-des-icon-wrap">
+                                    <span class="scan-option-wrap">
+                                        <img src="./assets/images/scan-option.svg" width="58" height="32">
+                                    </span>
+                                </div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            <div class="table-responsive">
+                                <ng-scrollbar style="height: 200px">
+                                    <table class="table action-table-info">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            pin_drop
+                                                        </span>
+                                                        <span class="">Location:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            category
+                                                        </span>
+                                                        <span class="">Item No:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            text_snippet
+                                                        </span>
+                                                        <span class="">Description:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">Kit Item</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            scale
+                                                        </span>
+                                                        <span class="">Unit of Measure:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            featured_play_list
+                                                        </span>
+                                                        <span class="">User Field 01:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            pin_drop
+                                                        </span>
+                                                        <span class="">Location:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            category
+                                                        </span>
+                                                        <span class="">Item No:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            text_snippet
+                                                        </span>
+                                                        <span class="">Description:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">Kit Item</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            scale
+                                                        </span>
+                                                        <span class="">Unit of Measure:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            featured_play_list
+                                                        </span>
+                                                        <span class="">User Field 01:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">012-234-567</strong></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </ng-scrollbar>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <!-- Change Old Quantity with Short Reason -->
+                <div class="mt-0 bp-inline-step step-old-quantity">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="row align-items-center g-3">
+                                    <div class="col-auto">
+                                        <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
+                                            <mat-label>Enter Old Tote Quantity</mat-label>
+                                            <input type="number" placeholder="Enter Old Tote Quantity" aria-label="Enter Old Tote Quantity" matInput>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <mat-form-field appearance="outline" class="action-dropdown">
+                                            <mat-label>Short Reason</mat-label>
+                                            <mat-select>
+                                                <mat-option value="Reason 1">Reason 1</mat-option>
+                                                <mat-option value="Reason 2">Reason 2</mat-option>
+                                                <mat-option value="Reason 3">Reason 3</mat-option>
+                                                <mat-option value="Reason 4">Reason 4</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    
+                                </div>
+                                <div class="action-des-icon-wrap">
+                                    <span class="material-symbols-outlined action-dropdown-icon">
+                                        table
+                                    </span>
+                                </div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+
+                </div>
+
+                <!-- Confirmation -->
+                <div class="mt-0 bp-inline-step step-confirmation">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            <div class="action-info-wrap">
+                                <p class="d-flex align-items-center">
+                                    <span class="action-info-desc-icon material-symbols-outlined">
+                                    help
+                                    </span>
+                                    The count entered is different from the system count. Adjust the system quantity?
+                                </p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <!-- User Fields -->
+                <div class="mt-0 bp-inline-step step-user-fields">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            <div class="action-info-wrap">
+                                <div class="table-responsive">
+                                    <ng-scrollbar style="height: 200px">
+                                        <table class="table action-table-info">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <span class="material-symbols-outlined">
+                                                                featured_play_list
+                                                            </span>
+                                                            <span class="">User Field 01:</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span><strong class="spacer">012-234-567</strong></span>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <span class="material-symbols-outlined">
+                                                                featured_play_list
+                                                            </span>
+                                                            <span class="">User Field 02:</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span><strong class="spacer">012-234-567</strong></span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </ng-scrollbar>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            
+                            <ng-scrollbar style="height: 200px">
+                                <table class="action-table-info" mat-table [dataSource]="dataSource" matSort
+                                (matSortChange)="announceSortChange($event)"
+                                class="mat-elevation-z bp-inline-table">
+
+                                        <!-- Order Column -->
+                                <ng-container matColumnDef="order">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                        sortActionDescription="Sort by order">
+                                        Order #
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.order}} </td>
+                                </ng-container>
+
+                                <!-- Tr Column -->
+                                <ng-container matColumnDef="tr">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header
+                                        sortActionDescription="Sort by Tr">
+                                        Tr #
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.tr}} </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    <!-- ... -->
+                                
+                            </table>
+                                </ng-scrollbar>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+
+                <div class="action-buttons-wrap">
+                    <button mat-flat-button color="primary" (click)="openAlertDialog()">Process Counts</button>
+                    <button mat-flat-button color="primary" >Delete Last</button>
+                    <button mat-flat-button color="primary">Submit</button>
+                    <button mat-flat-button color="primary">Skip Transaction</button>
+                    <button mat-stroked-button color="primary">View User Fields</button>
+                    <button mat-flat-button color="warn">Yes</button>
+                    <button mat-stroked-button color="warn">No</button>
+                    <button mat-stroked-button color="warn">Exit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

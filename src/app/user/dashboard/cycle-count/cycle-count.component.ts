@@ -2,24 +2,25 @@ import { AfterViewInit, Component, OnInit, ViewChild, HostListener } from '@angu
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 export interface IPickData {
-  tote: number;
   tr: string;
   order: number;
 }
 const PickData: IPickData[] = [
-  { tote: 1, tr: 'Hydrogen', order: 1.0079 },
-  { tote: 2, tr: 'Helium', order: 4.0026 },
-  { tote: 3, tr: 'Lithium', order: 6.941 },
-  { tote: 4, tr: 'Beryllium', order: 9.0122 },
-  { tote: 5, tr: 'Boron', order: 10.811 },
-  { tote: 6, tr: 'Carbon', order: 12.0107 },
-  { tote: 7, tr: 'Nitrogen', order: 14.0067 },
-  { tote: 8, tr: 'Oxygen', order: 15.9994 },
-  { tote: 9, tr: 'Fluorine', order: 18.9984 },
-  { tote: 10, tr: 'Neon', order: 20.1797 },
+  {tr: 'Hydrogen', order: 1.0079 },
+  {tr: 'Helium', order: 4.0026 },
+  {tr: 'Lithium', order: 6.941 },
+  {tr: 'Beryllium', order: 9.0122 },
+  {tr: 'Boron', order: 10.811 },
+  {tr: 'Carbon', order: 12.0107 },
+  {tr: 'Nitrogen', order: 14.0067 },
+  {tr: 'Oxygen', order: 15.9994 },
+  {tr: 'Fluorine', order: 18.9984 },
+  {tr: 'Neon', order: 20.1797 },
 ];
 
 @Component({
@@ -29,12 +30,12 @@ const PickData: IPickData[] = [
 })
 export class CycleCountComponent implements OnInit {
 
-  displayedColumns: string[] = ['tote', 'tr', 'order'];
+  displayedColumns: string[] = ['tr', 'order'];
   dataSource = new MatTableDataSource(PickData);
 
   private code: string = '';
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private _liveAnnouncer: LiveAnnouncer, private dialog: MatDialog) { }
 
   @HostListener('window:keypress', ['$event'])
   keyEvent(event: KeyboardEvent): void {
@@ -71,4 +72,17 @@ export class CycleCountComponent implements OnInit {
 
 
   }
+
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(BatchCompletedComponent,{
+      data:{
+        message: 'HelloWorld',
+        buttonText: {
+          cancel: 'Done'
+        }
+      },
+    });
+  }
+
+
 }
