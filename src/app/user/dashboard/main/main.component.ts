@@ -127,9 +127,9 @@ export class MainComponent implements OnInit {
 
         this.childMenu = [];
         this.selectedMenu = menu;
-
-        Data.forEach((i : any) => {          
-          let info = this.attrMenuList.filter((e : any) => e.name == i.MenuDisplayName);
+        
+        Data.forEach((i : any) => {
+          let info = this.attrMenuList.filter((e : any) => e.name == i.MenuDisplayName);          
           this.childMenu.push(
             {
               ...i, 
