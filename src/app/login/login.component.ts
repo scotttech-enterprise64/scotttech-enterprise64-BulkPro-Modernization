@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgControlStatus, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { SpinnerService } from '../services/spinner/spinner.service';
 import { SessionHandlerService } from '../services/sessionHandler/session-handler.service';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
@@ -50,10 +51,10 @@ export class LoginComponent implements OnInit {
     @Inject(DOCUMENT) private document: any) {
 
     this.loginForm = this.formBuilder.group({
-      username: new FormControl('', Validators.compose([
+      username: new UntypedFormControl('', Validators.compose([
         Validators.required
       ])),
-      password: new FormControl('', Validators.compose([
+      password: new UntypedFormControl('', Validators.compose([
         Validators.required
       ])),
       dsName: new FormControl('', Validators.compose([

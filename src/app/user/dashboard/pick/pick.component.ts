@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
 
 
 export interface IPickData {
@@ -32,7 +34,8 @@ export class PickComponent implements AfterViewInit {
   displayedColumns: string[] = ['tote', 'tr', 'order'];
   dataSource = new MatTableDataSource(PickData);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+
+  constructor(private _liveAnnouncer: LiveAnnouncer, private dialog: MatDialog) {}
 
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
@@ -52,6 +55,17 @@ export class PickComponent implements AfterViewInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(BatchCompletedComponent,{
+      data:{
+        message: 'HelloWorld',
+        buttonText: {
+          cancel: 'Done'
+        }
+      },
+    });
   }
 
 }

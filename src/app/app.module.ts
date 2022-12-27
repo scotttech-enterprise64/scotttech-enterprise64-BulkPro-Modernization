@@ -19,7 +19,7 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
