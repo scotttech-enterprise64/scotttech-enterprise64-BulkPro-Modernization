@@ -55,7 +55,7 @@ export class GlobalFunctionsService {
       { name: 'Pick', icon: 'archive', route: '/cyclecount' },
       { name: 'Case Pick', icon: 'medical_services', route: '/cyclecount' },
       { name: 'Put Away', icon: 'unarchive', route: '/cyclecount' },
-      { name: 'Recieve', icon: 'pallet', route: '/cyclecount' },
+      { name: 'Receive', icon: 'pallet', route: '/cyclecount' },
       { name: 'Hot Pick', icon: 'quickreply', route: '/cyclecount' },
       { name: 'Hot Put Away', icon: 'outbox', route: '/cyclecount' },
       { name: 'Hot Move', icon: 'roundabout_left', route: '/cyclecount' },
