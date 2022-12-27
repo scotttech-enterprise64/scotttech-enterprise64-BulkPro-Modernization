@@ -14,13 +14,13 @@
 
         <h2 class="mt-3 mb-0" style="font-size:22px; color: black;" mat-subheader>
             <div class="main-icon">
-                <mat-icon>desktop_mac</mat-icon>
-            </div>            
-            Device Apps
+                <mat-icon>{{selectedMenu.icon ? selectedMenu.icon : ""}}</mat-icon>
+            </div>
+            {{selectedMenu.AppDisplayName}}
         </h2>
 
         <!-- Main Section Option (Import Export) -->
-        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of mainMenu" [style.display]="isParentMenu ? '' : 'none'">
+        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of parentMenu" [style.display]="isParentMenu ? '' : 'none'">
             <div matRipple [matRippleColor]="tab_hover_color" class="main-section-option bg-white" (click)="loadMenus(tab)">
                 
                 <a class="main-section-option-link" href="#"></a>
@@ -29,13 +29,13 @@
                     <mat-icon class="material-symbols-outlined">{{tab.icon}}</mat-icon>
                 </div>
 
-                <h4 class="main-section-title" style="font-size:15px; word-break: break-all;">{{tab.name}}</h4>
+                <h4 class="main-section-title" style="font-size:15px; word-break: break-all;">{{tab.AppDisplayName}}</h4>
 
             </div>
         </div>
 
         <!-- Main Section Option (Import Export) -->
-        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of bulkProMenus" [style.display]="isChildMenu ? '' : 'none'">
+        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of childMenu" [style.display]="isChildMenu ? '' : 'none'">
             <div matRipple [matRippleColor]="tab_hover_color" class="main-section-option bg-white" (click)="loadMenus(tab)">
                 
                 <a class="main-section-option-link" href="#"></a>
@@ -44,7 +44,7 @@
                     <mat-icon class="material-symbols-outlined">{{tab.icon}}</mat-icon>
                 </div>
 
-                <h4 class="main-section-title" style="font-size:15px; word-break: break-all;">{{tab.name}}</h4>
+                <h4 class="main-section-title" style="font-size:15px; word-break: break-all;">{{tab.MenuDisplayName}}</h4>
 
             </div>
         </div>

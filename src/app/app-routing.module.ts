@@ -24,21 +24,21 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: MainComponent,
-        // canActivate:[GuardGuard]
+        canActivate:[GuardGuard]
       },
       {
         path: 'pick',
         component: PickComponent,
-        // canActivate:[GuardGuard]
+        canActivate:[GuardGuard]
       },
       {
         path: 'cyclecount',
         component: CycleCountComponent,
-        // canActivate:[GuardGuard]
+        canActivate:[GuardGuard]
       },
 
     ],
-    // canActivate: [GuardGuard]
+    canActivate: [GuardGuard]
   },
 ];
 
