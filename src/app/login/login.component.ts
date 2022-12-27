@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   dsNamesDropDownValues = [""];
   deviceIDDropDownValues = [""];
   elem :  any;
+  hide = true;
 
   error_messages = {
     'username': [
