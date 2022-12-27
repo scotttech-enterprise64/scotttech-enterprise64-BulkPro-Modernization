@@ -108,5 +108,8 @@
       }
     }
   },
-  "defaultProject": "bulk-pro"
+  "defaultProject": "bulk-pro",
+  "cli": {
+    "analytics": false
+  }
 }
