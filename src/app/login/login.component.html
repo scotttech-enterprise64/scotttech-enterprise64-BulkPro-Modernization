@@ -74,7 +74,8 @@
                                         style="float: none;margin: 0 auto;">
                                         <mat-form-field appearance="outline" style=" width: 100%;">
                                             <mat-label>Data Source</mat-label>
-                                            <mat-select (selectionChange)="changeDsName($event)" formControlName="dsName">
+                                            <mat-select (selectionChange)="changeDsName($event)"
+                                                formControlName="dsName">
                                                 <mat-option *ngFor="let dsName of dsNamesDropDownValues"
                                                     [value]="dsName">
                                                     {{ dsName }}
@@ -123,10 +124,11 @@
                                         <button id="loginButton" type="submit" style="width:100%;" mat-flat-button color="primary"
                                             class="mat-button-icon br-12">Login</button>
                                             
-                                        <button type="submit" style="width:100%;" mat-flat-button color="primary"
-                                            class="mat-button-icon br-12" (click)="openFullscreen()">Open Full Screen</button>
-                                        <button type="submit" style="width:100%;" mat-flat-button color="primary"
-                                            class="mat-button-icon br-12" (click)="closeFullscreen()">Exit Full Screen</button>
+                                        <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
+                                            class="mat-button-icon br-12 mt-3" (click)="openFullscreen()">Open Full Screen</button> -->
+
+                                        <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
+                                            class="mat-button-icon br-12 mt-3" (click)="closeFullscreen()">Exit Full Screen</button> -->
                                     </div>
 
                                 </form>

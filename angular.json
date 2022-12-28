@@ -109,6 +109,7 @@
       }
     }
   },
+  "defaultProject": "bulk-pro",
   "cli": {
     "analytics": false
   }
