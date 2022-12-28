@@ -9,6 +9,9 @@ import { CycleCountComponent } from './cycle-count/cycle-count.component';
 import { PickComponent } from './pick/pick.component';
 import { ScanOrderComponent } from './cycle-count/scan-order/scan-order.component';
 import { ScanLocationComponent } from './cycle-count/scan-location/scan-location.component';
+import { ScanItemComponent } from './cycle-count/scan-item/scan-item.component';
+import { SetCountComponent } from './cycle-count/set-count/set-count.component';
+import { CustomMsgWindowComponent } from './cycle-count/custom-msg-window/custom-msg-window.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ScanLocationComponent } from './cycle-count/scan-location/scan-location
     DesignPickComponent,
     PickComponent,
     ScanOrderComponent,
-    ScanLocationComponent
+    ScanLocationComponent,
+    ScanItemComponent,
+    SetCountComponent,
+    CustomMsgWindowComponent
   ],
   imports: [
     CommonModule,

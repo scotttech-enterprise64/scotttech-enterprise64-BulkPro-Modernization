@@ -51,7 +51,7 @@ export class GlobalFunctionsService {
       { name: 'DeviceConfig', icon: 'book_online' },
       { name: 'Exit', icon: 'power_settings_new' },
       // Bulk Pro
-      { name: 'Cycle Count', icon: 'low_priority', route: '/cyclecount' },
+      { name: 'Cycle Count', icon: 'low_priority', route: '/bulkpro/cycle-count' },
       { name: 'Pick', icon: 'archive', route: '/cyclecount' },
       { name: 'Case Pick', icon: 'medical_services', route: '/cyclecount' },
       { name: 'Put Away', icon: 'unarchive', route: '/cyclecount' },

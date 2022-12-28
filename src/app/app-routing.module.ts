@@ -28,8 +28,7 @@ const routes: Routes = [
         path: 'bulkpro',
         loadChildren: () => import('./user/bulkpro/bulkpro.module').then(m => m.BulkproModule),
         canActivate:[GuardGuard]
-      },
-
+      }
     ],
     canActivate: [GuardGuard]
   },

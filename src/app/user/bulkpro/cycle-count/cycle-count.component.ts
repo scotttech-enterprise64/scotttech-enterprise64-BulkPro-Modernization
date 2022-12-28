@@ -12,9 +12,15 @@ export class CycleCountComponent implements OnInit {
   step3 : boolean = false;
   step4 : boolean = false;
 
+  dataCusWin : any = [];
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  customWindow(instructions : any) {
+    this.dataCusWin = instructions;
   }
 
   changeStep(showStep : number) {
