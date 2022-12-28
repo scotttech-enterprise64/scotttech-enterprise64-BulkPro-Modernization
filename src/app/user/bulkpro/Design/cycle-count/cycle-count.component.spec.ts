@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CycleCountComponent } from './cycle-count.component';
+import { DesignCycleCountComponent } from './cycle-count.component';
 
 describe('CycleCountComponent', () => {
-  let component: CycleCountComponent;
-  let fixture: ComponentFixture<CycleCountComponent>;
+  let component: DesignCycleCountComponent;
+  let fixture: ComponentFixture<DesignCycleCountComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CycleCountComponent ]
+      declarations: [ DesignCycleCountComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
 
-    fixture = TestBed.createComponent(CycleCountComponent);
+    fixture = TestBed.createComponent(DesignCycleCountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

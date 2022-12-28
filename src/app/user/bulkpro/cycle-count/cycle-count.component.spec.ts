@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PickComponent } from './pick.component';
+import { CycleCountComponent } from './cycle-count.component';
 
-describe('PickComponent', () => {
-  let component: PickComponent;
-  let fixture: ComponentFixture<PickComponent>;
+describe('CycleCountComponent', () => {
+  let component: CycleCountComponent;
+  let fixture: ComponentFixture<CycleCountComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PickComponent ]
+      declarations: [ CycleCountComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PickComponent);
+    fixture = TestBed.createComponent(CycleCountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

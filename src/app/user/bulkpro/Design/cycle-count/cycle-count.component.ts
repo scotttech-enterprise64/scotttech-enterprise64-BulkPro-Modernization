@@ -24,11 +24,11 @@ const PickData: IPickData[] = [
 ];
 
 @Component({
-  selector: 'app-cycle-count',
+  selector: 'app-design-cycle-count',
   templateUrl: './cycle-count.component.html',
   styleUrls: ['./cycle-count.component.scss']
 })
-export class CycleCountComponent implements OnInit {
+export class DesignCycleCountComponent implements OnInit {
 
   displayedColumns: string[] = ['tr', 'order'];
   dataSource = new MatTableDataSource(PickData);
