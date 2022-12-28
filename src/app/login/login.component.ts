@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   deviceIDDropDownValues = [""];
   elem :  any;
   hide = true;
+  // disableDeviceID : boolean = true;
 
   error_messages = {
     'username': [
@@ -60,7 +61,7 @@ export class LoginComponent implements OnInit {
       dsName: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      deviceID: new FormControl('', Validators.compose([
+      deviceID: new FormControl({ value : '', disabled : true }, Validators.compose([
         Validators.required
       ]))
     });
@@ -82,6 +83,7 @@ export class LoginComponent implements OnInit {
     this.loadDSNameList();
 
     if (this.global.getCookie("DSName") != "") {
+      this.loginForm.controls['deviceID'].enable();      
       this.loadDeviceIDList();
     }
   }
@@ -101,7 +103,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  /* Close fullscreen */
   closeFullscreen() {
     if (this.document.exitFullscreen) {
       this.document.exitFullscreen();
@@ -117,13 +118,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   changeDeviceID(e: any) {
     var deviceID = e.value.trim();
     this.session.setSession(deviceID, "", "", "", "", "");
-
   }
-
 
   changeDsName(e: any) {
     this.loginForm.patchValue({
@@ -132,6 +130,7 @@ export class LoginComponent implements OnInit {
     var dsName = e.value
     this.session.setSession("", dsName, "", "", "", "");
     this.loadDeviceIDList();
+    this.loginForm.controls['deviceID'].enable();
   }
 
   async loadDeviceIDList() {
@@ -162,7 +161,6 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-
 
   async loadDSNameList() {
 
