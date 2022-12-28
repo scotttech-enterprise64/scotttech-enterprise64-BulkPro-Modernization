@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
 import { MatDialog } from '@angular/material/dialog';
-
 
 export interface IPickData {
   tr: string;
@@ -30,26 +29,31 @@ const PickData: IPickData[] = [
 })
 export class DesignCycleCountComponent implements OnInit {
 
-  displayedColumns: string[] = ['tr', 'order'];
-  dataSource = new MatTableDataSource(PickData);
-
-  private code: string = '';
+  displayedColumns  : string[] = ['tr', 'order'];
+  dataSource        = new MatTableDataSource(PickData);
+  code              : string = "";
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private dialog: MatDialog) { }
 
+  /* Scanner Start */
   @HostListener('window:keypress', ['$event'])
   keyEvent(event: KeyboardEvent): void {
-    if (event.key === 'Enter') {
-      // The QR/Bar code is ready here
-      // Do something here with the scanned code
-      alert(JSON.stringify(event))
-    } else {
+    if(event.key != 'Enter'){
       this.code += event.key;
     }
+    event.preventDefault();
+    // if (event.key === 'Enter') {
+    //   // The QR/Bar code is ready here
+    //   // Do something here with the scanned code
+    //   this.code = event.key // JSON.stringify(event.key);
+    //   // alert(event.key);
+    // } else {
+    //   this.code += event.key;
+    // }
   }
+  /* Scanner End */
 
-  @ViewChild(MatSort)
-  sort: MatSort = new MatSort;
+  @ViewChild(MatSort) sort: MatSort = new MatSort;
 
   ngOnInit(): void {
   }
@@ -69,8 +73,6 @@ export class DesignCycleCountComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-
-
   }
 
   openAlertDialog() {
