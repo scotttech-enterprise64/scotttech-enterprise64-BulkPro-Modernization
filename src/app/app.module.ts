@@ -21,7 +21,7 @@ import { BulkproModule } from './user/bulkpro/bulkpro.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

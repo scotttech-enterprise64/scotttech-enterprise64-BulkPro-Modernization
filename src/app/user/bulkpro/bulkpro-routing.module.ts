@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GuardGuard } from '../../guards/guard.guard';
+import { BulkproComponent } from './bulkpro.component';
 import { CycleCountComponent } from './cycle-count/cycle-count.component';
 import { DesignCycleCountComponent } from './Design/cycle-count/cycle-count.component';
 import { DesignPickComponent } from './Design/pick/pick.component';
 
 const routes: Routes = [
-      { path: '', component: CycleCountComponent },
+      { path: '', component: BulkproComponent },
       {
         path: 'design-cycle-count',
         component: DesignCycleCountComponent,

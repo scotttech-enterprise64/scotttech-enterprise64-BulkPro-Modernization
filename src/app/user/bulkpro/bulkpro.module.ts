@@ -6,12 +6,18 @@ import { GeneralModule } from 'src/app/general-module';
 import { DesignCycleCountComponent } from './Design/cycle-count/cycle-count.component';
 import { DesignPickComponent } from './Design/pick/pick.component';
 import { CycleCountComponent } from './cycle-count/cycle-count.component';
+import { PickComponent } from './pick/pick.component';
+import { ScanOrderComponent } from './cycle-count/scan-order/scan-order.component';
+import { ScanLocationComponent } from './cycle-count/scan-location/scan-location.component';
 
 @NgModule({
   declarations: [
     CycleCountComponent,
     DesignCycleCountComponent,
-    DesignPickComponent
+    DesignPickComponent,
+    PickComponent,
+    ScanOrderComponent,
+    ScanLocationComponent
   ],
   imports: [
     CommonModule,
