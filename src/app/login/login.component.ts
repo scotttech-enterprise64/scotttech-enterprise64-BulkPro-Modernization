@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.error_msg = "";
-    if (this.global.getCookie("DeviceID") && this.global.getCookie("DSName")) {
+    this.session.getSession();
+    if (this.session.DeviceID(undefined) != "" && this.session.DSName(undefined) != "") {
       this.displayDropDowns = false;
     }
     else {
@@ -80,7 +81,9 @@ export class LoginComponent implements OnInit {
 
 
   changeDeviceID(e: any) {
-    this.global.setCookie("DeviceID", e.value, 1000000);
+    var deviceID = e.value.trim();
+    this.session.setSession(deviceID, "", "", "", "", "");
+
   }
 
 
@@ -88,7 +91,8 @@ export class LoginComponent implements OnInit {
     this.loginForm.patchValue({
       'dsName': e.value
     });
-    this.global.setCookie("DSName",e.value, 1000000);
+    var dsName = e.value
+    this.session.setSession("", dsName, "", "", "", "");
     this.loadDeviceIDList();
   }
 
@@ -156,11 +160,13 @@ export class LoginComponent implements OnInit {
           this.displayDropDowns = true;
         }
         else {
-          //Set cookies
-          this.global.setCookie("DeviceID", this.loginForm.get("deviceID")?.value.toString().trim(), 1000000);
-          this.global.setCookie("DSName", this.loginForm.get("dsName")?.value.toString().trim(), 1000000);
-          this.global.setCookie("UserID", this.loginForm.get("username")?.value.toString().trim(), 15);
-          this.global.setCookie("PW", this.loginForm.get("password")?.value.toString().trim(), 15);
+          //Set session
+          var deviceID = this.loginForm.get("deviceID")?.value.toString().trim();
+          var dsName = this.loginForm.get("dsName")?.value.toString().trim();
+          var userName = this.loginForm.get("username")?.value.toString().trim();
+          var password = this.loginForm.get("password")?.value.toString().trim();
+
+          this.session.setSession(deviceID, dsName, userName, password, "", "");
           //Hit Login API
           var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"LOGIN\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"(LOGGEDIN_USERNAME)\\\",\\\"PW\\\":\\\"(PW)\\\",\\\"PCName\\\":\\\"(PCNAME)\\\",\\\"DSName\\\":\\\"(DSName)\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
 
@@ -172,13 +178,12 @@ export class LoginComponent implements OnInit {
           var loginReponse = await this.api.post(environment.login, payload);
           loginReponse = JSON.parse(loginReponse);
           if (loginReponse.Response.ResponseType == "OK") {
-            this.global.setCookie("UserID",this.loginForm.get("username")?.value.toString().trim(), 15);
-            this.global.setCookie("LastNameFirstName", loginReponse.Response.Data, 15);
-            this.global.setCookie("PW",this.loginForm.get("password")?.value.toString().trim(), 15);
-            this.global.setCookie("isADLDS", loginReponse.Response.isADLDS.toString().trim(), 1000000);
+            var lastNameFirstName = loginReponse.Response.Data;
+            var isADLDS = loginReponse.Response.isADLDS.toString().trim();
+
+            this.session.setSession("", "", userName, password, lastNameFirstName, isADLDS);
 
             localStorage.setItem('user', JSON.stringify(loginReponse));
-
             this.router.navigate(['/dashboard']);
           }
           else {
