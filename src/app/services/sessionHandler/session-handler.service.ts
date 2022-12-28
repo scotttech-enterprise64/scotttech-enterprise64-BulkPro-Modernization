@@ -36,14 +36,14 @@ export class SessionHandlerService {
       this.global.setCookie("DSName",dsName, 1000000);
     }
     if (userID!="") {
-      this.global.setCookie("UserID",userID, 15);
+      this.global.setCookie("UserID",userID, 1000000);//change to 15
     }
     if (password!="") {
-      this.global.setCookie("PW",password, 15);
+      this.global.setCookie("PW",password, 1000000);//change to 15
     }
     if(lastNameFirstName!="")
     {
-      this.global.setCookie("LastNameFirstName",lastNameFirstName, 15);
+      this.global.setCookie("LastNameFirstName",lastNameFirstName, 1000000);//change to 15
     }
     if(isADLDS!="")
     {
