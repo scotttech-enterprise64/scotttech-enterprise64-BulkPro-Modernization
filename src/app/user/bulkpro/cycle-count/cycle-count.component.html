@@ -1,6 +1,35 @@
-<app-scan-order *ngIf="step1"></app-scan-order>
+<!-- Notification Wrapper -->
+<div class="action-notification-wrapper" *ngIf="msgText">
+    
+    <div class="alert alert-{{msgType}} d-flex align-items-center" role="alert">
+        <span class="action-alert-icon material-symbols-outlined">
+            {{msgIcon}}
+        </span>
+        <span>
+            {{msgText}}
+        </span>
+    </div>
+    
+</div>
 
-<app-scan-location *ngIf="step2"></app-scan-location>
+<app-scan-order *ngIf="step1"
+    (msg)="showMsg($event)"
+    (next)="changeStep(2)">    
+</app-scan-order>
 
-<!-- <app-custom-msg-window *ngIf="dataCusWin.length > 0">
-</app-custom-msg-window> -->
+<app-scan-location *ngIf="step2"
+    (msg)="showMsg($event)"
+    (next)="changeStep(3)">
+</app-scan-location>
+
+<app-custom-msg-window *ngIf="dataCusWin.visible"
+    [icon]="dataCusWin.icon"
+    [text]="dataCusWin.text"
+    [cancelBtnText]="dataCusWin.cancelBtnText"
+    [okBtnText]="dataCusWin.okBtnText"
+    [unAssignTransBtnText]="dataCusWin.unAssignTransBtnText ? dataCusWin.unAssignTransBtnText : ''"
+    [type]="dataCusWin.type"
+    (unAssigned)="unAssignedCompleted($event)"
+    (cancel)="cancelClicked($event)"
+    (ok)="okClicked($event)">
+</app-custom-msg-window>

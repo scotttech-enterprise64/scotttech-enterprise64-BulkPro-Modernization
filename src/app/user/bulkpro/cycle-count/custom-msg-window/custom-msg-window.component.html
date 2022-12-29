@@ -72,9 +72,17 @@
                 </div>
 
                 <div class="action-buttons-wrap">
-                    <button mat-flat-button color="primary" *ngIf="okBtnText">{{okBtnText}}</button>
-                    <button mat-stroked-button color="primary" *ngIf="unAssignTransBtnText">{{unAssignTransBtnText}}</button>
-                    <button mat-stroked-button color="warn" *ngIf="cancelBtnText">{{cancelBtnText}}</button>
+                    <button mat-flat-button color="primary" *ngIf="okBtnText" (click)="okClicked()">
+                        {{okBtnText}}
+                    </button>
+                    
+                    <button mat-stroked-button color="primary" *ngIf="unAssignTransBtnText" (click)="unAssignTransactions()">
+                        {{unAssignTransBtnText}}
+                    </button>
+                    
+                    <button mat-stroked-button color="warn" *ngIf="cancelBtnText" (click)="cancelClicked()">
+                        {{cancelBtnText}}
+                    </button>
                 </div>
 
             </div>

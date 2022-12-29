@@ -10,30 +10,40 @@ import { SessionHandlerService } from '../sessionHandler/session-handler.service
 export class ApiHandlerService {
 
 
-  constructor(private http: HttpClient,
-    private session: SessionHandlerService) {
+  constructor(private http      : HttpClient,
+              private session   : SessionHandlerService) {
 
   }
 
-  public generatePayload(requestType: any, userID: any, password: any, deviceID: any, dsName: any, isADLDS: any, sessionID:any,appName:any,data:any): string {
+  public generatePayload(requestType  : any, 
+                          userID      : any, 
+                          password    : any, 
+                          deviceID    : any, 
+                          dsName      : any, 
+                          isADLDS     : any, 
+                          sessionID   : any,
+                          appName     : any,
+                          data        : any) : string {
 
     var payload = {
       Request: {
-        "SessionID": sessionID,
-        "Status": "",
-        "RequestType": requestType,
-        "ResponseType": "",
-        "LoggedInUserName": userID,
-        "PW": password,
-        "PCName": deviceID,
-        "DSName": dsName,
-        "AppName": appName,
-        "isADLDS": isADLDS,
-        "Data": data
+        "SessionID"         : sessionID,
+        "Status"            : "",
+        "RequestType"       : requestType,
+        "ResponseType"      : "",
+        "LoggedInUserName"  : userID,
+        "PW"                : password,
+        "PCName"            : deviceID,
+        "DSName"            : dsName,
+        "AppName"           : appName,
+        "isADLDS"           : isADLDS,
+        "Data"              : data
       }
     };
-    return JSON.stringify(JSON.stringify(payload));
 
+    console.log(payload);
+
+    return JSON.stringify(JSON.stringify(payload));
   }
 
 
