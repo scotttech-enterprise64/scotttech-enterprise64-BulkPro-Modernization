@@ -34,31 +34,17 @@
                                     <ng-scrollbar style="height: 200px">
                                         <table class="table action-table-info">
                                             <tbody>
-                                                <tr>
+                                                <tr *ngFor="let e of list; let i = index">
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <span class="material-symbols-outlined">
                                                                 featured_play_list
                                                             </span>
-                                                            <span class="">User Field 01:</span>
+                                                            <span class="">User Field 0{{i+1}}:</span>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <span><strong class="spacer">012-234-567</strong></span>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <span class="material-symbols-outlined">
-                                                                featured_play_list
-                                                            </span>
-                                                            <span class="">User Field 02:</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <span><strong class="spacer">012-234-567</strong></span>
+                                                        <span><strong class="spacer">{{e}}</strong></span>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -72,9 +58,17 @@
                 </div>
 
                 <div class="action-buttons-wrap">
-                    <button mat-flat-button color="primary" *ngIf="okBtnText">{{okBtnText}}</button>
-                    <button mat-stroked-button color="primary" *ngIf="unAssignTransBtnText">{{unAssignTransBtnText}}</button>
-                    <button mat-stroked-button color="warn" *ngIf="cancelBtnText">{{cancelBtnText}}</button>
+                    <button mat-flat-button color="primary" *ngIf="okBtnText" (click)="okClicked()">
+                        {{okBtnText}}
+                    </button>
+                    
+                    <button mat-stroked-button color="primary" *ngIf="unAssignTransBtnText" (click)="unAssignTransactions()">
+                        {{unAssignTransBtnText}}
+                    </button>
+                    
+                    <button mat-stroked-button color="warn" *ngIf="cancelBtnText" (click)="cancelClicked()">
+                        {{cancelBtnText}}
+                    </button>
                 </div>
 
             </div>
