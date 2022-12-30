@@ -118,6 +118,11 @@ h1, h2, h3, h4, h5, h6, p, strong, span, b, u, a, div
   background: #de2654;
 }
 
+.form-control:focus{
+
+  box-shadow: unset;
+}
+
 #pickpro {
   font-family: 'Mulish', sans-serif;
   font-size: 16px;

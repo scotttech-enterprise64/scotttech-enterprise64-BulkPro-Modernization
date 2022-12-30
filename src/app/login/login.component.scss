@@ -24,12 +24,30 @@ mat-grid-tile {
 .login-section {
     position: relative;
     // width: 1440px;
-    // height: 100%;
   
     /* Tertiary 900 */
+    padding-top: 1.5rem;
   
     background: #090948;
   }
+
+  .login-section::after {
+    content: "";
+    background: url("/assets/images/trivector.png");
+    position: absolute;
+    width: 220px;
+    height: 395px;
+    top: 25%;
+    left: 0;
+    background-size: contain;
+    background-position: center;
+    z-index: 0;
+}
+
+.login-section > .container {
+  position: relative;
+  z-index: 1;
+}
   
   .app-heading {
     font-family: 'Mulish' !important;
@@ -69,4 +87,30 @@ mat-grid-tile {
   }
   .mat-form-field-wrapper{
     padding-bottom: 2px !important;
+  }
+
+
+  @media (orientation: portrait) {
+    .login-section {
+      padding-top: 8em;
+    height: 100vh;
+    
+    }
+  }
+
+  // for tablet
+  @media (orientation: portrait) and ( height: 800px ) {
+    .login-section {
+      padding-top: 8em;
+    height: 100vh;
+    
+    }
+  }
+
+  // for wearables
+  @media (orientation: portrait) and (min-device-height: 480px) {
+    .login-section {
+      padding-top: 2em !important;
+      height: auto !important;
+    }
   }
