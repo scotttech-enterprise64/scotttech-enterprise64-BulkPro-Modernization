@@ -95,9 +95,9 @@ export class MainComponent implements OnInit {
       const res = JSON.parse(await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETUSERAPPMENU",this.session.UserID(get),this.session.Password(get),this.session.DeviceID(get),this.session.DSName(get),this.session.IsADLDS(get),menu.AppName + new Date().getTime(),menu.AppName,menu.AppName)));
       const { Data, ResponseType, Status } = res.Response;
 
-      if (ResponseType == "OK" && Status == "OK") {
-
-        this.childMenu = [];
+      this.childMenu = [];
+      
+      if (ResponseType == "OK" && Status == "OK") {        
         this.selectedMenu = menu;
         
         Data.forEach((i : any) => {
@@ -110,6 +110,8 @@ export class MainComponent implements OnInit {
             }
           );
         });
+      } else {
+        alert(Data);
       }
 
       this.childMenu.push(

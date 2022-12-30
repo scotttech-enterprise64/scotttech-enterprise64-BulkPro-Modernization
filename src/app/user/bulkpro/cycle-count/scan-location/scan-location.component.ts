@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, Output, EventEmitter, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
-import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
 import { SessionHandlerService } from 'src/app/services/sessionHandler/session-handler.service';
 import { environment } from 'src/environments/environment';
 
@@ -12,11 +10,12 @@ import { environment } from 'src/environments/environment';
 })
 export class ScanLocationComponent implements OnInit {
 
-  // @Input() data : any;
   orderDetails : any = [];
 
   @Output() msg: EventEmitter<any> = new EventEmitter();
   @Output() next: EventEmitter<any> = new EventEmitter();
+  @Output() skip: EventEmitter<any> = new EventEmitter();
+  @Output() exit: EventEmitter<any> = new EventEmitter();
 
   // code   : string = "";
 
@@ -26,9 +25,7 @@ export class ScanLocationComponent implements OnInit {
   item : boolean = false;
   codeItem   : string = "";
 
-  constructor(private router          : Router,
-              private api             : ApiHandlerService,
-              private global          : GlobalFunctionsService,
+  constructor(private api             : ApiHandlerService,
               private session         : SessionHandlerService) { }
 
   ngOnInit(): void {
@@ -41,31 +38,14 @@ export class ScanLocationComponent implements OnInit {
 
     // The QR/Bar code is ready here
     // Do something here with the scanned code
-    
-    if (this.location) {
-      if (event.key === 'Enter') {
-        if(this.orderDetails.LocationScan == this.codeLocation) {
-          this.item = true;
-        } else {
-          this.msg.emit({
-            msg : "Location did not match",
-            icon : "notification_important",
-            type : "danger"
-          });
-        }
-        this.codeLocation = "";
-      } else {
-        this.codeLocation += event.key;
-      }
-    }
 
     if (this.item) {
       if (event.key === 'Enter') {
         if(this.orderDetails.ItemNumber == this.codeItem) {
-          this.next.emit();
+          this.next.emit(this.orderDetails);
         } else {
           this.msg.emit({
-            msg : "Item did not match",
+            msg : "Location scan verify failed. Please scan valid location.",
             icon : "notification_important",
             type : "danger"
           });
@@ -75,6 +55,24 @@ export class ScanLocationComponent implements OnInit {
         this.codeItem += event.key;
       }
     }
+    
+    if (this.location) {
+      if (event.key === 'Enter') {
+        if(this.orderDetails.LocationScan == this.codeLocation) {
+          this.location = false;
+          this.item = true;
+        } else {
+          this.msg.emit({
+            msg : "Location scan verify failed. Please scan valid location.",
+            icon : "notification_important",
+            type : "danger"
+          });
+        }
+        this.codeLocation = "";
+      } else {
+        this.codeLocation += event.key;
+      }
+    }    
 
     event.preventDefault();
   }
@@ -113,8 +111,12 @@ export class ScanLocationComponent implements OnInit {
     }
   }
 
-  skipTransaction() {}
+  skipTransaction() {
+    this.skip.emit(this.orderDetails);
+  }
 
-  exit() {}
+  exitClick() {
+    this.exit.emit(this.orderDetails);
+  }
 
 }

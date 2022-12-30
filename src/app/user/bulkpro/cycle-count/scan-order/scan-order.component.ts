@@ -91,6 +91,12 @@ export class ScanOrderComponent implements OnInit {
           icon : "notification_important",
           type : "danger"
         });
+      } else {
+        this.msg.emit({
+          msg : Data,
+          icon : "notification_important",
+          type : "danger"
+        });
       }
     } catch (error) {
       console.log(error);
@@ -158,7 +164,7 @@ export class ScanOrderComponent implements OnInit {
 
   processCount() {
     if (this.orderList.data.length > 0) {
-      this.next.emit(this.orderList); 
+      this.next.emit(this.orderList);
     } else {
       this.msg.emit({
         msg : "Order was not found.",

@@ -25,6 +25,8 @@ export class CycleCountComponent implements OnInit {
   msgIcon : string = "";
   msgType : string = "";
 
+  order : any;
+
   constructor(private router: Router,
               private api : ApiHandlerService,
               private global: GlobalFunctionsService,
@@ -35,6 +37,7 @@ export class CycleCountComponent implements OnInit {
     this.checkAssigned();
   }
 
+  // Checks if user has any assigned orders to count.
   async checkAssigned() {
     try {
       var get=undefined;
@@ -58,7 +61,7 @@ export class CycleCountComponent implements OnInit {
           cancelBtnText : "Cancel",
           okBtnText : "Count Transactions",
           unAssignTransBtnText : "Unassign Transactions",
-          visible : true,
+          visible : true, 
           type : 1
         }
         this.customWindow(data);
@@ -69,47 +72,47 @@ export class CycleCountComponent implements OnInit {
     }
   }
 
+  // Used to show screens with in the steps
   customWindow(instructions : any = { visible : false }) {
     this.dataCusWin = instructions;
   }
 
+  // Navigate between components
   changeStep(showStep : number = 0) {
     if (showStep == 0) 
     {
       this.step1 = false;
       this.step2 = false;
       this.step3 = false;
-      this.step4 = false;
     }
     else if (showStep == 1) 
     {
       this.step1 = true;
       this.step2 = false;
       this.step3 = false;
-      this.step4 = false;
     } 
     else if (showStep == 2) 
     {
       this.step1 = false;
       this.step2 = true;
       this.step3 = false;
-      this.step4 = false;
     }
-    else 
+    else if (showStep == 3) 
     {
-      this.step1 = true;
+      this.step1 = false;
       this.step2 = false;
-      this.step3 = false;
-      this.step4 = false;
+      this.step3 = true;
     }
   }
 
+  // Dynamic Alert Box
   alertMsg(msg : string = "", icon : string = "", type : string = "") {
     this.msgText = msg;
     this.msgIcon = icon;
     this.msgType = type;
   }
 
+  // Shows Alert msgs with in specified timeout
   showMsg(data : any) {
     this.alertMsg(data.msg, data.icon, data.type);
     setTimeout(() => {
@@ -118,10 +121,13 @@ export class CycleCountComponent implements OnInit {
   }
 
   unAssignedCompleted(res : any) {
-    if (res) {
+    if (res.type == 1 && res.res) {
       this.customWindow();
       this.changeStep(1);
-    } else {
+    } else if (res.type == 3 && res.res) {
+      this.router.navigate(['/dashboard']);
+    } 
+    else {
       this.alertMsg("No assigned orders were found.", "notification_important", "danger");
       setTimeout(() => {
         this.alertMsg("");
@@ -129,13 +135,125 @@ export class CycleCountComponent implements OnInit {
     }
   }
 
+  // Triggers on ok button click in custom window
   cancelClicked(type : number) {
-    if (type == 1) {
+    if (type == 1) 
+    {
       this.router.navigate(['/dashboard']);
-    } else {
-      
+    } 
+    else if(type == 2)
+    {
+      sessionStorage.removeItem("order");
+      this.customWindow();
+      this.changeStep(2);
+    }
+    else if(type == 3) 
+    {
+      this.customWindow();
+      this.changeStep(2);
+    }
+    else if(type == 4) 
+    {
+      this.customWindow();
+      this.changeStep(3);
     }
   }
-  okClicked(type : number) {}
+
+  // Triggers on ok button click in custom window
+  okClicked(type : number) {
+    if (type == 1) 
+    {
+      this.customWindow();
+      this.changeStep(2);
+    } 
+    else if(type == 2) 
+    {
+      this.skipTransaction();      
+    }
+    else if(type == 3) 
+    {
+      this.router.navigate(['/dashboard']);
+    }
+  }
+
+  // Triggers when user clicks on Skip Transaction in Verify Location or Item
+  skip(order : any) {
+    sessionStorage.setItem("order", JSON.stringify(order));
+    var data = {
+      icon : "help",
+      text : "Are you sure you want to skip this transaction?",
+      cancelBtnText : "No",
+      okBtnText : "Yes",
+      visible : true,
+      type : 2
+    }
+    this.customWindow(data);
+    this.changeStep();
+  }
+
+  exit(order : any) {
+    var data = {
+      icon : "help",
+      text : "These are uncompleted assigned transactions. Select one of the following options.",
+      cancelBtnText : "Cancel",
+      okBtnText : "Exit but Keep Assignments",
+      unAssignTransBtnText : "Unassign and Exit",
+      visible : true,
+      type : 3
+    }
+    this.customWindow(data);
+    this.changeStep();
+  }
+
+  async skipTransaction() {
+    try {
+      let order = JSON.parse(sessionStorage.getItem("order") || "{}");
+      var get=undefined;
+      const res = JSON.parse(
+                    await this.api.post(environment.count, 
+                                        this.api.generatePayload("SKIP",
+                                              this.session.UserID(get),
+                                              this.session.Password(get),
+                                              this.session.DeviceID(get),
+                                              this.session.DSName(get),
+                                              this.session.IsADLDS(get),
+                                              `BulkPro${new Date().getTime()}`, 
+                                              "BulkPro",
+                                              order.ID ? order.ID : ""))
+                  );
+      const { Data, ResponseType, Status } = res.Response;
+
+      if (ResponseType == "OK" && Status == "OK") {        
+        this.customWindow();
+        this.changeStep(2);
+      } else {
+        this.showMsg({ 
+          msg : "Something went wrong.",
+          icon : "notification_important",
+          type : "danger"
+         }
+        )
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  sendDetailsToCount(data : any) {
+    this.order = data;
+  }
+
+  showUserFields(order : any) {    
+    console.log(order)
+    var data = {
+      icon : "help",
+      list : [ order.UserField1, order.UserField2, order.UserField3],
+      cancelBtnText : "Close",
+      visible : true,
+      type : 4
+    }
+    this.customWindow(data);
+    this.changeStep();
+  }
 
 }

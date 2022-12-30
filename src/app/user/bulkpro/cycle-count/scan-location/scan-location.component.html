@@ -55,7 +55,8 @@
                                 <ng-scrollbar style="height: 200px">
                                     <table class="table action-table-info">
                                         <tbody>
-                                            <tr>
+
+                                            <tr *ngIf="orderDetails.LocationDisplay">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -69,7 +70,7 @@
                                                 </td>
                                             </tr>
     
-                                            <tr>
+                                            <tr *ngIf="orderDetails.ItemNumber">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -83,7 +84,7 @@
                                                 </td>
                                             </tr>
     
-                                            <tr>
+                                            <tr *ngIf="orderDetails.Description">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -97,7 +98,7 @@
                                                 </td>
                                             </tr>
     
-                                            <tr>
+                                            <tr *ngIf="orderDetails.UnitOfMeasure">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -111,7 +112,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
+                                            <tr *ngIf="orderDetails.UserField1">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -125,7 +126,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
+                                            <tr *ngIf="orderDetails.UserField2">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -139,7 +140,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
+                                            <tr *ngIf="orderDetails.UserField3">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -153,7 +154,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
+                                            <tr *ngIf="orderDetails.OrderNumber">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
@@ -177,7 +178,7 @@
 
                 <div class="action-buttons-wrap">
                     <button mat-flat-button color="primary" (click)="skipTransaction()">Skip Transaction</button>
-                    <button mat-stroked-button color="warn" (click)="exit()">Exit</button>
+                    <button mat-stroked-button color="warn" (click)="exitClick()">Exit</button>
                 </div>
 
             </div>

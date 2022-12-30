@@ -39,7 +39,7 @@ export class CustomMsgWindowComponent implements OnInit {
     try {
       var get=undefined;
       const res = JSON.parse(
-                    await this.api.post(environment.getDeviceInfo, 
+                    await this.api.post(environment.count, 
                                         this.api.generatePayload("UNASSIGNALL",
                                               this.session.UserID(get),
                                               this.session.Password(get),
@@ -52,9 +52,9 @@ export class CustomMsgWindowComponent implements OnInit {
       const { Data, ResponseType, Status } = res.Response;
 
       if (ResponseType == "OK" && Status == "OK") {
-        this.unAssigned.emit(true);
+        this.unAssigned.emit({ res: true, type : this.type});
       } else {
-        this.unAssigned.emit(false);
+        this.unAssigned.emit({ res: false, type : this.type});
       }
     } catch (error) {
       console.log(error);

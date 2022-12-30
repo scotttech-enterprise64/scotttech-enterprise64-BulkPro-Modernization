@@ -19,8 +19,19 @@
 
 <app-scan-location *ngIf="step2"
     (msg)="showMsg($event)"
-    (next)="changeStep(3)">
+    (next)="changeStep(3); sendDetailsToCount($event)"
+    (skip)="skip($event)"
+    (exit)="exit($event)">
 </app-scan-location>
+
+<app-set-count *ngIf="step3"
+    [orderDetails]="order"
+    (msg)="showMsg($event)"
+    (next)="changeStep()"
+    (skip)="skip($event)"
+    (exit)="exit($event)"
+    (userFields)="showUserFields($event)">
+</app-set-count>
 
 <app-custom-msg-window *ngIf="dataCusWin.visible"
     [icon]="dataCusWin.icon"
@@ -28,6 +39,7 @@
     [cancelBtnText]="dataCusWin.cancelBtnText"
     [okBtnText]="dataCusWin.okBtnText"
     [unAssignTransBtnText]="dataCusWin.unAssignTransBtnText ? dataCusWin.unAssignTransBtnText : ''"
+    [list]="dataCusWin.list"
     [type]="dataCusWin.type"
     (unAssigned)="unAssignedCompleted($event)"
     (cancel)="cancelClicked($event)"
