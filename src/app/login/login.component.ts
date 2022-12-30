@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   error_msg: any;
-  displayDropDowns = true;
+  displayDropDownDsName = true;
+  displayDropDownDeviceID = true;
   userData = this.session.userData();
   dsNamesDropDownValues = [""];
   deviceIDDropDownValues = [""];
@@ -69,17 +70,30 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.session.getSession();
+    if(this.session.UserID(undefined)!="")
+    {
+      this.router.navigate(['/dashboard']);
+    }
     this.elem = document.documentElement;
     // this.openFullscreen();
-
     this.error_msg = "";
-    this.session.getSession();
-    if (this.session.DeviceID(undefined) != "" && this.session.DSName(undefined) != "") {
-      this.displayDropDowns = false;
+    if (this.session.DeviceID(undefined) != "") {
+      this.displayDropDownDeviceID = false;
     }
     else {
-      this.displayDropDowns = true;
+      this.displayDropDownDeviceID = true;
     }
+
+    if (this.session.DSName(undefined) != "") {
+      this.displayDropDownDsName = false;
+    }
+    else {
+      this.displayDropDownDsName = true;
+    }
+
+    
+
     this.loadDSNameList();
 
     if (this.global.getCookie("DSName") != "") {
@@ -139,8 +153,9 @@ export class LoginComponent implements OnInit {
     });
     if (this.global.getCookie("DSName")) {
       this.deviceIDDropDownValues = [];
-      var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"GETIDLIST\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"\\\",\\\"PW\\\":\\\"\\\",\\\"PCName\\\":\\\"\\\",\\\"DSName\\\":\\\"PickPro_Development SQL Auth\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
-      var deviceIDNames = await this.api.post(environment.getDeviceInfo, payload);
+      //var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"GETIDLIST\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"\\\",\\\"PW\\\":\\\"\\\",\\\"PCName\\\":\\\"\\\",\\\"DSName\\\":\\\"PickPro_Development SQL Auth\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
+      
+      var deviceIDNames = await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETIDLIST","","","","PickPro_Development SQL Auth","false","","",""));
       deviceIDNames = JSON.parse(deviceIDNames);
       if (deviceIDNames.Response.ResponseType == "OK") {
         var deviceID = this.global.getCookie("DeviceID")
@@ -164,9 +179,9 @@ export class LoginComponent implements OnInit {
 
   async loadDSNameList() {
 
-    var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"GETDSNAMESLIST\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"\\\",\\\"PW\\\":\\\"\\\",\\\"PCName\\\":\\\"\\\",\\\"DSName\\\":\\\"PickPro_Development SQL Auth\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
+    //var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"GETDSNAMESLIST\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"\\\",\\\"PW\\\":\\\"\\\",\\\"PCName\\\":\\\"\\\",\\\"DSName\\\":\\\"PickPro_Development SQL Auth\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
 
-    var dsNames = await this.api.post(environment.getDeviceInfo, payload);
+    var dsNames = await this.api.post(environment.getDeviceInfo,this.api.generatePayload("GETDSNAMESLIST","","","","PickPro_Development SQL Auth","false","","",""));
     dsNames = JSON.parse(dsNames);
     if (dsNames.Response.ResponseType == "OK") {
       for (var i = 0; i <= dsNames.Response.Data.length - 1; i++) {
@@ -193,7 +208,8 @@ export class LoginComponent implements OnInit {
       if (this.loginForm.valid) {
         if (this.loginForm.get("username")?.value == "resetconnection") {
           //Show dsName and deviceID dropdowns
-          this.displayDropDowns = true;
+          this.displayDropDownDeviceID = true;
+          this.displayDropDownDsName = true;
         }
         else {
           //Set session
@@ -204,14 +220,8 @@ export class LoginComponent implements OnInit {
 
           this.session.setSession(deviceID, dsName, userName, password, "", "");
           //Hit Login API
-          var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"LOGIN\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"(LOGGEDIN_USERNAME)\\\",\\\"PW\\\":\\\"(PW)\\\",\\\"PCName\\\":\\\"(PCNAME)\\\",\\\"DSName\\\":\\\"(DSName)\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
 
-          payload = payload.replace("(PCNAME)", this.loginForm.get("deviceID")?.value);
-          payload = payload.replace("(DSName)", this.loginForm.get("dsName")?.value);
-          payload = payload.replace("(LOGGEDIN_USERNAME)", this.loginForm.get("username")?.value);
-          payload = payload.replace("(PW)", this.loginForm.get("password")?.value);
-
-          var loginReponse = await this.api.post(environment.login, payload);
+          var loginReponse = await this.api.post(environment.login, this.api.generatePayload("LOGIN",this.loginForm.get("username")?.value,this.loginForm.get("password")?.value,this.loginForm.get("deviceID")?.value,this.loginForm.get("dsName")?.value,"false","","",""));
           loginReponse = JSON.parse(loginReponse);
           if (loginReponse.Response.ResponseType == "OK") {
             var lastNameFirstName = loginReponse.Response.Data;
@@ -234,7 +244,7 @@ export class LoginComponent implements OnInit {
 
       }
     } catch (error) {
-      console.log(error);
+      console.log("Unknown User");
     }
   }
 

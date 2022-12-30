@@ -57,7 +57,7 @@
                                 <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
                                     <mat-label>Scan Order</mat-label>
                                     <input type="text" placeholder="Scan Order"
-                                        aria-label="Scan Order" matInput>
+                                        aria-label="Scan Order" matInput [(ngModel)]="code">
                                 </mat-form-field>
                                 <div class="action-des-icon-wrap">
                                     <span class="scan-option-wrap">
@@ -114,7 +114,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
                                     <mat-label>Scan Verify Location</mat-label>
-                                    <input type="text" placeholder="Scan Verify Location" aria-label="Scan Verify Location" matInput>
+                                    <input type="text" placeholder="Scan Verify Location" aria-label="Scan Verify Location" matInput [(ngModel)]="code">
                                 </mat-form-field>
                                 <div class="action-des-icon-wrap">
                                     <span class="scan-option-wrap">

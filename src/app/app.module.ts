@@ -15,21 +15,22 @@ import { CustomHttpInterceptor } from './services/interceptor/http-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DashboardModule } from './user/dashboard/dashboard.module';
+import { GeneralModule } from './general-module';
+import { BulkproModule } from './user/bulkpro/bulkpro.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    DashboardModule
+    GeneralModule,
+    DashboardModule,
+    BulkproModule
   ],
   providers: [
     {
@@ -37,7 +38,10 @@ import { DashboardModule } from './user/dashboard/dashboard.module';
       useClass: CustomHttpInterceptor,
       multi: true,
     },
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {
+      provide: LocationStrategy, 
+      useClass: HashLocationStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })

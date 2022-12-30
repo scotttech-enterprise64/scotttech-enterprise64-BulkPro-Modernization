@@ -29,7 +29,7 @@ const PickData: IPickData[] = [
   templateUrl: './pick.component.html',
   styleUrls: ['./pick.component.scss']
 })
-export class PickComponent implements AfterViewInit {
+export class DesignPickComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['tote', 'tr', 'order'];
   dataSource = new MatTableDataSource(PickData);

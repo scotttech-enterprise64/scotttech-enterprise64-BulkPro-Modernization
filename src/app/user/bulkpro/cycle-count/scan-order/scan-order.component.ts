@@ -1,15 +1,15 @@
-import { AfterViewInit, Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
 
 export interface IPickData {
   tr: string;
   order: number;
 }
+
 const PickData: IPickData[] = [
   {tr: 'Hydrogen', order: 1.0079 },
   {tr: 'Helium', order: 4.0026 },
@@ -24,32 +24,38 @@ const PickData: IPickData[] = [
 ];
 
 @Component({
-  selector: 'app-cycle-count',
-  templateUrl: './cycle-count.component.html',
-  styleUrls: ['./cycle-count.component.scss']
+  selector: 'app-scan-order',
+  templateUrl: './scan-order.component.html',
+  styleUrls: ['./scan-order.component.scss']
 })
-export class CycleCountComponent implements OnInit {
+export class ScanOrderComponent implements OnInit {
 
-  displayedColumns: string[] = ['tr', 'order'];
-  dataSource = new MatTableDataSource(PickData);
+  displayedColumns  : string[] = ['tr', 'order'];
+  dataSource        = new MatTableDataSource(PickData);
+  code              : string = "";
 
-  private code: string = '';
+  @ViewChild(MatSort) sort: MatSort = new MatSort;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private dialog: MatDialog) { }
+  constructor(private _liveAnnouncer  : LiveAnnouncer, 
+              private dialog          : MatDialog) { }
 
+  /* Scanner Start */
   @HostListener('window:keypress', ['$event'])
   keyEvent(event: KeyboardEvent): void {
-    if (event.key === 'Enter') {
-      // The QR/Bar code is ready here
-      // Do something here with the scanned code
-      alert(JSON.stringify(event))
-    } else {
+    if(event.key != 'Enter'){
       this.code += event.key;
     }
+    event.preventDefault();
+    // if (event.key === 'Enter') {
+    //   // The QR/Bar code is ready here
+    //   // Do something here with the scanned code
+    //   this.code = event.key // JSON.stringify(event.key);
+    //   // alert(event.key);
+    // } else {
+    //   this.code += event.key;
+    // }
   }
-
-  @ViewChild(MatSort)
-  sort: MatSort = new MatSort;
+  /* Scanner End */  
 
   ngOnInit(): void {
   }
@@ -69,8 +75,6 @@ export class CycleCountComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-
-
   }
 
   openAlertDialog() {
@@ -83,6 +87,5 @@ export class CycleCountComponent implements OnInit {
       },
     });
   }
-
 
 }

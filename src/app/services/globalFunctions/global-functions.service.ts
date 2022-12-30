@@ -38,7 +38,11 @@ export class GlobalFunctionsService {
         const cookie = cookies[i];
         const eqPos = cookie.indexOf("=");
         const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        
+        if(name!=" DeviceID" && name!="DSName")
+        {
+          document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
     }
   }
 
@@ -51,7 +55,7 @@ export class GlobalFunctionsService {
       { name: 'DeviceConfig', icon: 'book_online' },
       { name: 'Exit', icon: 'power_settings_new' },
       // Bulk Pro
-      { name: 'Cycle Count', icon: 'low_priority', route: '/cyclecount' },
+      { name: 'Cycle Count', icon: 'low_priority', route: '/bulkpro/cycle-count' },
       { name: 'Pick', icon: 'archive', route: '/cyclecount' },
       { name: 'Case Pick', icon: 'medical_services', route: '/cyclecount' },
       { name: 'Put Away', icon: 'unarchive', route: '/cyclecount' },
