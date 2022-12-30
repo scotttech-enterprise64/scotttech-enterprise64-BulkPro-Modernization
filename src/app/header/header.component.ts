@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpinnerService } from '../../app/services/spinner/spinner.service';
 import { GlobalFunctionsService } from '../services/globalFunctions/global-functions.service';
+import { SessionHandlerService } from '../services/sessionHandler/session-handler.service';
 
 @Component({
   selector: 'app-header',
@@ -11,13 +12,14 @@ import { GlobalFunctionsService } from '../services/globalFunctions/global-funct
 export class HeaderComponent implements OnInit {
 
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-  
-  loading:boolean = true
-  username : string = "";
-  
-  constructor(private router        : Router,
-              public spinnerService : SpinnerService,
-              private global : GlobalFunctionsService) { }
+
+  loading: boolean = true
+  username: string = "";
+
+  constructor(private router: Router,
+    public spinnerService: SpinnerService,
+    private global: GlobalFunctionsService,
+    private session: SessionHandlerService) { }
 
   ngOnInit(): void {
     this.username = this.global.getCookie("UserID");
@@ -28,9 +30,10 @@ export class HeaderComponent implements OnInit {
     this.toggleSidebarForMe.emit();
   }
 
-  logout(){
+  logout() {
     // localStorage.removeItem('user');
     this.global.deleteAllCookies();
+
     this.router.navigate(['/login']);
   }
 
