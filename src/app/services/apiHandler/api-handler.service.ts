@@ -70,8 +70,6 @@ export class ApiHandlerService {
         }
     }
 
-    console.log(payload);
-
     return JSON.stringify(JSON.stringify(payload));
   }
 
