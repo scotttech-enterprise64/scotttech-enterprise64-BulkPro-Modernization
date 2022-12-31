@@ -100,12 +100,16 @@ h1, h2, h3, h4, h5, h6, p, strong, span, b, u, a, div
 }
 
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
-  background: #000080;
+  background: #1A1AD3;
 }
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
-  color: #000080;
-  border: 1px solid #000080;
+  color: #1A1AD3;
+  border: 1px solid #1A1AD3;
+}
+
+.mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline-thick {
+  color: #1A1AD3;
 }
 
 .mat-button.mat-warn, .mat-icon-button.mat-warn, .mat-stroked-button.mat-warn {
@@ -116,6 +120,11 @@ h1, h2, h3, h4, h5, h6, p, strong, span, b, u, a, div
 .mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn {
 
   background: #de2654;
+}
+
+.form-control:focus{
+
+  box-shadow: unset;
 }
 
 #pickpro {
@@ -381,6 +390,15 @@ table.action-table-info span.material-symbols-outlined {
 
 .action-buttons-wrap {
   direction: rtl;
+}
+
+.action-buttons-wrap-center button{
+
+  min-width: 202px;
+  height: 56px;
+  border-radius: 100px;
+  font-size: 18px;
+
 }
 
 .action-buttons-wrap button {
@@ -1143,3 +1161,16 @@ button.bp-action-button {
   min-width: 202px;
 }
 
+
+@media (min-width: 320px) and (max-width:480px){
+.flex-xs-column {
+    flex-direction: column !important;
+}
+
+}
+
+.bp-signin-form .icon-signin-field {
+  position: relative;
+  top: -0.1em;
+  margin-right: 0.6em;
+}

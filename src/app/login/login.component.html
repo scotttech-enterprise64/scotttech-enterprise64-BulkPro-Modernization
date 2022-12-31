@@ -1,145 +1,149 @@
-<section class="login-section">
-    <div class="container py-2">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-12">
+<section class="login-section-wrap">
+    <div class="login-section">
+        <div class="card p-4">
+            <div class="d-flex align-items-center flex-xs-column justify-content-center position-relative">
+                <div class="app-branding">
+                    <img src="../../assets/images/peaklogix-text.svg" width="78" height="9" alt="PeakLogix">
+                    <h2 class="app-heading">BulkPro</h2>
+                </div>
 
-                <div class="card col-md-12" style="border-radius: 10px;">
-
-                    <div class="row mx-4 mt-3">
-
-                        <div class="col-4">
-                            <img src="../../assets/images/peaklogix_blue.png" width="80" height="20" alt="">
-                            <h2 class="app-heading">BulkPro</h2>
-                        </div>
-
-                        <div class="col-4 text-center">
-                            <img src="../../assets/images/ScottTech _ Pickpro_Blue.png" width="100" alt="">
-                            <div class="account_login">Account Login</div>
-                        </div>
-
-                    </div>
-
-                    <div class="row g-0">
-
-                        <div class="col-md-12 col-lg-12 d-flex align-items-center">
-                            <div class="card-body p-4 text-black">
-
-                                <form [formGroup]="loginForm" (submit)="OnLogin()">
-
-
-
-                                    <div class="form-outline mb-2 col-9" style="float: none;margin: 0 auto;">
-                                        <mat-form-field appearance="outline" style=" width: 100%;">
-                                            <mat-label>Username</mat-label>
-                                            <input id="UserName" formControlName="username" class="form-control"
-                                                type="text" matInput placeholder="Enter User Name" maxlength="100"
-                                                required autocomplete="off" />
-                                            <div *ngIf="error_msg">
-                                                <ng-container *ngFor="let error of error_messages.username">
-                                                    <span class="text-error-500"
-                                                        *ngIf="loginForm.get('username')?.hasError(error.type) && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
-                                                        {{ error.message }}
-                                                    </span>
-                                                </ng-container>
-                                            </div>
-                                            <mat-icon matPrefix style="color: #090948;">account_circle
-                                            </mat-icon>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="form-outline col-9" style="float: none;margin: 0 auto;">
-                                        <mat-form-field appearance="outline" style=" width: 100%;">
-                                            <mat-label>Password</mat-label>
-                                            <input formControlName="password" id="Password" class="form-control"
-                                            [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" required
-                                                autocomplete="off" />
-                                            
-                                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                            </button>
-                                            
-                                            <div *ngIf="error_msg">
-                                                <ng-container *ngFor="let error of error_messages.password">
-                                                    <span class="text-error-500"
-                                                        *ngIf="loginForm.get('password')?.hasError(error.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-                                                        {{ error.message }}
-                                                    </span>
-                                                </ng-container>
-                                            </div>
-                                            <mat-icon matPrefix style="color: #090948;">lock</mat-icon>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div *ngIf="displayDropDownDsName" class="form-outline col-9"
-                                        style="float: none;margin: 0 auto;">
-                                        <mat-form-field appearance="outline" style=" width: 100%;">
-                                            <mat-label>Data Source</mat-label>
-                                            <mat-select (selectionChange)="changeDsName($event)"
-                                                formControlName="dsName">
-                                                <mat-option *ngFor="let dsName of dsNamesDropDownValues"
-                                                    [value]="dsName">
-                                                    {{ dsName }}
-                                                </mat-option>
-                                            </mat-select>
-                                            <div *ngIf="error_msg">
-                                                <ng-container *ngFor="let error of error_messages.dsName">
-                                                    <span class="text-error-500"
-                                                        *ngIf="loginForm.get('dsName')?.hasError(error.type) && (loginForm.get('dsName')?.dirty || loginForm.get('dsName')?.touched)">
-                                                        {{ error.message }}
-                                                    </span>
-                                                </ng-container>
-                                            </div>
-                                            <mat-icon matPrefix style="color: #090948;">cloud_download
-                                            </mat-icon>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div *ngIf="displayDropDownDeviceID" class="form-outline col-9"
-                                        style="float: none;margin: 0 auto;">
-                                        <mat-form-field appearance="outline" style=" width: 100%;">
-                                            <mat-label>Device ID</mat-label>
-                                            <mat-select id="DeviceID" formControlName="deviceID"
-                                                (selectionChange)="changeDeviceID($event)">
-
-                                                <mat-option value=""></mat-option>
-                                                <mat-option *ngFor="let deviceID of deviceIDDropDownValues"
-                                                    [value]="deviceID">
-                                                    {{ deviceID }}
-                                                </mat-option>
-                                            </mat-select>
-                                            <div *ngIf="error_msg">
-                                                <ng-container *ngFor="let error of error_messages.deviceID">
-                                                    <span class="text-error-500"
-                                                        *ngIf="loginForm.get('deviceID')?.hasError(error.type) && (loginForm.get('deviceID')?.dirty || loginForm.get('deviceID')?.touched)">
-                                                        {{ error.message }}
-                                                    </span>
-                                                </ng-container>
-                                            </div>
-                                            <mat-icon matPrefix style="color: #090948;">developer_board
-                                            </mat-icon>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="form-outline col-9 pt-5" style="margin: 0 auto;">
-                                        <button id="loginButton" type="submit" style="width:100%;" mat-flat-button color="primary"
-                                            class="mat-button-icon br-12">Login</button>
-                                            
-                                        <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
-                                            class="mat-button-icon br-12 mt-3" (click)="openFullscreen()">Open Full Screen</button> -->
-
-                                        <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
-                                            class="mat-button-icon br-12 mt-3" (click)="closeFullscreen()">Exit Full Screen</button> -->
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="app-branding-2 text-center pb-3">
+                    <img src="../../assets/images/ScottTech _ Pickpro_Blue.png" width="98" height="18" alt="ScottTech">
+                    <div class="account_login">Account Login</div>
                 </div>
             </div>
+            <div class="card-body p-0 text-black">
+
+                <form class="bp-signin-form" [formGroup]="loginForm" (submit)="OnLogin()">
+
+
+
+                    <div class="form-outline mb-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Username</mat-label>
+                            <input #username id="UserName" maxlength="50" formControlName="username" class="form-control" type="text" matInput
+                                placeholder="Enter User Name" required autocomplete="off" />
+                            <div *ngIf="error_msg">
+                                <ng-container *ngFor="let error of error_messages.username">
+                                    <span class="text-error-500"
+                                        *ngIf="loginForm.get('username')?.hasError(error.type) && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+                                        {{ error.message }}
+                                    </span>
+                                </ng-container>
+                            </div>
+                            <mat-icon fontIcon="account_circle"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-outline">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password" maxlength="50" id="Password" class="form-control"
+                                [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" required
+                                autocomplete="off" />
+
+                                <mat-icon (click)="hide = !hide" fontIcon="{{hide ? 'visibility_off' : 'visibility'}}"  style="color: #090948; font-size: 19px;" matSuffix class="material-symbols-outlined icon-signin-field"></mat-icon>
+
+                            <!-- <span matSuffix style="color: #090948; font-size: 19px;" (click)="hide = !hide"
+                                class="material-symbols-outlined icon-signin-field">
+                                {{hide ? 'visibility_off' : 'visibility'}}
+                            </span> -->
+
+                            <!-- <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button> -->
+
+                            <div *ngIf="error_msg">
+                                <ng-container *ngFor="let error of error_messages.password">
+                                    <span class="text-error-500"
+                                        *ngIf="loginForm.get('password')?.hasError(error.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                                        {{ error.message }}
+                                    </span>
+                                </ng-container>
+                            </div>
+                            <!-- <span matPrefix style="color: #090948; font-size: 19px;"
+                                class="material-symbols-outlined icon-signin-field">
+                                lock
+                            </span> -->
+
+                            <mat-icon fontIcon="lock"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="displayDropDownDsName" class="form-outline">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Data Source</mat-label>
+                            <mat-select (selectionChange)="changeDsName($event)" formControlName="dsName">
+                                <mat-option *ngFor="let dsName of dsNamesDropDownValues" [value]="dsName">
+                                    {{ dsName }}
+                                </mat-option>
+                            </mat-select>
+                            <!-- <span matPrefix style="color: #090948; font-size: 19px;"
+                                class="material-symbols-outlined icon-signin-field">
+                                backup
+                            </span> -->
+                            <mat-icon fontIcon="backup"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+
+                        </mat-form-field>
+                        <div *ngIf="error_msg">
+                            <ng-container *ngFor="let error of error_messages.dsName">
+                                <span class="text-error-500"
+                                    *ngIf="loginForm.get('dsName')?.hasError(error.type) && (loginForm.get('dsName')?.dirty || loginForm.get('dsName')?.touched)">
+                                    {{ error.message }}
+                                </span>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div *ngIf="displayDropDownDeviceID" class="form-outline">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Device ID</mat-label>
+                            <mat-select id="DeviceID" formControlName="deviceID"
+                                (selectionChange)="changeDeviceID($event)">
+
+                                <mat-option value=""></mat-option>
+                                <mat-option *ngFor="let deviceID of deviceIDDropDownValues" [value]="deviceID">
+                                    {{ deviceID }}
+                                </mat-option>
+                            </mat-select>
+                            <!-- <span matPrefix style="color: #090948; font-size: 19px;"
+                                class="material-symbols-outlined icon-signin-field">
+                                demography
+                            </span> -->
+                            <mat-icon fontIcon="demography"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+                        </mat-form-field>
+                        <div *ngIf="error_msg">
+                            <ng-container *ngFor="let error of error_messages.deviceID">
+                                <span class="text-error-500"
+                                    *ngIf="loginForm.get('deviceID')?.hasError(error.type) && (loginForm.get('deviceID')?.dirty || loginForm.get('deviceID')?.touched)">
+                                    {{ error.message }}
+                                </span>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons-wrap-center d-flex justify-content-center py-3">
+                        <button mat-flat-button color="primary" id="loginButton" type="submit" style="width: 100%; max-width:450px;">Login</button>
+                    </div>
+                    <!-- <div class="form-outline col-9 pt-5" style="margin: 0 auto;">
+                        <button id="loginButton" type="submit" style="width:100%;" mat-flat-button color="primary"
+                            class="mat-button-icon br-12">Login</button> -->
+
+                        <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
+                                            class="mat-button-icon br-12 mt-3" (click)="openFullscreen()">Open Full Screen</button> -->
+
+                        <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
+                                            class="mat-button-icon br-12 mt-3" (click)="closeFullscreen()">Exit Full Screen</button> -->
+                    <!-- </div> -->
+
+                </form>
+
+            </div>
+
         </div>
+
+        <div style="height:25px ;"></div>
     </div>
 </section>
 
