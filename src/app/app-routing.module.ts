@@ -24,6 +24,11 @@ const routes: Routes = [
         component: MainComponent,
         canActivate:[GuardGuard]
       },
+      {
+        path: 'dashboard/:appName',
+        component: MainComponent,
+        canActivate:[GuardGuard]
+      },
       { 
         path: 'bulkpro',
         loadChildren: () => import('./user/bulkpro/bulkpro.module').then(m => m.BulkproModule),

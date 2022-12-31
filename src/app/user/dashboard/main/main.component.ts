@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
 import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
 import { environment } from 'src/environments/environment';
@@ -27,13 +27,23 @@ export class MainComponent implements OnInit {
   isParentMenu: boolean = true;
   isChildMenu: boolean = false;
 
-  constructor(private router: Router,
-              private api : ApiHandlerService,
-              private global: GlobalFunctionsService,
-              private session: SessionHandlerService) { }
+  constructor(private router        : Router,
+              private api           : ApiHandlerService,
+              private global        : GlobalFunctionsService,
+              private session       : SessionHandlerService,
+              private activeRoute   : ActivatedRoute) { }
 
   ngOnInit(): void {
+
     this.deviceApps();
+
+    this.activeRoute.params.subscribe(params => {
+      if (params['appName']) {
+        var pMenu = this.parentMenu.filter((i : any) => i.AppName == params['appName']);
+        this.loadMenus(pMenu);
+      }
+    });
+
   }
 
   async deviceApps() {
@@ -45,7 +55,7 @@ export class MainComponent implements OnInit {
       if (ResponseType == "OK" && Status == "OK") {
         
         // this.parentMenu.push({ AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" });
-        this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };
+        this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "airplay" };
 
         Data.forEach((i : any) => {
           let info = this.attrMenuList.filter((e : any) => e.name == i.AppName);
@@ -92,7 +102,17 @@ export class MainComponent implements OnInit {
       }
 
       var get = undefined;
-      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETUSERAPPMENU",this.session.UserID(get),this.session.Password(get),this.session.DeviceID(get),this.session.DSName(get),this.session.IsADLDS(get),menu.AppName + new Date().getTime(),menu.AppName,menu.AppName)));
+      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, 
+          this.api.generatePayload("GETUSERAPPMENU",
+                                    this.session.UserID(get),
+                                    this.session.Password(get),
+                                    this.session.DeviceID(get),
+                                    this.session.DSName(get),
+                                    this.session.IsADLDS(get),
+                                    menu.AppName + new Date().getTime(),
+                                    menu.AppName,
+                                    menu.AppName)
+      ));
       const { Data, ResponseType, Status } = res.Response;
 
       this.childMenu = [];

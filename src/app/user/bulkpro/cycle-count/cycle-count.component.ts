@@ -125,7 +125,7 @@ export class CycleCountComponent implements OnInit {
       this.customWindow();
       this.changeStep(1);
     } else if (res.type == 3 && res.res) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/BulkPro']);
     } 
     else {
       this.alertMsg("No assigned orders were found.", "notification_important", "danger");
@@ -139,7 +139,7 @@ export class CycleCountComponent implements OnInit {
   cancelClicked(type : number) {
     if (type == 1) 
     {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/BulkPro']);
     } 
     else if(type == 2)
     {
@@ -172,7 +172,7 @@ export class CycleCountComponent implements OnInit {
     }
     else if(type == 3) 
     {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/BulkPro']);
     }
   }
 
