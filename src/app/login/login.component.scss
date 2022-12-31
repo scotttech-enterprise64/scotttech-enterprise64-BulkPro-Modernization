@@ -141,13 +141,16 @@ mat-grid-tile {
 
 @media all and (min-width:320px) {
 
-  .app-branding {
-  position: relative;
-}
+
 
 }
 
 @media (min-width: 320px) and (max-width:480px){
+
+  .app-branding {
+    position: relative;
+  }
+
   .flex-xs-column {
       flex-direction: column !important;
   }

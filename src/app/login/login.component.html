@@ -31,9 +31,10 @@
                                     </span>
                                 </ng-container>
                             </div>
-                            <span style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field">
+                            <span style="color: #090948; font-size: 19px;" matPrefix
+                                class="material-symbols-outlined icon-signin-field">
                                 account_circle
-                                </span>
+                            </span>
                         </mat-form-field>
                     </div>
 
@@ -44,9 +45,10 @@
                                 [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" required
                                 autocomplete="off" />
 
-                                <span matSuffix style="color: #090948; font-size: 19px;" (click)="hide = !hide" class="material-symbols-outlined icon-signin-field">
-                                    {{hide ? 'visibility_off' : 'visibility'}}
-                                    </span>
+                            <span matSuffix style="color: #090948; font-size: 19px;" (click)="hide = !hide"
+                                class="material-symbols-outlined icon-signin-field">
+                                {{hide ? 'visibility_off' : 'visibility'}}
+                            </span>
 
                             <!-- <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
                                 [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -61,13 +63,13 @@
                                     </span>
                                 </ng-container>
                             </div>
-                            <span matPrefix style="color: #090948; font-size: 19px;" class="material-symbols-outlined icon-signin-field">
+                            <span matPrefix style="color: #090948; font-size: 19px;"
+                                class="material-symbols-outlined icon-signin-field">
                                 lock
-                                </span>
+                            </span>
                         </mat-form-field>
                     </div>
-
-                    <div *ngIf="displayDropDowns" class="form-outline">
+                    <div *ngIf="displayDropDownDsName" class="form-outline">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Data Source</mat-label>
                             <mat-select (selectionChange)="changeDsName($event)" formControlName="dsName">
@@ -75,9 +77,10 @@
                                     {{ dsName }}
                                 </mat-option>
                             </mat-select>
-                            <span matPrefix style="color: #090948; font-size: 19px;" class="material-symbols-outlined icon-signin-field">
+                            <span matPrefix style="color: #090948; font-size: 19px;"
+                                class="material-symbols-outlined icon-signin-field">
                                 backup
-                                </span>
+                            </span>
                         </mat-form-field>
                         <div *ngIf="error_msg">
                             <ng-container *ngFor="let error of error_messages.dsName">
@@ -89,19 +92,21 @@
                         </div>
                     </div>
 
-                    <div *ngIf="displayDropDowns" class="form-outline">
+                    <div *ngIf="displayDropDownDeviceID" class="form-outline">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Device ID</mat-label>
-                            <mat-select id="DeviceID" formControlName="deviceID" (change)="changeDeviceID($event)">
+                            <mat-select id="DeviceID" formControlName="deviceID"
+                                (selectionChange)="changeDeviceID($event)">
 
-                                <mat-option value="--"></mat-option>
+                                <mat-option value=""></mat-option>
                                 <mat-option *ngFor="let deviceID of deviceIDDropDownValues" [value]="deviceID">
                                     {{ deviceID }}
                                 </mat-option>
                             </mat-select>
-                            <span matPrefix style="color: #090948; font-size: 19px;" class="material-symbols-outlined icon-signin-field">
+                            <span matPrefix style="color: #090948; font-size: 19px;"
+                                class="material-symbols-outlined icon-signin-field">
                                 demography
-                                </span>
+                            </span>
                         </mat-form-field>
                         <div *ngIf="error_msg">
                             <ng-container *ngFor="let error of error_messages.deviceID">
@@ -113,16 +118,19 @@
                         </div>
                     </div>
 
-                    <div class="form-outline col-9 pt-5" style="margin: 0 auto;">
+                    <div class="action-buttons-wrap-center d-flex justify-content-center py-3">
+                        <button mat-flat-button color="primary" id="loginButton" type="submit" style="width: 100%; max-width:450px;">Login</button>
+                    </div>
+                    <!-- <div class="form-outline col-9 pt-5" style="margin: 0 auto;">
                         <button id="loginButton" type="submit" style="width:100%;" mat-flat-button color="primary"
-                            class="mat-button-icon br-12">Login</button>
+                            class="mat-button-icon br-12">Login</button> -->
 
                         <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
                                             class="mat-button-icon br-12 mt-3" (click)="openFullscreen()">Open Full Screen</button> -->
 
                         <!-- <button type="submit" style="width:100%;" mat-flat-button color="primary"
                                             class="mat-button-icon br-12 mt-3" (click)="closeFullscreen()">Exit Full Screen</button> -->
-                    </div>
+                    <!-- </div> -->
 
                 </form>
 
@@ -130,7 +138,7 @@
 
         </div>
 
-        <div style="height:25px ;"></div>        
+        <div style="height:25px ;"></div>
     </div>
 </section>
 

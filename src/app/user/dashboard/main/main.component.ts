@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
 import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
 import { environment } from 'src/environments/environment';
+import { SessionHandlerService } from 'src/app/services/sessionHandler/session-handler.service';
 
 @Component({
   selector: 'app-main',
@@ -28,7 +29,8 @@ export class MainComponent implements OnInit {
 
   constructor(private router: Router,
               private api : ApiHandlerService,
-              private global: GlobalFunctionsService,) { }
+              private global: GlobalFunctionsService,
+              private session: SessionHandlerService) { }
 
   ngOnInit(): void {
     this.deviceApps();
@@ -36,23 +38,8 @@ export class MainComponent implements OnInit {
 
   async deviceApps() {
     try {
-      var payload = {
-        Request : {
-          "SessionID"         : "",
-          "Status"            : "",
-          "RequestType"       : "GETAPPLIST",
-          "ResponseType"      : "",
-          "LoggedInUserName"  : this.global.getCookie("UserID"),
-          "PW"                : this.global.getCookie("PW"),
-          "PCName"            : this.global.getCookie("DeviceID"),
-          "DSName"            : this.global.getCookie("DSName"),
-          "AppName"           : "",
-          "isADLDS"           : this.global.getCookie("isADLDS"),
-          "Data"              : ""
-        }
-      };      
-      var convertPayload = JSON.stringify(JSON.stringify(payload));
-      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, convertPayload));
+      var get=undefined;
+      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETAPPLIST",this.session.UserID(get),this.session.Password(get),this.session.DeviceID(get),this.session.DSName(get),this.session.IsADLDS(get),"","","")));
       const { Data, ResponseType, Status } = res.Response;
 
       if (ResponseType == "OK" && Status == "OK") {
@@ -104,28 +91,13 @@ export class MainComponent implements OnInit {
         this.router.navigate(['/login']);
       }
 
-      var payload = {
-        Request : {
-          "SessionID"         : menu.AppName + new Date().getTime(),
-          "Status"            : "",
-          "RequestType"       : "GETUSERAPPMENU",
-          "ResponseType"      : "",
-          "LoggedInUserName"  : this.global.getCookie("UserID"),
-          "PW"                : this.global.getCookie("PW"),
-          "PCName"            : this.global.getCookie("DeviceID"),
-          "DSName"            : this.global.getCookie("DSName"),
-          "AppName"           : menu.AppName,
-          "isADLDS"           : this.global.getCookie("isADLDS"),
-          "Data"              : menu.AppName
-        }
-      };
-      var convertPayload = JSON.stringify(JSON.stringify(payload));
-      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, convertPayload));
+      var get = undefined;
+      const res = JSON.parse(await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETUSERAPPMENU",this.session.UserID(get),this.session.Password(get),this.session.DeviceID(get),this.session.DSName(get),this.session.IsADLDS(get),menu.AppName + new Date().getTime(),menu.AppName,menu.AppName)));
       const { Data, ResponseType, Status } = res.Response;
 
-      if (ResponseType == "OK" && Status == "OK") {
-
-        this.childMenu = [];
+      this.childMenu = [];
+      
+      if (ResponseType == "OK" && Status == "OK") {        
         this.selectedMenu = menu;
         
         Data.forEach((i : any) => {
@@ -138,6 +110,8 @@ export class MainComponent implements OnInit {
             }
           );
         });
+      } else {
+        alert(Data);
       }
 
       this.childMenu.push(
