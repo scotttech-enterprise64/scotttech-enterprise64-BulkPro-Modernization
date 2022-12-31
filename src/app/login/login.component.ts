@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +18,9 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   error_msg: any;
+  error_msg_username:any;
+  error_msg_password:any;
+
   displayDropDownDsName = true;
   displayDropDownDeviceID = true;
   userData = this.session.userData();
@@ -28,16 +32,16 @@ export class LoginComponent implements OnInit {
 
   error_messages = {
     'username': [
-      { type: 'required', message: "Please enter user name." }
+      { type: 'required', message: "Username is required." }
     ],
     'password': [
-      { type: 'required', message: "Please enter password." }
+      { type: 'required', message: "Password is required." }
     ],
     'dsName': [
-      { type: 'required', message: "Please select dsName." }
+      { type: 'required', message: "Data source is required." }
     ],
     'deviceID': [
-      { type: 'required', message: "Please select deviceID." }
+      { type: 'required', message: "Device id is required." }
     ]
 
 
@@ -54,7 +58,7 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = this.formBuilder.group({
       username: new UntypedFormControl('', Validators.compose([
-        Validators.required
+        Validators.required,
       ])),
       password: new UntypedFormControl('', Validators.compose([
         Validators.required
@@ -100,6 +104,20 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls['deviceID'].enable();      
       this.loadDeviceIDList();
     }
+  }
+
+  showErrorMessages(controlName:any)
+  {
+    const controls = this.loginForm.controls;
+    if(controlName=='username')
+    {
+      this.error_msg_username=controls[controlName].invalid?"1":"";
+    }
+    else 
+    {
+      this.error_msg_password=controls[controlName].invalid?"1":"";
+    }
+    
   }
 
   openFullscreen() {
@@ -153,8 +171,6 @@ export class LoginComponent implements OnInit {
     });
     if (this.global.getCookie("DSName")) {
       this.deviceIDDropDownValues = [];
-      //var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"GETIDLIST\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"\\\",\\\"PW\\\":\\\"\\\",\\\"PCName\\\":\\\"\\\",\\\"DSName\\\":\\\"PickPro_Development SQL Auth\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
-      
       var deviceIDNames = await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETIDLIST","","","","PickPro_Development SQL Auth","false","","",""));
       deviceIDNames = JSON.parse(deviceIDNames);
       if (deviceIDNames.Response.ResponseType == "OK") {
@@ -178,9 +194,6 @@ export class LoginComponent implements OnInit {
   }
 
   async loadDSNameList() {
-
-    //var payload = "\"{\\\"Request\\\":{\\\"SessionID\\\":\\\"\\\",\\\"Status\\\":\\\"\\\",\\\"RequestType\\\":\\\"GETDSNAMESLIST\\\",\\\"ResponseType\\\":\\\"\\\",\\\"LoggedInUserName\\\":\\\"\\\",\\\"PW\\\":\\\"\\\",\\\"PCName\\\":\\\"\\\",\\\"DSName\\\":\\\"PickPro_Development SQL Auth\\\",\\\"AppName\\\":\\\"\\\",\\\"isADLDS\\\":\\\"false\\\",\\\"Data\\\":\\\"\\\"}}\"}\"\r\n\r\n\r\n";
-
     var dsNames = await this.api.post(environment.getDeviceInfo,this.api.generatePayload("GETDSNAMESLIST","","","","PickPro_Development SQL Auth","false","","",""));
     dsNames = JSON.parse(dsNames);
     if (dsNames.Response.ResponseType == "OK") {
@@ -241,6 +254,12 @@ export class LoginComponent implements OnInit {
 
         }
 
+
+      }
+      else {
+        this.error_msg = "1";
+        this.showErrorMessages('password');
+        this.showErrorMessages('username');
 
       }
     } catch (error) {

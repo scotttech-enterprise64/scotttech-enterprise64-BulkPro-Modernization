@@ -1,15 +1,9 @@
 <!-- Notification Wrapper -->
-<div class="action-notification-wrapper" *ngIf="msgText">
-    
+<div class="action-notification-wrapper" *ngIf="msgText">    
     <div class="alert alert-{{msgType}} d-flex align-items-center" role="alert">
-        <span class="action-alert-icon material-symbols-outlined">
-            {{msgIcon}}
-        </span>
-        <span>
-            {{msgText}}
-        </span>
+        <span class="action-alert-icon material-symbols-outlined">{{msgIcon}}</span>
+        <span>{{msgText}}</span>
     </div>
-    
 </div>
 
 <app-scan-order *ngIf="step1"
@@ -27,7 +21,7 @@
 <app-set-count *ngIf="step3"
     [orderDetails]="order"
     (msg)="showMsg($event)"
-    (next)="changeStep()"
+    (next)="submitCount($event)"
     (skip)="skip($event)"
     (exit)="exit($event)"
     (userFields)="showUserFields($event)">

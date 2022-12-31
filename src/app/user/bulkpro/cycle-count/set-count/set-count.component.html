@@ -16,14 +16,12 @@
                         <mat-card-content>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="row align-items-center g-3">
-                                    <div class="col-auto">
-                                        <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
-                                            <mat-label>Enter Count</mat-label>
-                                            <input type="number" placeholder="Enter Count" aria-label="Enter Count" matInput [(ngModel)]="count">
-                                        </mat-form-field>
-                                    </div>                                    
-                                </div>
+
+                                <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
+                                    <mat-label>Enter Count</mat-label>
+                                    <input type="number" placeholder="Enter Count" maxlength="6" aria-label="Enter Count" matInput [(ngModel)]="count">
+                                </mat-form-field>                                    
+
                                 <div class="action-des-icon-wrap">
                                     <span class="material-symbols-outlined action-dropdown-icon">
                                         table

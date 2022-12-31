@@ -123,6 +123,7 @@ export class ScanOrderComponent implements OnInit {
       if (ResponseType == "OK" && Status == "OK") {
         this.orderList = new MatTableDataSource(Data);
       } else {
+        this.orderList = new MatTableDataSource();
         this.msg.emit({
           msg : Data,
           icon : "notification_important",
@@ -193,7 +194,7 @@ export class ScanOrderComponent implements OnInit {
                                                   UserName: this.session.UserID(get)
                                                 }))
                     );
-        const { Data, ResponseType, Status } = res.Response;
+        const { Data, ResponseType, Status } = res.Response;        
   
         if (ResponseType == "OK" && Status == "OK") {
           this.updateOrdersTable();

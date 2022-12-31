@@ -19,26 +19,28 @@
 
 
                     <div class="form-outline mb-2">
-                        <mat-form-field appearance="outline" class="w-100">
+                        <mat-form-field appearance="outline" class="w-100" >
                             <mat-label>Username</mat-label>
-                            <input #username id="UserName" maxlength="50" formControlName="username" class="form-control" type="text" matInput
+                            <input #username id="UserName" (ngModelChange)="showErrorMessages('username')"  maxlength="50" formControlName="username" class="form-control" type="text" matInput
                                 placeholder="Enter User Name" required autocomplete="off" />
-                            <div *ngIf="error_msg">
-                                <ng-container *ngFor="let error of error_messages.username">
-                                    <span class="text-error-500"
-                                        *ngIf="loginForm.get('username')?.hasError(error.type) && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
-                                        {{ error.message }}
-                                    </span>
-                                </ng-container>
-                            </div>
                             <mat-icon fontIcon="account_circle"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
                         </mat-form-field>
+                        <div *ngIf="error_msg_username" style="color:#f44336">
+                            <ng-container *ngFor="let error of error_messages.username">
+                                <span class="text-error-500"
+                                    *ngIf="loginForm.get('username')?.hasError(error.type)">
+                                    {{ error.message }}
+                                </span>
+                            </ng-container>
+                            
+                        <div class="clearfix">&nbsp;</div>
+                        </div>
                     </div>
 
                     <div class="form-outline">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Password</mat-label>
-                            <input formControlName="password" maxlength="50" id="Password" class="form-control"
+                            <input formControlName="password" (ngModelChange)="showErrorMessages('password')" maxlength="50" id="Password" class="form-control"
                                 [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" required
                                 autocomplete="off" />
 
@@ -54,14 +56,6 @@
                                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </button> -->
 
-                            <div *ngIf="error_msg">
-                                <ng-container *ngFor="let error of error_messages.password">
-                                    <span class="text-error-500"
-                                        *ngIf="loginForm.get('password')?.hasError(error.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
-                                        {{ error.message }}
-                                    </span>
-                                </ng-container>
-                            </div>
                             <!-- <span matPrefix style="color: #090948; font-size: 19px;"
                                 class="material-symbols-outlined icon-signin-field">
                                 lock
@@ -70,6 +64,16 @@
                             <mat-icon fontIcon="lock"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
 
                         </mat-form-field>
+                        
+                        <div *ngIf="error_msg_password" style="color:#f44336">
+                            <ng-container *ngFor="let error of error_messages.password">
+                                <span class="text-error-500"
+                                    *ngIf="loginForm.get('password')?.hasError(error.type)">
+                                    {{ error.message }}
+                                </span>
+                            </ng-container>
+                            <div class="clearfix">&nbsp;</div>
+                        </div>
                     </div>
                     <div *ngIf="displayDropDownDsName" class="form-outline">
                         <mat-form-field appearance="outline" class="w-100">
@@ -86,13 +90,14 @@
                             <mat-icon fontIcon="backup"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
 
                         </mat-form-field>
-                        <div *ngIf="error_msg">
+                        <div *ngIf="error_msg" style="color:#f44336">
                             <ng-container *ngFor="let error of error_messages.dsName">
                                 <span class="text-error-500"
-                                    *ngIf="loginForm.get('dsName')?.hasError(error.type) && (loginForm.get('dsName')?.dirty || loginForm.get('dsName')?.touched)">
+                                    *ngIf="loginForm.get('dsName')?.hasError(error.type)">
                                     {{ error.message }}
                                 </span>
                             </ng-container>
+                            <div class="clearfix">&nbsp;</div>
                         </div>
                     </div>
 
@@ -113,13 +118,14 @@
                             </span> -->
                             <mat-icon fontIcon="demography"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
                         </mat-form-field>
-                        <div *ngIf="error_msg">
+                        <div *ngIf="error_msg" style="color:#f44336">
                             <ng-container *ngFor="let error of error_messages.deviceID">
                                 <span class="text-error-500"
-                                    *ngIf="loginForm.get('deviceID')?.hasError(error.type) && (loginForm.get('deviceID')?.dirty || loginForm.get('deviceID')?.touched)">
+                                    *ngIf="loginForm.get('deviceID')?.hasError(error.type)">
                                     {{ error.message }}
                                 </span>
                             </ng-container>
+                            <div class="clearfix">&nbsp;</div>
                         </div>
                     </div>
 
