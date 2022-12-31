@@ -123,11 +123,11 @@ export class ScanOrderComponent implements OnInit {
       if (ResponseType == "OK" && Status == "OK") {
         this.orderList = new MatTableDataSource(Data);
       } else {
-        // this.msg.emit({
-        //   msg : "Assigned orders were not found.",
-        //   icon : "notification_important",
-        //   type : "danger"
-        // });
+        this.msg.emit({
+          msg : Data,
+          icon : "notification_important",
+          type : "danger"
+        });
       }
     } catch (error) {
       console.log(error);
@@ -218,7 +218,7 @@ export class ScanOrderComponent implements OnInit {
   }
 
   exit() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard/BulkPro']);
   }
 
 }
