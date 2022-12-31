@@ -23,7 +23,7 @@ export class GlobalFunctionsService {
     return "";
   }
 
-  setCookie(cname: string, cvalue: string, expMin: number) {
+  setCookie(cname: string, cvalue: string, expMin: any) {
     var d = new Date();
     //d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); TBD
     d.setTime(d.getTime() + (expMin * 60 * 1000));
