@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
       if (ResponseType == "OK" && Status == "OK") {
         
         // this.parentMenu.push({ AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" });
-        this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };
+        this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "airplay" };
 
         Data.forEach((i : any) => {
           let info = this.attrMenuList.filter((e : any) => e.name == i.AppName);

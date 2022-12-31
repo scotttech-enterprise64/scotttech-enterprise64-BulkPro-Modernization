@@ -3,25 +3,28 @@
 <div class="app-header" (toggleSidebarForMe)="sideBarToggler()">
 <mat-toolbar>
   
-  <button mat-icon-button class="example-icon" aria-label="icon-button with menu icon" (click)="snav.toggle()">
+  <button mat-icon-button aria-label="icon-button with menu icon" (click)="snav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   
-  <span>BulkPro</span>
+  <span class="d-flex align-items-center mx-3">BulkPro <span class="menu-title-dot"></span> <span class="menu-title-name">Home</span>  </span>
 
   <div class="row me-0 ms-auto">
-    <ul class="row m-0 align-items-center">
+    <ul class="row m-0 align-items-center p-0">
       <li>
-        <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
-          <mat-icon>account_circle</mat-icon>
-          {{username}}
+        <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center p-0">
+          <mat-icon fontIcon="account_circle" style="color: #fff; font-size: 19px; margin-right: 5px;" class="material-symbols-outlined"></mat-icon>
+          <span class="loggedin-username">{{username}}</span>
           <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>
-            Logout
-          </button>
+          <div class="header-profile-menu">
+            <button class="header-logout-button"  mat-menu-item (click)="logout()">
+              <!-- <mat-icon>exit_to_app</mat-icon> -->
+              Logout
+            </button>
+          </div>
+          
         </mat-menu>
       </li>
     </ul>

@@ -151,6 +151,25 @@ background-color: #7B42AC;
 }
 
 
+.user .loggedin-username {
+  width: auto;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  text-align: right;
+}
+
+.header-profile-menu {
+  width: 205px;
+}
+
+.header-logout-button {
+    font-size: 16px;
+    color: #DE2654;
+}
+
 // mat-sidenav {
 //   width: 228px;
 // }
@@ -167,6 +186,33 @@ background-color: #7B42AC;
 }
 .mat-drawer {
   background: #F2F2FF;
+}
+
+
+
+mat-nav-list.mat-nav-list.mat-list-base {
+  padding: 8px 8px 0 8px;
+}
+
+.mat-nav-list .mat-list-item.active {
+  background: #D6D6FD;
+  color: #000080 !important;
+  font-weight: 700;
+}
+
+.mat-sidenav .mat-list-item {
+  color: #000080 !important;
+}
+
+.mat-list-base .mat-list-item {
+  font-size: 14px;
+}
+
+.mat-list-item {
+  color: rgba(9, 9, 72, 0.6) !important;
+  font-size: 0.8rem;
+  height: 40px !important;
+  margin-bottom: 4px;
 }
 
 :host {
@@ -283,8 +329,9 @@ mat-toolbar {
   width: 50px;
   height: 50px;
   &-icon {
-    height: 18px;
-    font-size: 16px;
+    height: 21px !important;
+    font-size: 18px;
+    width: 21px !important;
   }
 }
 
@@ -711,14 +758,14 @@ span.mat-select-min-line {
   background: #fff;
   width: 40px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .mat-icon-wrap .mat-icon {
-  font-size: 18px;
+  font-size: 20px;
   width: auto;
   height: auto;
   font-weight: 700;
@@ -1173,4 +1220,38 @@ button.bp-action-button {
   position: relative;
   top: -0.1em;
   margin-right: 0.6em;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(251, 245, 245, 0.286);
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+span.menu-title-dot {
+  width: 3px;
+  display: block;
+  height: 3px;
+  background: #fff;
+  margin: 1px 10px;
+  position: relative;
+  bottom: -3px;
 }
