@@ -23,7 +23,7 @@
                             <mat-label>Username</mat-label>
                             <input #username id="UserName" (ngModelChange)="showErrorMessages('username')"  maxlength="50" formControlName="username" class="form-control" type="text" matInput
                                 placeholder="Enter User Name" required autocomplete="off" />
-                            <mat-icon fontIcon="account_circle"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+                            <mat-icon fontIcon="account_circle"  style="color: #090948; font-size: 19px; font-weight: 700;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
                         </mat-form-field>
                         <div *ngIf="error_msg_username" style="color:#f44336">
                             <ng-container *ngFor="let error of error_messages.username">
@@ -44,7 +44,7 @@
                                 [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" required
                                 autocomplete="off" />
 
-                                <mat-icon (click)="hide = !hide" fontIcon="{{hide ? 'visibility_off' : 'visibility'}}"  style="color: #090948; font-size: 19px;" matSuffix class="material-symbols-outlined icon-signin-field"></mat-icon>
+                                <mat-icon (click)="hide = !hide" fontIcon="{{hide ? 'visibility_off' : 'visibility'}}"  style="color: #090948; font-size: 19px; font-weight: 700;" matSuffix class="material-symbols-outlined icon-signin-field"></mat-icon>
 
                             <!-- <span matSuffix style="color: #090948; font-size: 19px;" (click)="hide = !hide"
                                 class="material-symbols-outlined icon-signin-field">
@@ -61,7 +61,7 @@
                                 lock
                             </span> -->
 
-                            <mat-icon fontIcon="lock"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+                            <mat-icon fontIcon="lock"  style="color: #090948; font-size: 19px; font-weight: 700; fill: 1;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
 
                         </mat-form-field>
                         
@@ -87,7 +87,7 @@
                                 class="material-symbols-outlined icon-signin-field">
                                 backup
                             </span> -->
-                            <mat-icon fontIcon="backup"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+                            <mat-icon fontIcon="backup"  style="color: #090948; font-size: 19px; font-weight: 700;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
 
                         </mat-form-field>
                         <div *ngIf="error_msg" style="color:#f44336">

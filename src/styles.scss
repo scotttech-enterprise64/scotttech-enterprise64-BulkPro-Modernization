@@ -99,6 +99,14 @@ h1, h2, h3, h4, h5, h6, p, strong, span, b, u, a, div
   'opsz' 48
 }
 
+.material-symbols-outlined-filled {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 48
+}
+
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
   background: #1A1AD3;
 }
@@ -159,6 +167,9 @@ background-color: #7B42AC;
   text-overflow: ellipsis;
   display: inline-block;
   text-align: right;
+  line-height: 1;
+  position: relative;
+  top: -2px;
 }
 
 .header-profile-menu {
@@ -187,12 +198,15 @@ background-color: #7B42AC;
 .mat-drawer {
   background: #F2F2FF;
 }
-
-
-
-mat-nav-list.mat-nav-list.mat-list-base {
-  padding: 8px 8px 0 8px;
+.mat-sidenav {
+  min-width: 120px;
 }
+
+
+
+// mat-nav-list.mat-nav-list.mat-list-base {
+//   padding: 8px 8px 0 8px;
+// }
 
 .mat-nav-list .mat-list-item.active {
   background: #D6D6FD;
@@ -1004,6 +1018,7 @@ td.dataTables_empty{
 h4.main-section-title {
   color: #000080;
   font-weight: 500;
+  font-family: 'Mulish', sans-serif;
 }
 
 
@@ -1216,6 +1231,12 @@ button.bp-action-button {
 
 }
 
+// @media (max-width: 480px) {
+//   .mat-toolbar-row {
+//     padding: 1px !important;
+// }
+// }
+
 // .bp-signin-form .icon-signin-field {
 //   position: relative;
 //   top: -0.1em;
@@ -1224,6 +1245,10 @@ button.bp-action-button {
 
 .bp-signin-form .mat-form-field-appearance-outline .mat-form-field-infix{
   padding-top: 0.8em;
+}
+
+.bp-signin-form .mat-select-value {
+  padding-left: 0;
 }
 
 .example-spacer {
@@ -1258,3 +1283,24 @@ span.menu-title-dot {
   position: relative;
   bottom: -3px;
 }
+
+.header-profile-menu .mat-menu-item .mat-icon {
+  margin-right: 0;
+}
+
+@media (max-width: 360px) {
+
+  .app-header {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+span.menu-title-dot {
+    display: none;
+}
+
+span.menu-title-name {
+    display: none;
+}
+  
+  }
