@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, Output, EventEmitter, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.service';
 import { SessionHandlerService } from 'src/app/services/sessionHandler/session-handler.service';
 import { environment } from 'src/environments/environment';
@@ -26,7 +27,8 @@ export class ScanLocationComponent implements OnInit {
   codeItem   : string = "";
 
   constructor(private api             : ApiHandlerService,
-              private session         : SessionHandlerService) { }
+              private session         : SessionHandlerService,
+              private route           : Router) { }
 
   ngOnInit(): void {
     this.nextPick()
@@ -97,14 +99,21 @@ export class ScanLocationComponent implements OnInit {
 
       if (ResponseType == "OK" && Status == "OK") {
         // this.updateOrdersTable();
-        this.orderDetails = Data;
+        if (Data) {
+          this.orderDetails = Data; 
+        } else {
+          this.route.navigate(['/dashboard/BulkPro']);
+        }
       } 
-      else if(ResponseType == "NO") {
-        this.msg.emit({
-          msg : "No order was found for the user.",
-          icon : "notification_important",
-          type : "danger"
-        });
+      // else if(ResponseType == "NO") {
+      //   this.msg.emit({
+      //     msg : "No order was found for the user.",
+      //     icon : "notification_important",
+      //     type : "danger"
+      //   });
+      // } 
+      else {
+        this.route.navigate(['/dashboard/BulkPro']);
       }
     } catch (error) {
       console.log(error)
