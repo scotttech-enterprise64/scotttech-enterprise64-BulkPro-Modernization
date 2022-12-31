@@ -38,15 +38,25 @@ export class SetCountComponent implements OnInit {
     // The QR/Bar code is ready here
     // Do something here with the scanned code
     if (event.key === 'Enter') {
-
+      this.submit();
     }
     event.preventDefault();
   }
   /* Scanner End */
 
   submit() {
-    if (this.orderDetails.TransactionQuantity != this.count) {
-      this.next.emit();
+    if (this.count) {
+      if (this.orderDetails.TransactionQuantity != this.count) {
+        this.next.emit({isDiff : 1, count : this.count});
+      } else { 
+        this.next.emit({isDiff : 0, count : this.count});
+      }
+    } else {
+      this.msg.emit({
+        msg : "Please enter count",
+        icon : "notification_important",
+        type : "danger"
+      });
     }
   }
 

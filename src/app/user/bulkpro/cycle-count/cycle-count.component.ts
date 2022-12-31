@@ -26,6 +26,7 @@ export class CycleCountComponent implements OnInit {
   msgType : string = "";
 
   order : any;
+  count : any;
 
   constructor(private router: Router,
               private api : ApiHandlerService,
@@ -152,7 +153,7 @@ export class CycleCountComponent implements OnInit {
       this.customWindow();
       this.changeStep(2);
     }
-    else if(type == 4) 
+    else if(type == 4 || type == 5) 
     {
       this.customWindow();
       this.changeStep(3);
@@ -173,6 +174,9 @@ export class CycleCountComponent implements OnInit {
     else if(type == 3) 
     {
       this.router.navigate(['/dashboard/BulkPro']);
+    }
+    else if(type == 5) {
+      this.completeCount({ count : this.count});
     }
   }
 
@@ -243,17 +247,85 @@ export class CycleCountComponent implements OnInit {
     this.order = data;
   }
 
-  showUserFields(order : any) {    
-    console.log(order)
+  showUserFields(order : any) {
     var data = {
       icon : "help",
-      list : [ order.UserField1, order.UserField2, order.UserField3],
+      list : [order.UserField1, order.UserField2, order.UserField3],
       cancelBtnText : "Close",
       visible : true,
       type : 4
     }
     this.customWindow(data);
     this.changeStep();
+  }
+
+  submitCount(data : any) {
+    
+    if (data.isDiff) {
+      this.count = data.count;
+      var data2 = {
+        icon : "help",
+        text : "The count entered is different from the system count. Adjust the System Quantity?",
+        cancelBtnText : "No",
+        okBtnText : "Yes",
+        visible : true,
+        type : 5
+      }
+      this.customWindow(data2);
+      this.changeStep();
+    } else {
+      this.completeCount(data);
+    }
+
+  }
+
+  async completeCount(data : any) {
+    try {
+      var get = undefined;
+      const res = JSON.parse(
+                    await this.api.post(environment.count, 
+                                        this.api.generatePayload("COMPLETE",
+                                              this.session.UserID(get),
+                                              this.session.Password(get),
+                                              this.session.DeviceID(get),
+                                              this.session.DSName(get),
+                                              this.session.IsADLDS(get),
+                                              `BulkPro${new Date().getTime()}`, 
+                                              "BulkPro", 
+                                              {
+                                                ID: this.order.ID,
+                                                TransactionQty: this.order.TransactionQuantity,
+                                                CountQty: data.count,
+                                                LastNameFirstName: this.session.LastNameFirstName(get)
+                                              }))
+                  );
+      const { Data, ResponseType, Status } = res.Response;
+
+      if (ResponseType == "OK" && Status == "OK") {
+        this.changeStep(2);
+        this.customWindow();
+        this.showMsg({ 
+          msg : "Count transaction completed.",
+          icon : "notification_important",
+          type : "success"
+        });
+      } 
+      else if(ResponseType == "NO") {
+        this.showMsg({ 
+          msg : "Something went wrong.",
+          icon : "notification_important",
+          type : "danger"
+        });
+      } else {
+        this.showMsg({ 
+          msg : Data,
+          icon : "notification_important",
+          type : "danger"
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }
