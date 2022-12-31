@@ -260,6 +260,9 @@ export class LoginComponent implements OnInit {
       }
       else {
         this.error_msg = "1";
+        this.showErrorMessages('password');
+        this.showErrorMessages('username');
+
       }
     } catch (error) {
       console.log("Unknown User");
