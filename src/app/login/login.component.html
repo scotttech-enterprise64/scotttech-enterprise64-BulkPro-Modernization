@@ -21,8 +21,8 @@
                     <div class="form-outline mb-2">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Username</mat-label>
-                            <input id="UserName" formControlName="username" class="form-control" type="text" matInput
-                                placeholder="Enter User Name" maxlength="100" required autocomplete="off" />
+                            <input #username id="UserName" maxlength="50" formControlName="username" class="form-control" type="text" matInput
+                                placeholder="Enter User Name" required autocomplete="off" />
                             <div *ngIf="error_msg">
                                 <ng-container *ngFor="let error of error_messages.username">
                                     <span class="text-error-500"
@@ -31,24 +31,23 @@
                                     </span>
                                 </ng-container>
                             </div>
-                            <span style="color: #090948; font-size: 19px;" matPrefix
-                                class="material-symbols-outlined icon-signin-field">
-                                account_circle
-                            </span>
+                            <mat-icon fontIcon="account_circle"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
                         </mat-form-field>
                     </div>
 
                     <div class="form-outline">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Password</mat-label>
-                            <input formControlName="password" id="Password" class="form-control"
+                            <input formControlName="password" maxlength="50" id="Password" class="form-control"
                                 [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" required
                                 autocomplete="off" />
 
-                            <span matSuffix style="color: #090948; font-size: 19px;" (click)="hide = !hide"
+                                <mat-icon (click)="hide = !hide" fontIcon="{{hide ? 'visibility_off' : 'visibility'}}"  style="color: #090948; font-size: 19px;" matSuffix class="material-symbols-outlined icon-signin-field"></mat-icon>
+
+                            <!-- <span matSuffix style="color: #090948; font-size: 19px;" (click)="hide = !hide"
                                 class="material-symbols-outlined icon-signin-field">
                                 {{hide ? 'visibility_off' : 'visibility'}}
-                            </span>
+                            </span> -->
 
                             <!-- <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
                                 [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -63,10 +62,13 @@
                                     </span>
                                 </ng-container>
                             </div>
-                            <span matPrefix style="color: #090948; font-size: 19px;"
+                            <!-- <span matPrefix style="color: #090948; font-size: 19px;"
                                 class="material-symbols-outlined icon-signin-field">
                                 lock
-                            </span>
+                            </span> -->
+
+                            <mat-icon fontIcon="lock"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+
                         </mat-form-field>
                     </div>
                     <div *ngIf="displayDropDownDsName" class="form-outline">
@@ -77,10 +79,12 @@
                                     {{ dsName }}
                                 </mat-option>
                             </mat-select>
-                            <span matPrefix style="color: #090948; font-size: 19px;"
+                            <!-- <span matPrefix style="color: #090948; font-size: 19px;"
                                 class="material-symbols-outlined icon-signin-field">
                                 backup
-                            </span>
+                            </span> -->
+                            <mat-icon fontIcon="backup"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
+
                         </mat-form-field>
                         <div *ngIf="error_msg">
                             <ng-container *ngFor="let error of error_messages.dsName">
@@ -103,10 +107,11 @@
                                     {{ deviceID }}
                                 </mat-option>
                             </mat-select>
-                            <span matPrefix style="color: #090948; font-size: 19px;"
+                            <!-- <span matPrefix style="color: #090948; font-size: 19px;"
                                 class="material-symbols-outlined icon-signin-field">
                                 demography
-                            </span>
+                            </span> -->
+                            <mat-icon fontIcon="demography"  style="color: #090948; font-size: 19px;" matPrefix class="material-symbols-outlined icon-signin-field"></mat-icon>
                         </mat-form-field>
                         <div *ngIf="error_msg">
                             <ng-container *ngFor="let error of error_messages.deviceID">
