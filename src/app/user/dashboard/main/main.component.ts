@@ -33,14 +33,14 @@ export class MainComponent implements OnInit {
               private session       : SessionHandlerService,
               private activeRoute   : ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
-    this.deviceApps();
+    await this.deviceApps();
 
     this.activeRoute.params.subscribe(params => {
       if (params['appName']) {
         var pMenu = this.parentMenu.filter((i : any) => i.AppName == params['appName']);
-        this.loadMenus(pMenu);
+        this.loadMenus(pMenu[0]);
       }
     });
 
