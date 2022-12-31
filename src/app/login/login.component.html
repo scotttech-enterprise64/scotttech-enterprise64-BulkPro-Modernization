@@ -28,7 +28,7 @@
                         <div *ngIf="error_msg_username" style="color:#f44336">
                             <ng-container *ngFor="let error of error_messages.username">
                                 <span class="text-error-500"
-                                    *ngIf="loginForm.get('username')?.hasError(error.type) && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+                                    *ngIf="loginForm.get('username')?.hasError(error.type)">
                                     {{ error.message }}
                                 </span>
                             </ng-container>
@@ -68,7 +68,7 @@
                         <div *ngIf="error_msg_password" style="color:#f44336">
                             <ng-container *ngFor="let error of error_messages.password">
                                 <span class="text-error-500"
-                                    *ngIf="loginForm.get('password')?.hasError(error.type) && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                                    *ngIf="loginForm.get('password')?.hasError(error.type)">
                                     {{ error.message }}
                                 </span>
                             </ng-container>

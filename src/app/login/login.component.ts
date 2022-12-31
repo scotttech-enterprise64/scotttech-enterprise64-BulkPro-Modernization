@@ -111,12 +111,10 @@ export class LoginComponent implements OnInit {
     const controls = this.loginForm.controls;
     if(controlName=='username')
     {
-
       this.error_msg_username=controls[controlName].invalid?"1":"";
     }
     else 
     {
-
       this.error_msg_password=controls[controlName].invalid?"1":"";
     }
     
