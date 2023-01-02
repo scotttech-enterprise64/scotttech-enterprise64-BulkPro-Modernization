@@ -1216,12 +1216,15 @@ button.bp-action-button {
 
 }
 
-.bp-signin-form .icon-signin-field {
-  position: relative;
-  top: -0.1em;
-  margin-right: 0.6em;
-}
+// .bp-signin-form .icon-signin-field {
+//   position: relative;
+//   top: -0.1em;
+//   margin-right: 0.6em;
+// }
 
+.bp-signin-form .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding-top: 0.8em;
+}
 
 .example-spacer {
   flex: 1 1 auto;
