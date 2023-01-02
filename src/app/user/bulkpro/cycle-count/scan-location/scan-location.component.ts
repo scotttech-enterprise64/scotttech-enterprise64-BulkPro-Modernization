@@ -60,7 +60,7 @@ export class ScanLocationComponent implements OnInit {
     
     if (this.location) {
       if (event.key === 'Enter') {
-        if(this.orderDetails.LocationScan == this.codeLocation) {
+        if(this.orderDetails.LocationScan.toLowerCase() == this.codeLocation.toLowerCase()) {
           this.location = false;
           this.item = true;
         } else {
