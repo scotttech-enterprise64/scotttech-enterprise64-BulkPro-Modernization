@@ -105,9 +105,9 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Device ID</mat-label>
                             <mat-select id="DeviceID" formControlName="deviceID"
-                                (selectionChange)="changeDeviceID($event)">
+                                (selectionChange)="changeDeviceID($event)" [value]="deviceIDDropDownValues[0]">
 
-                                <mat-option value=""></mat-option>
+                                <!-- <mat-option value=""></mat-option> -->
                                 <mat-option *ngFor="let deviceID of deviceIDDropDownValues" [value]="deviceID">
                                     {{ deviceID }}
                                 </mat-option>

@@ -87,7 +87,7 @@ export class MainComponent implements OnInit {
 
       // If User has clicked on Child Menu
       if (menu.MenuDisplayName) {                
-        if (menu.MenuDisplayName == "Back") {
+        if (menu.MenuDisplayName == "Exit") {
           this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };          
           this.showMenu("parent");          
         } else {
@@ -139,7 +139,7 @@ export class MainComponent implements OnInit {
           ...this.attrMenuList.filter((e : any) => e.name == "Back")[0],
           AppDisplayName : "Back", 
           AppName : "Back",
-          MenuDisplayName : "Back"
+          MenuDisplayName : "Exit"
         }
       );
 
