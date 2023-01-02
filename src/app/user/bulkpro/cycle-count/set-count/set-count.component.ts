@@ -40,24 +40,46 @@ export class SetCountComponent implements OnInit {
     if (event.key === 'Enter') {
       this.submit();
     }
-    event.preventDefault();
+    // event.preventDefault();
   }
   /* Scanner End */
 
   submit() {
-    if (this.count) {
-      if (this.orderDetails.TransactionQuantity != this.count) {
-        this.next.emit({isDiff : 1, count : this.count});
-      } else { 
-        this.next.emit({isDiff : 0, count : this.count});
+    // if (this.count) {
+
+      if ((this.count.toString()).length != 0) {
+      
+        if ((this.count.toString()).length <= 6) {
+          
+          if (this.orderDetails.TransactionQuantity != this.count) {
+            this.next.emit({isDiff : 1, count : this.count});
+          } else { 
+            this.next.emit({isDiff : 0, count : this.count});
+          }
+
+        } else {
+          this.msg.emit({
+            msg : "Qty must be less than 7 digits",
+            icon : "notification_important",
+            type : "danger"
+          });  
+        }
+        
+      } else {
+        this.msg.emit({
+          msg : "Qty must be greater than or equal to 0",
+          icon : "notification_important",
+          type : "danger"
+        });  
       }
-    } else {
-      this.msg.emit({
-        msg : "Please enter count",
-        icon : "notification_important",
-        type : "danger"
-      });
-    }
+            
+    // } else {
+    //   this.msg.emit({
+    //     msg : "Please enter count",
+    //     icon : "notification_important",
+    //     type : "danger"
+    //   });
+    // }
   }
 
   getUserFields() {

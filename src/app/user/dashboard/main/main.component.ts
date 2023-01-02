@@ -88,8 +88,8 @@ export class MainComponent implements OnInit {
       // If User has clicked on Child Menu
       if (menu.MenuDisplayName) {                
         if (menu.MenuDisplayName == "Back") {
-          this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };
-          this.showMenu("parent");
+          this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };          
+          this.showMenu("parent");          
         } else {
           this.router.navigate([menu.route]);  
         }
