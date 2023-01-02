@@ -156,12 +156,11 @@ export class LoginComponent implements OnInit {
   }
 
   changeDsName(e: any) {
-    console.log(e.value)
     this.loginForm.patchValue({
       'dsName': e.value
     });
     var dsName = e.value;
-    if(dsName == "") {  
+    if(dsName == "") {
       this.global.deleteAllCookies(); 
       this.loginForm.controls['deviceID'].disable();  
     } else {
