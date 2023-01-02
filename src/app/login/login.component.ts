@@ -156,23 +156,32 @@ export class LoginComponent implements OnInit {
   }
 
   changeDsName(e: any) {
+    console.log(e.value)
     this.loginForm.patchValue({
       'dsName': e.value
     });
-    var dsName = e.value
+    var dsName = e.value;
+    if(dsName == "") {  
+      this.global.deleteAllCookies(); 
+      this.loginForm.controls['deviceID'].disable();  
+    } else {
+      this.loginForm.controls['deviceID'].enable();
+    }
+    
     this.session.setSession("", dsName, "", "", "", "");
-    this.loadDeviceIDList();
-    this.loginForm.controls['deviceID'].enable();
+    this.loadDeviceIDList();    
   }
 
   async loadDeviceIDList() {
     this.loginForm.patchValue({
       'deviceID': ""
     });
-    if (this.global.getCookie("DSName")) {
-      this.deviceIDDropDownValues = [];
+    this.deviceIDDropDownValues = [];
+
+    if (this.global.getCookie("DSName")) {      
       var deviceIDNames = await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETIDLIST","","","","PickPro_Development SQL Auth","false","","",""));
       deviceIDNames = JSON.parse(deviceIDNames);
+      console.log(deviceIDNames);
       if (deviceIDNames.Response.ResponseType == "OK") {
         var deviceID = this.global.getCookie("DeviceID")
         this.loginForm.patchValue({
@@ -231,7 +240,8 @@ export class LoginComponent implements OnInit {
           var userName = this.loginForm.get("username")?.value.toString().trim();
           var password = this.loginForm.get("password")?.value.toString().trim();
 
-          this.session.setSession(deviceID, dsName, userName, password, "", "");
+          this.session.setSession(deviceID, dsName, "", "", "", "");
+          
           //Hit Login API
 
           var loginReponse = await this.api.post(environment.login, this.api.generatePayload("LOGIN",this.loginForm.get("username")?.value,this.loginForm.get("password")?.value,this.loginForm.get("deviceID")?.value,this.loginForm.get("dsName")?.value,"false","","",""));
