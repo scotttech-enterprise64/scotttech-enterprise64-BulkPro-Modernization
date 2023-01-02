@@ -47,7 +47,7 @@ export class SetCountComponent implements OnInit {
   submit() {
     // if (this.count) {
 
-      if ((this.count.toString()).length != 0) {
+      if ((this.count.toString()).length != 0 && this.count >= 0) {
       
         if ((this.count.toString()).length <= 6) {
           
