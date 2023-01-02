@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: "http://bulkpro-dev.enterprise64.net:8041/api", // DEV
+  // apiUrl: "http://40.77.0.219:8042/api", // QA
+  // apiUrl: "http://localhost:55380/api", // Local
+  getDeviceInfo: "/device/DeviceAPI",
+  login: "/login/LoginAPI",
+  count: "/count/CountAPI"
 };
 
 /*

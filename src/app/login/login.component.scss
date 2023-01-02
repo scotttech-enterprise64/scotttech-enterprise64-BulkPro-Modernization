@@ -1,0 +1,154 @@
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(232, 209, 209, 0.286);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+mat-grid-tile {
+    background: lightblue;
+}
+
+.login-section-wrap {
+  position: fixed;
+  padding: 1.5rem;
+  height: 100%;
+  background: #090948;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  }
+
+  .login-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+  .login-section-wrap::after {
+    content: "";
+    background: url("/assets/images/trivector.png");
+    position: absolute;
+    width: 220px;
+    height: 395px;
+    top: 25%;
+    left: 0;
+    background-size: contain;
+    background-position: center;
+    z-index: 0;
+}
+
+.login-section > .container {
+  position: relative;
+  z-index: 1;
+}
+  
+  .app-heading {
+    font-family: 'Mulish' !important;
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0px;
+    color: #090948;
+    position: relative;
+    top: -2px;
+  
+    color: #090948;
+  }
+  
+  .account_login {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 64px;
+    /* identical to box height, or 213% */
+    letter-spacing: -0.46px;
+  
+    color: #090948;
+  }
+  ::ng-deep .mat-form-field {
+    font-size: 15px; // example
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-wrapper{
+    margin: 0px !important;
+  }
+  .mat-form-field-wrapper{
+    padding-bottom: 2px !important;
+  }
+
+
+  // @media (orientation: portrait) {
+  //   .login-section {
+  //     padding-top: 8em;
+  //   height: 100vh;
+    
+  //   }
+  // }
+
+  // // for tablet
+  // @media (orientation: portrait) and ( height: 800px ) {
+  //   .login-section {
+  //     padding-top: 8em;
+  //   height: 100vh;
+    
+  //   }
+  // }
+
+  //   @media only screen and (orientation: landscape) {
+  //   .login-section {
+  //     padding-top: 8em;
+    
+  //   }
+  // }
+
+  // // for wearables
+  // @media (orientation: portrait) and (min-device-height: 480px) {
+  //   .login-section {
+  //     padding-top: 2em !important;
+  //     height: auto !important;
+  //   }
+  // }
+
+  .app-branding {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+
+@media all and (min-width:320px) {
+
+
+
+}
+
+@media (min-width: 320px) and (max-width:480px){
+
+  .app-branding {
+    position: relative;
+  }
+
+  .flex-xs-column {
+      flex-direction: column !important;
+  }
+  
+  }

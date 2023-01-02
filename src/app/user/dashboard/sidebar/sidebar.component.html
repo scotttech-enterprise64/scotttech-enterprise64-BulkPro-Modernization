@@ -1,0 +1,22 @@
+<mat-nav-list *ngIf="isParentMenu">
+    <ng-container *ngFor="let menu of parentMenu;">
+      <mat-list-item  routerLinkActive="active" (click)="loadMenus(menu)">
+        <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+        <div class="sidenav-item">{{menu.AppDisplayName}}</div>
+      </mat-list-item>
+    </ng-container>
+  </mat-nav-list>
+  <mat-nav-list *ngIf="isChildMenu">
+    <ng-container>
+      <mat-list-item routerLinkActive="active" (click)="loadMenus({MenuDisplayName : 'Back'})">
+        <mat-icon mat-list-icon>arrow_back</mat-icon>
+        <div class="sidenav-item">{{selectedMenu.AppDisplayName}}</div>
+      </mat-list-item>
+    </ng-container>
+    <ng-container *ngFor="let childMenu of childMenu;">
+      <mat-list-item  routerLinkActive="active" (click)="loadMenus(childMenu)">
+        <mat-icon mat-list-icon>{{childMenu.icon}}</mat-icon>
+        <div class="sidenav-item">{{childMenu.MenuDisplayName}}</div>
+      </mat-list-item>
+    </ng-container>
+  </mat-nav-list>

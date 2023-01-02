@@ -1,0 +1,173 @@
+<div class="bp-pick-option">
+    <div class="container-fluid">
+        <div class="row g-4">
+            <div class="mt-0 col-12">
+                <h2 mat-subheader class="bp-option-heading mt-3 mb-0">
+                    <div class="mat-icon-wrap">
+                        <span class="material-symbols-outlined mat-icon"> low_priority </span>
+                    </div>
+                    <span class="mat-subheader-space">Cycle Count</span>
+                </h2>
+
+                <!-- Change Old Quantity with Short Reason -->
+                <div class="mt-0 bp-inline-step step-old-quantity">
+                    
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
+                                    <mat-label>Enter Count</mat-label>
+                                    <input type="number" placeholder="Enter Count" aria-label="Enter Count" matInput [(ngModel)]="count">
+                                </mat-form-field>                                    
+
+                                <div class="action-des-icon-wrap">
+                                    <span class="material-symbols-outlined action-dropdown-icon">
+                                        table
+                                    </span>
+                                </div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            <div class="table-responsive">
+                                <ng-scrollbar style="height: 200px">
+                                    <table class="table action-table-info">
+                                        <tbody>
+
+                                            <tr *ngIf="orderDetails.LocationDisplay">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            pin_drop
+                                                        </span>
+                                                        <span class="">Location:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.LocationDisplay}}</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr *ngIf="orderDetails.ItemNumber">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            category
+                                                        </span>
+                                                        <span class="">Item No:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.ItemNumber}}</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr *ngIf="orderDetails.Description">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            text_snippet
+                                                        </span>
+                                                        <span class="">Description:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.Description}}</strong></span>
+                                                </td>
+                                            </tr>
+    
+                                            <tr *ngIf="orderDetails.UnitOfMeasure">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            scale
+                                                        </span>
+                                                        <span class="">Unit of Measure:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.UnitOfMeasure}}</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr *ngIf="orderDetails.UserField1">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            featured_play_list
+                                                        </span>
+                                                        <span class="">User Field 01:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.UserField1}}</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr *ngIf="orderDetails.UserField2">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            featured_play_list
+                                                        </span>
+                                                        <span class="">User Field 02:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.UserField2}}</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr *ngIf="orderDetails.UserField3">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            featured_play_list
+                                                        </span>
+                                                        <span class="">User Field 03:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.UserField3}}</strong></span>
+                                                </td>
+                                            </tr>
+
+                                            <tr *ngIf="orderDetails.OrderNumber">
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="material-symbols-outlined">
+                                                            demography
+                                                        </span>
+                                                        <span class="">Order No:</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span><strong class="spacer">{{orderDetails.OrderNumber}}</strong></span>
+                                                </td>
+                                            </tr>                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                    </ng-scrollbar>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>                
+
+                <div class="action-buttons-wrap">
+                    <button mat-flat-button color="primary" (click)="submit()">Submit</button>
+                    <button mat-stroked-button color="primary" (click)="skipTransaction()">Skip Transaction</button>
+                    <button mat-stroked-button color="primary" (click)="getUserFields()">View User Fields</button>                    
+                    <button mat-stroked-button color="warn" (click)="exitClick()">Exit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

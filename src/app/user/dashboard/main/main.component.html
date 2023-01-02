@@ -1,0 +1,54 @@
+<div class="main-section-options">
+    <div class="container-fluid">
+      <div class="row g-4">
+
+        <!-- <mat-list>            
+
+            <mat-list-item *ngFor="let folder of folders" class="bg-white mb-3">
+              <mat-icon matListItemIcon>{{folder.icon}}</mat-icon>
+              <div matListItemTitle>{{folder.name}}</div>
+              <div matListItemLine>{{folder.updated | date}}</div>
+            </mat-list-item>        
+
+          </mat-list> -->
+
+          <h2 mat-subheader class="bp-option-heading mt-3 mb-0">
+            <div class="mat-icon-wrap">
+                <span class="material-symbols-outlined mat-icon"> {{selectedMenu.icon ? selectedMenu.icon : ""}} </span>
+            </div>
+            <span class="mat-subheader-space">{{selectedMenu.AppDisplayName}}</span>
+        </h2>
+
+        <!-- Main Section Option (Import Export) -->
+        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of parentMenu" [style.display]="isParentMenu ? '' : 'none'">
+            <div matRipple [matRippleColor]="tab_hover_color" class="main-section-option bg-white" (click)="loadMenus(tab)">
+                
+                <a class="main-section-option-link" href="#"></a>
+                
+                <div class="main-section-icon">
+                    <mat-icon class="material-symbols-outlined">{{tab.icon}}</mat-icon>
+                </div>
+
+                <h4 class="main-section-title" style="font-size:15px; word-break: break-all;">{{tab.AppDisplayName}}</h4>
+
+            </div>
+        </div>
+
+        <!-- Main Section Option (Import Export) -->
+        <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let tab of childMenu" [style.display]="isChildMenu ? '' : 'none'">
+            <div matRipple [matRippleColor]="tab_hover_color" class="main-section-option bg-white" (click)="loadMenus(tab)">
+                
+                <a class="main-section-option-link" href="#"></a>
+                
+                <div class="main-section-icon">
+                    <mat-icon class="material-symbols-outlined">{{tab.icon}}</mat-icon>
+                </div>
+
+                <h4 class="main-section-title" style="font-size:16px; font-weight: 500; word-break: break-all;">{{tab.MenuDisplayName}}</h4>
+
+            </div>
+        </div>
+    
+      </div>
+    </div>
+  </div>  

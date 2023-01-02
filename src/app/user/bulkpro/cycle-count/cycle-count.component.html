@@ -1,0 +1,41 @@
+<!-- Notification Wrapper -->
+<div class="action-notification-wrapper" *ngIf="msgText">    
+    <div class="alert alert-{{msgType}} d-flex align-items-center" role="alert">
+        <span class="action-alert-icon material-symbols-outlined">{{msgIcon}}</span>
+        <span>{{msgText}}</span>
+    </div>
+</div>
+
+<app-scan-order *ngIf="step1"
+    (msg)="showMsg($event)"
+    (next)="changeStep(2)">    
+</app-scan-order>
+
+<app-scan-location *ngIf="step2"
+    (msg)="showMsg($event)"
+    (next)="changeStep(3); sendDetailsToCount($event)"
+    (skip)="skip($event)"
+    (exit)="exit($event)">
+</app-scan-location>
+
+<app-set-count *ngIf="step3"
+    [orderDetails]="order"
+    (msg)="showMsg($event)"
+    (next)="submitCount($event)"
+    (skip)="skip($event)"
+    (exit)="exit($event)"
+    (userFields)="showUserFields($event)">
+</app-set-count>
+
+<app-custom-msg-window *ngIf="dataCusWin.visible"
+    [icon]="dataCusWin.icon"
+    [text]="dataCusWin.text"
+    [cancelBtnText]="dataCusWin.cancelBtnText"
+    [okBtnText]="dataCusWin.okBtnText"
+    [unAssignTransBtnText]="dataCusWin.unAssignTransBtnText ? dataCusWin.unAssignTransBtnText : ''"
+    [list]="dataCusWin.list"
+    [type]="dataCusWin.type"
+    (unAssigned)="unAssignedCompleted($event)"
+    (cancel)="cancelClicked($event)"
+    (ok)="okClicked($event)">
+</app-custom-msg-window>

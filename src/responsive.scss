@@ -1,0 +1,29 @@
+@media all and (max-width:480px) {
+    .action-buttons-wrap button {
+        font-size: 16px;
+        min-width: 1px;
+        width: 100%;
+        max-width: 370px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .action-buttons-wrap {
+        text-align: center;
+    }
+}
+
+@media all and (min-width: 800px) {
+
+    .mat-form-field.action-dropdown,
+    .mat-form-field.action-field  {
+        max-width: 271px;
+    }
+
+    .mat-card.g-card {
+        padding: 25px;
+      }
+
+
+    
+}
