@@ -58,8 +58,8 @@ export class CycleCountComponent implements OnInit {
       if (ResponseType == "YES" && Status == "OK") {
         var data = {
           icon : "help",
-          text : "You have cycle count transaction assigned to you. Select the either unassign or count transactions.",
-          cancelBtnText : "Cancel",
+          text : "You have Cycle Count transaction assigned to you. Select to either unassign or count transactions.",
+          cancelBtnText : "Exit",
           okBtnText : "Count Transactions",
           unAssignTransBtnText : "Unassign Transactions",
           visible : true, 

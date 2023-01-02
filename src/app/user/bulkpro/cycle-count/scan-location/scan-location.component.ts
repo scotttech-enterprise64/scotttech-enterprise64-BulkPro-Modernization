@@ -47,7 +47,7 @@ export class ScanLocationComponent implements OnInit {
           this.next.emit(this.orderDetails);
         } else {
           this.msg.emit({
-            msg : "Location scan verify failed. Please scan valid location.",
+            msg : "Item scan verify failed. Please scan valid item.",
             icon : "notification_important",
             type : "danger"
           });

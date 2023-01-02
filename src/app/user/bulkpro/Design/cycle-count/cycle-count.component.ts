@@ -33,6 +33,7 @@ export class DesignCycleCountComponent implements OnInit {
   dataSource        = new MatTableDataSource(PickData);
   code              : string = "";
 
+
   constructor(private _liveAnnouncer: LiveAnnouncer, private dialog: MatDialog) { }
 
   /* Scanner Start */
@@ -41,7 +42,7 @@ export class DesignCycleCountComponent implements OnInit {
     if(event.key != 'Enter'){
       this.code += event.key;
     }
-    event.preventDefault();
+    // event.preventDefault();
     // if (event.key === 'Enter') {
     //   // The QR/Bar code is ready here
     //   // Do something here with the scanned code
