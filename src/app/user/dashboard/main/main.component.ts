@@ -99,6 +99,7 @@ export class MainComponent implements OnInit {
       if (menu.AppName == "Exit") {
         this.global.deleteAllCookies();
         this.router.navigate(['/login']);
+        return;
       }
 
       var get = undefined;
