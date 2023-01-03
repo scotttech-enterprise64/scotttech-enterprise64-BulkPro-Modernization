@@ -35,7 +35,7 @@ $bulk-pro-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+// html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Importing Bootstrap SCSS file. */
@@ -94,6 +94,14 @@ h1, h2, h3, h4, h5, h6, p, strong, span, b, u, a, div
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.material-symbols-outlined-filled {
+  font-variation-settings:
+  'FILL' 1,
   'wght' 600,
   'GRAD' 0,
   'opsz' 48
@@ -159,6 +167,9 @@ background-color: #7B42AC;
   text-overflow: ellipsis;
   display: inline-block;
   text-align: right;
+  line-height: 1;
+  position: relative;
+  top: -2px;
 }
 
 .header-profile-menu {
@@ -176,23 +187,32 @@ background-color: #7B42AC;
 // mat-sidenav-container {
 //   height: 100%;
 // }
-.mat-sidenav-container {
+.mat-sidenav-container.mat-drawer-container {
   background: #F2F2FF;
-  height: 100%;
+  overflow: auto !important;
+  min-height: calc(100vh - 64px);
+}
 
+
+.mat-drawer-container.mat-sidenav-container.mat-drawer-container-has-open {
+  overflow: hidden;
 }
-.mat-drawer-inner-container{
-  overflow: hidden !important;
-}
+
+// .mat-drawer-inner-container{
+//   overflow: hidden !important;
+// }
 .mat-drawer {
   background: #F2F2FF;
 }
-
-
-
-mat-nav-list.mat-nav-list.mat-list-base {
-  padding: 8px 8px 0 8px;
+.mat-sidenav {
+  min-width: 120px;
 }
+
+
+
+// mat-nav-list.mat-nav-list.mat-list-base {
+//   padding: 8px 8px 0 8px;
+// }
 
 .mat-nav-list .mat-list-item.active {
   background: #D6D6FD;
@@ -731,6 +751,14 @@ span.mat-select-min-line {
    color: #090948;
 }
 
+.mat-form-field-appearance-outline .mat-form-field-outline-start {
+  border-radius: 8px 0 0 8px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-end {
+  border-radius: 0 8px 8px 0 !important;
+}
+
 
 
 // .mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-fill.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
@@ -942,8 +970,8 @@ table.g-card-table th.mat-header-cell {
   border: 1px solid #D7D7F9;
 }
 
-.mat-drawer-content{
-  overflow: initial;
+.mat-sidenav-content, .mat-drawer-content{
+  overflow: initial !important;
 }
 
 table {
@@ -1007,6 +1035,7 @@ td.dataTables_empty{
 h4.main-section-title {
   color: #000080;
   font-weight: 500;
+  font-family: 'Mulish', sans-serif;
 }
 
 
@@ -1219,6 +1248,12 @@ button.bp-action-button {
 
 }
 
+// @media (max-width: 480px) {
+//   .mat-toolbar-row {
+//     padding: 1px !important;
+// }
+// }
+
 // .bp-signin-form .icon-signin-field {
 //   position: relative;
 //   top: -0.1em;
@@ -1227,6 +1262,10 @@ button.bp-action-button {
 
 .bp-signin-form .mat-form-field-appearance-outline .mat-form-field-infix{
   padding-top: 0.8em;
+}
+
+.bp-signin-form .mat-select-value {
+  padding-left: 0;
 }
 
 .example-spacer {
@@ -1262,6 +1301,40 @@ span.menu-title-dot {
   bottom: -3px;
 }
 
+.header-profile-menu .mat-menu-item .mat-icon {
+  margin-right: 0;
+}
+
+.app-header {
+  position: relative;
+  top: 0;
+  height: 64px;
+  width: 100%;
+  left: 0;
+  z-index: 999;
+  background: #0a0b43;
+}
+
+.app-header .menu-title-wrap {
+  margin-top: 0.2em;
+}
+
+@media (max-width: 360px) {
+
+  .app-header {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+span.menu-title-dot {
+    display: none;
+}
+
+span.menu-title-name {
+    display: none;
+}
+  
+  }
 
 // for fixes
 

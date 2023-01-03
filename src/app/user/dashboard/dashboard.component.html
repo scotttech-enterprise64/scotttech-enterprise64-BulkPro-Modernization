@@ -7,7 +7,7 @@
     <mat-icon>menu</mat-icon>
   </button>
   
-  <span class="d-flex align-items-center mx-3">
+  <span class="menu-title-wrap d-flex align-items-center mx-3">
     BulkPro 
     <span class="menu-title-dot"></span> 
     <span class="menu-title-name">{{pageName}}</span>  
@@ -16,7 +16,7 @@
   <div class="row me-0 ms-auto">
     <ul class="row m-0 align-items-center p-0">
       <li>
-        <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center p-0">
+        <button mat-button [matMenuTriggerFor]="menu" class="user mt-1 d-flex align-items-center p-0">
           <mat-icon fontIcon="account_circle" style="color: #fff; font-size: 19px; margin-right: 5px;" class="material-symbols-outlined"></mat-icon>
           <span class="loggedin-username">{{username}}</span>
           <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
@@ -24,7 +24,7 @@
         <mat-menu #menu="matMenu">
           <div class="header-profile-menu">
             <button class="header-logout-button"  mat-menu-item (click)="logout()">
-              <!-- <mat-icon>exit_to_app</mat-icon> -->
+              <mat-icon style="color:#DE2654 ;">exit_to_app</mat-icon>
               Logout
             </button>
           </div>
@@ -46,9 +46,9 @@
 
 
 <!-- [style.marginTop.px]="mobileQuery.matches ? 56 : 0" -->
+<!-- [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" -->
 <mat-sidenav-container autosize class="main-container">
-  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+  <mat-sidenav #snav>
     <app-sidebar></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
