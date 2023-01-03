@@ -168,7 +168,8 @@ export class MainComponent implements OnInit {
   }
 
   sendValueToObser(name : any) {
-    this.side.sendUpdate(name);
+    localStorage.setItem("curMenu", JSON.stringify(name));
+    this.side.sendUpdate(name);    
   }
 
 }
