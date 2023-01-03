@@ -14,7 +14,7 @@
       </mat-list-item>
     </ng-container>
     <ng-container *ngFor="let childMenu of childMenu;">
-      <mat-list-item  routerLinkActive="active" (click)="loadMenus(childMenu)">
+      <mat-list-item  routerLinkActive="active" routerLink="{{childMenu.route}}" (click)="loadMenus(childMenu)">
         <mat-icon mat-list-icon>{{childMenu.icon}}</mat-icon>
         <div class="sidenav-item">{{childMenu.MenuDisplayName}}</div>
       </mat-list-item>
