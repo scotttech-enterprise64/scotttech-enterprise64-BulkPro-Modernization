@@ -4,6 +4,7 @@ import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.servi
 import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
 import { environment } from 'src/environments/environment';
 import { SessionHandlerService } from 'src/app/services/sessionHandler/session-handler.service';
+import { NavSideBarObserverService } from 'src/app/services/observers/nav-side-bar-observer/nav-side-bar-observer.service';
 
 @Component({
   selector: 'app-main',
@@ -31,7 +32,8 @@ export class MainComponent implements OnInit {
               private api           : ApiHandlerService,
               private global        : GlobalFunctionsService,
               private session       : SessionHandlerService,
-              private activeRoute   : ActivatedRoute) { }
+              private activeRoute   : ActivatedRoute,
+              private side          : NavSideBarObserverService) { }
 
   async ngOnInit() {
 
@@ -86,9 +88,10 @@ export class MainComponent implements OnInit {
     try {
 
       // If User has clicked on Child Menu
-      if (menu.MenuDisplayName) {                
+      if (menu.MenuDisplayName) {
         if (menu.MenuDisplayName == "Exit") {
-          this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };          
+          this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };
+          this.sendValueToObser(this.selectedMenu);
           this.showMenu("parent");          
         } else {
           this.router.navigate([menu.route]);  
@@ -145,6 +148,8 @@ export class MainComponent implements OnInit {
       );
 
       this.showMenu("child");
+
+      this.sendValueToObser(menu);
       
     } catch (error) {
       console.log(error);
@@ -160,6 +165,11 @@ export class MainComponent implements OnInit {
       this.isParentMenu = false;
       this.isChildMenu = true;
     }
+  }
+
+  sendValueToObser(name : any) {
+    localStorage.setItem("curMenu", JSON.stringify(name));
+    this.side.sendUpdate(name);    
   }
 
 }
