@@ -43,7 +43,7 @@ export class ScanLocationComponent implements OnInit {
 
     if (this.item) {
       if (event.key === 'Enter') {
-        if(this.orderDetails.ItemNumber == this.codeItem) {
+        if(this.orderDetails.ItemNumber.toLowerCase() == this.codeItem.toLowerCase()) {
           this.next.emit(this.orderDetails);
         } else {
           this.msg.emit({
