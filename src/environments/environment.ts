@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl: "http://bulkpro-dev.enterprise64.net:8041/api", // DEV
-  apiUrl: "http://40.77.0.219:8042/api", // QA
+  apiUrl: "http://40.77.0.219:8043/api", // QA
   // apiUrl: "http://localhost:55380/api", // Local
   getDeviceInfo: "/device/DeviceAPI",
   login: "/login/LoginAPI",
