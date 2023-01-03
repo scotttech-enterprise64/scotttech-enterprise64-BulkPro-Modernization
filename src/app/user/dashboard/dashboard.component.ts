@@ -46,14 +46,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.username = this.global.getCookie("UserID");
     this.loading = false;
-    this.pageName = "Device Apps";
+    
+    // this.pageName = "Device Apps";
+    let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
+    if (curMenu) {
+      this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
+    } else {
+      this.pageName = "Device Apps"; 
+    }
+
 
     this.navSideObs.updateObserver.subscribe(res => {
       const value = this.navSideObs.updates;
-      if (value.AppDisplayName) {
+      console.log(value);
+      if (value.MenuDisplayName) 
+      {
+        this.pageName = value.MenuDisplayName;
+      }
+      else if (value.AppDisplayName) 
+      {
         this.pageName = value.AppDisplayName;
-      } else {
-        this.pageName = "Device Apps";
+      } 
+      else 
+      {
+        let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
+        console.log(curMenu)
+        if (curMenu) {
+          this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
+        } else {
+          this.pageName = "Device Apps"; 
+        }        
       }
     });
   }
