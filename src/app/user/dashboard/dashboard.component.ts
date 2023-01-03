@@ -47,13 +47,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.username = this.global.getCookie("UserID");
     this.loading = false;
     
-    // this.pageName = "Device Apps";
-    let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
-    if (curMenu) {
-      this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
-    } else {
-      this.pageName = "Device Apps"; 
-    }
+    this.pageName = "Device Apps";
+    // let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
+    // if (curMenu) {
+    //   this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
+    // } else {
+    //   this.pageName = "Device Apps"; 
+    // }
 
 
     this.navSideObs.updateObserver.subscribe(res => {
@@ -69,13 +69,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       } 
       else 
       {
-        let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
-        console.log(curMenu)
-        if (curMenu) {
-          this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
-        } else {
-          this.pageName = "Device Apps"; 
-        }        
+        // let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
+        // console.log(curMenu)
+        // if (curMenu) {
+        //   this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
+        // } else {
+        //   this.pageName = "Device Apps"; 
+        // }     
+        this.pageName = "Device Apps";   
       }
     });
   }
