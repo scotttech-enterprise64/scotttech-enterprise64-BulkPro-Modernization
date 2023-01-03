@@ -449,9 +449,11 @@ table.action-table-info span.material-symbols-outlined {
 }
 
 .action-buttons-wrap button {
-  margin-left: 1.4em;
+  margin-left: 6px;
   min-width: 202px;
   height: 56px;
+  // min-width: 170px;
+  // height: 40px;
   border-radius: 100px;
   font-size: 18px;
   margin-bottom: 1.2em;
@@ -751,13 +753,13 @@ span.mat-select-min-line {
 }
 
 .action-des-icon-wrap{
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .mat-icon-wrap {
   background: #fff;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -887,7 +889,8 @@ button.button-remove-all .mat-icon {
 }
 
 .mat-card.g-card {
-  padding: 25px;
+  // padding: 25px;
+  padding: 10px;
 }
 
 span.action-dropdown-icon {
@@ -1257,4 +1260,11 @@ span.menu-title-dot {
   margin: 1px 10px;
   position: relative;
   bottom: -3px;
+}
+
+
+// for fixes
+
+tr.mat-header-row{
+  height: 40px !important;
 }
