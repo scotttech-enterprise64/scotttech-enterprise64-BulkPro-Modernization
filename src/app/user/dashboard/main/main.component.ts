@@ -94,6 +94,7 @@ export class MainComponent implements OnInit {
           this.sendValueToObser(this.selectedMenu);
           this.showMenu("parent");          
         } else {
+          this.sendValueToObser(menu);
           this.router.navigate([menu.route]);  
         }
         return;

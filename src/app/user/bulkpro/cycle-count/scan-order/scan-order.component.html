@@ -17,8 +17,8 @@
                                 <div class="col-md-6 col-9">
                                     <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
                                         <mat-label>Scan Order</mat-label>
-                                        <input type="text" placeholder="Scan Order"
-                                            aria-label="Scan Order" matInput [(ngModel)]="code">
+                                        <input type="text" placeholder="Scan Order" #scan autofocus
+                                            aria-label="Scan Order" (keypress)="scanOrder($event)" matInput [(ngModel)]="code">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6 col-3">
@@ -84,8 +84,8 @@
                 </div>
 
                 <div class="action-buttons-wrap">                    
-                    <button mat-flat-button color="primary" (click)="processCount()">Process Counts</button>                    
-                    <button mat-stroked-button color="primary" (click)="deleteLast()">Delete Last</button>
+                    <button mat-flat-button color="primary" [disabled]="orderList.data.length > 0 ? false : true" (click)="processCount()">Process Counts</button>                    
+                    <button mat-stroked-button color="primary" [disabled]="orderList.data.length > 0 ? false : true" (click)="deleteLast()">Delete Last</button>
                     <!-- <button mat-flat-button color="primary" class="btn-primary-o" (click)="deleteLast()">Delete Last</button> -->
                     <button mat-stroked-button color="warn" (click)="exit()">Exit</button>
                 </div>
