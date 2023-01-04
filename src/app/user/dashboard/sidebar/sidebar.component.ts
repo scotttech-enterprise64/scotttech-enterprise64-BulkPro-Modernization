@@ -4,6 +4,7 @@ import { ApiHandlerService } from 'src/app/services/apiHandler/api-handler.servi
 import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
 import { environment } from 'src/environments/environment';
 import { SessionHandlerService } from 'src/app/services/sessionHandler/session-handler.service';
+import { NavSideBarObserverService } from 'src/app/services/observers/nav-side-bar-observer/nav-side-bar-observer.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -25,10 +26,11 @@ export class SidebarComponent implements OnInit {
   isParentMenu: boolean = true;
   isChildMenu: boolean = false;
 
-  constructor(private router: Router,
-              private api : ApiHandlerService,
-              private global: GlobalFunctionsService,
-              private session: SessionHandlerService) { }
+  constructor(private router      : Router,
+              private api         : ApiHandlerService,
+              private global      : GlobalFunctionsService,
+              private session     : SessionHandlerService,
+              private side        : NavSideBarObserverService) { }
 
   ngOnInit(): void {
     this.deviceApps();
@@ -78,8 +80,10 @@ export class SidebarComponent implements OnInit {
       if (menu.MenuDisplayName) {                
         if (menu.MenuDisplayName == "Back") {
           this.selectedMenu = { AppDisplayName : "Device Apps", AppName : "Device Apps", icon : "desktop_mac" };
+          // this.sendValueToObser(this.selectedMenu);
           this.showMenu("parent");
         } else {
+          this.sendValueToObser(menu);
           this.router.navigate([menu.route]);  
         }
         return;
@@ -120,6 +124,8 @@ export class SidebarComponent implements OnInit {
       );
 
       this.showMenu("child");
+
+      // this.sendValueToObser(menu);
       
     } catch (error) {
       console.log(error);
@@ -136,5 +142,11 @@ export class SidebarComponent implements OnInit {
       this.isChildMenu = true;
     }
   }
+
+  sendValueToObser(name : any) {
+    localStorage.setItem("curMenu", JSON.stringify(name));
+    this.side.sendUpdate(name);    
+  }
+
 
 }
