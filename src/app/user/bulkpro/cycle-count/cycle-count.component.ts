@@ -118,7 +118,7 @@ export class CycleCountComponent implements OnInit {
     this.alertMsg(data.msg, data.icon, data.type);
     setTimeout(() => {
       this.alertMsg("");
-    }, 2000);
+    }, 3000);
   }
 
   unAssignedCompleted(res : any) {
@@ -126,7 +126,15 @@ export class CycleCountComponent implements OnInit {
       this.customWindow();
       this.changeStep(1);
     } else if (res.type == 3 && res.res) {
-      this.router.navigate(['/dashboard/BulkPro']);
+      this.showMsg({ 
+        msg : "All Count Transactions were unassigned",
+        icon : "notification_important",
+        type : "success"
+       }
+      );
+      setTimeout(() => {
+        this.router.navigate(['/dashboard/BulkPro']);
+      }, 1500);
     } 
     else {
       this.alertMsg("No assigned orders were found.", "notification_important", "danger");
@@ -228,6 +236,11 @@ export class CycleCountComponent implements OnInit {
       const { Data, ResponseType, Status } = res.Response;
 
       if (ResponseType == "OK" && Status == "OK") {        
+        this.showMsg({ 
+          msg : "Transaction was skipped",
+          icon : "notification_important",
+          type : "success"
+        });
         this.customWindow();
         this.changeStep(2);
       } else {
@@ -235,8 +248,7 @@ export class CycleCountComponent implements OnInit {
           msg : "Something went wrong.",
           icon : "notification_important",
           type : "danger"
-         }
-        )
+        });
       }
     } catch (error) {
       console.log(error);
