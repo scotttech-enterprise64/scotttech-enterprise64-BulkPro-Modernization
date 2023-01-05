@@ -5,6 +5,8 @@ import { BulkproComponent } from './bulkpro.component';
 import { CycleCountComponent } from './cycle-count/cycle-count.component';
 import { DesignCycleCountComponent } from './Design/cycle-count/cycle-count.component';
 import { DesignPickComponent } from './Design/pick/pick.component';
+import { ItemLocationComponent } from './item-location/item-location.component';
+import { PickComponent } from './pick/pick.component';
 
 const routes: Routes = [
       { path: '', component: BulkproComponent },
@@ -25,7 +27,12 @@ const routes: Routes = [
       },
       {
         path: 'pick',
-        component: CycleCountComponent,
+        component: PickComponent,
+        canActivate:[GuardGuard]
+      },
+      {
+        path: 'item-location',
+        component: ItemLocationComponent,
         canActivate:[GuardGuard]
       },
 ];
