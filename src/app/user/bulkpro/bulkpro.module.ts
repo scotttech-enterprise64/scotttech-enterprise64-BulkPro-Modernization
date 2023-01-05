@@ -12,6 +12,10 @@ import { ScanLocationComponent } from './cycle-count/scan-location/scan-location
 import { ScanItemComponent } from './cycle-count/scan-item/scan-item.component';
 import { SetCountComponent } from './cycle-count/set-count/set-count.component';
 import { CustomMsgWindowComponent } from './cycle-count/custom-msg-window/custom-msg-window.component';
+import { ScanOrdBatTotComponent } from './pick/scan-ord-bat-tot/scan-ord-bat-tot.component';
+import { ItemLocationComponent } from './item-location/item-location.component';
+import { ScanItemOrLocationComponent } from './item-location/scan-item-or-location/scan-item-or-location.component';
+import { LocationDetailsComponent } from './item-location/location-details/location-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { CustomMsgWindowComponent } from './cycle-count/custom-msg-window/custom
     ScanLocationComponent,
     ScanItemComponent,
     SetCountComponent,
-    CustomMsgWindowComponent
+    CustomMsgWindowComponent,
+    ScanOrdBatTotComponent,
+    ItemLocationComponent,
+    ScanItemOrLocationComponent,
+    LocationDetailsComponent
   ],
   imports: [
     CommonModule,
