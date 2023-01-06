@@ -180,7 +180,6 @@ export class LoginComponent implements OnInit {
     if (this.global.getCookie("DSName")) {      
       var deviceIDNames = await this.api.post(environment.getDeviceInfo, this.api.generatePayload("GETIDLIST","","","","PickPro_Development SQL Auth","false","","",""));
       deviceIDNames = JSON.parse(deviceIDNames);
-      console.log(deviceIDNames);
       if (deviceIDNames.Response.ResponseType == "OK") {
         var deviceID = this.global.getCookie("DeviceID")
         this.loginForm.patchValue({

@@ -3,7 +3,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { SpinnerService } from 'src/app/services/spinner/spinner.service';
 import { GlobalFunctionsService } from 'src/app/services/globalFunctions/global-functions.service';
-import { SessionHandlerService } from 'src/app/services/sessionHandler/session-handler.service';
 import { NavSideBarObserverService } from 'src/app/services/observers/nav-side-bar-observer/nav-side-bar-observer.service';
 
 @Component({
@@ -29,7 +28,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private router          : Router,
               public spinnerService   : SpinnerService,
               private global          : GlobalFunctionsService,
-              private session         : SessionHandlerService,
               changeDetectorRef       : ChangeDetectorRef, 
               media                   : MediaMatcher,
               private navSideObs      : NavSideBarObserverService) {
@@ -46,19 +44,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.username = this.global.getCookie("UserID");
     this.loading = false;
-    
-    this.pageName = "Device Apps";
-    // let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
-    // if (curMenu) {
-    //   this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
-    // } else {
-    //   this.pageName = "Device Apps"; 
-    // }
+
+    let routeName = this.router.url;
+    let curMenu = JSON.parse(localStorage.getItem('curMenu') || '{}');
+
+    if (curMenu && routeName !== "/dashboard") {
+      if ( routeName.split('/').length > 2 ) {
+        this.pageName = routeName.split('/')[2];
+      } else {
+        this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
+      }      
+    } else {
+      this.pageName = "Device Apps"; 
+    }
 
 
     this.navSideObs.updateObserver.subscribe(res => {
       const value = this.navSideObs.updates;
-      console.log(value);
       if (value.MenuDisplayName) 
       {
         this.pageName = value.MenuDisplayName;
@@ -69,14 +71,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
       } 
       else 
       {
-        // let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
-        // console.log(curMenu)
-        // if (curMenu) {
-        //   this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
-        // } else {
-        //   this.pageName = "Device Apps"; 
-        // }     
-        this.pageName = "Device Apps";   
+        let curMenu = JSON.parse(localStorage.getItem('curMenu') || '{}');
+        if (curMenu) {
+          this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
+        } else {
+          this.pageName = "Device Apps"; 
+        }     
       }
     });
   }

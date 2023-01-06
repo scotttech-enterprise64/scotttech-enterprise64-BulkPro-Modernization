@@ -1,6 +1,6 @@
 <mat-nav-list *ngIf="isParentMenu">
-    <ng-container *ngFor="let menu of parentMenu;">
-      <mat-list-item  routerLinkActive="active" (click)="loadMenus(menu)">
+    <ng-container *ngFor="let menu of parentMenu; let i = index;">
+      <mat-list-item  routerLinkActive="active" (click)="loadMenus(menu)" *ngIf="i != 0">
         <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
         <div class="sidenav-item">{{menu.AppDisplayName}}</div>
       </mat-list-item>

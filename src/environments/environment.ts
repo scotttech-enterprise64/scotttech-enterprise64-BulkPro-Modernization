@@ -9,7 +9,8 @@ export const environment = {
   // apiUrl: "http://localhost:55380/api", // Local
   getDeviceInfo: "/device/DeviceAPI",
   login: "/login/LoginAPI",
-  count: "/count/CountAPI"
+  count: "/count/CountAPI",
+  itemLoc: "/itemloc/ItemLocAPI"
 };
 
 /*

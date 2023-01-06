@@ -35,15 +35,35 @@ export class ScanOrderComponent implements OnInit {
               private session         : SessionHandlerService) { }
 
   /* Scanner Start */
-  @HostListener('window:keypress', ['$event'])
-  keyEvent(event: KeyboardEvent): void {
-    // if(event.key != 'Enter'){
-    //   this.code += event.key;
-    // }
+  // @HostListener('window:keypress', ['$event'])
+  // keyEvent(event: KeyboardEvent): void {
+  //   // if(event.key != 'Enter'){
+  //   //   this.code += event.key;
+  //   // }
     
+  //   if (event.key === 'Enter') {
+  //     // The QR/Bar code is ready here
+  //     // Do something here with the scanned code
+  //     if (this.code) {     
+  //       this.lastCodeScan = this.code;   
+  //       this.assignOrder();
+  //       this.code = "";
+  //     }      
+  //   } else {
+  //     this.code += event.key;
+  //   }
+
+  //   event.preventDefault();
+  // }
+  /* Scanner End */  
+
+  ngOnInit(): void {
+    this.session.updateSession();
+    this.updateOrdersTable();
+  }
+
+  scanOrder(event : KeyboardEvent) {
     if (event.key === 'Enter') {
-      // The QR/Bar code is ready here
-      // Do something here with the scanned code
       if (this.code) {     
         this.lastCodeScan = this.code;   
         this.assignOrder();
@@ -52,14 +72,6 @@ export class ScanOrderComponent implements OnInit {
     } else {
       this.code += event.key;
     }
-
-    event.preventDefault();
-  }
-  /* Scanner End */  
-
-  ngOnInit(): void {
-    this.session.updateSession();
-    this.updateOrdersTable();
   }
 
   async assignOrder() {

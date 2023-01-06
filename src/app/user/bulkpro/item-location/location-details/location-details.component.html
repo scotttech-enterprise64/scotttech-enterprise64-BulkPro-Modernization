@@ -1,0 +1,90 @@
+<div class="bp-pick-option">
+    <div class="container-fluid">
+        <div class="row g-4">
+            <div class="mt-0 col-12">
+                <h2 mat-subheader class="bp-option-heading mt-3 mb-0">
+                    <div class="mat-icon-wrap">
+                        <span class="material-symbols-outlined mat-icon">explore</span>
+                    </div>
+                    <span class="mat-subheader-space">Item location</span>
+                </h2>
+
+                <!-- Scan Order/Tote/Batch -->
+                <div class="mt-0 bp-inline-step step-scan-order">
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <mat-card class="mat-elevation-z g-card mb-3">
+                                <mat-card-content>
+                                    
+                                    <ng-scrollbar style="height: 200px;">
+                                        <table mat-table [dataSource]="dataSource" matSort
+                                            (matSortChange)="announceSortChange($event)"
+                                            class="mat-elevation-z bp-inline-table" style="border-collapse: separate">
+
+                                            <!-- Location/Item Column -->
+                                            <ng-container matColumnDef="{{ check ? 'LocationDisplay' : 'ItemNumber'}}">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by {{ check ? 'LocationDisplay' : 'ItemNumber'}}">
+                                                    {{ check ? 'Location' : 'Item'}}
+                                                </th>
+                                                <td mat-cell *matCellDef="let element"> 
+                                                    {{ check ? element.LocationDisplay : element.ItemNumber }} 
+                                                </td>
+                                            </ng-container>
+
+                                            <!-- Quantity Column -->
+                                            <ng-container matColumnDef="ItemQuantity">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ItemQuantity">
+                                                    Qty
+                                                </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.ItemQuantity}} </td>
+                                            </ng-container>
+
+                                            <!-- Available Column -->
+                                            <ng-container matColumnDef="QuantityAllocatedPick">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by QuantityAllocatedPick">
+                                                    Available
+                                                </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.QuantityAllocatedPick}} </td>
+                                            </ng-container>
+
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                            
+                                        </table>
+                                    </ng-scrollbar>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-card class="mat-elevation-z g-card mb-3">
+                                <mat-card-content>
+                                    <mat-list role="list" class="action-list-wrap zones-list-wrap" style="height: 200px">
+                                        <mat-list-item role="listitem" class="zones-list-item">                                            
+                                            <div class="action-list-wrap d-flex align-items-center">
+                                                <span class="material-symbols-outlined icon-auto-activity">pin_drop</span>
+                                                <span>
+                                                    {{ check ? 'Locations For Item' : 'Item For Location'}}: {{itemNumber}}
+                                                </span>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div class="action-buttons-wrap">
+                    <button mat-flat-button color="primary" (click)="checkNext()">Check Another Item/Location</button>
+                    <button mat-stroked-button color="warn" class="btn-primary-ex" (click)="exit()">Exit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

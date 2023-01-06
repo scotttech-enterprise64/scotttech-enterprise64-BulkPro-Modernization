@@ -1,0 +1,19 @@
+<!-- Notification Wrapper -->
+<div class="action-notification-wrapper" *ngIf="msgText">    
+    <div class="alert alert-{{msgType}} d-flex align-items-center" role="alert">
+        <span class="action-alert-icon material-symbols-outlined">{{msgIcon}}</span>
+        <span>{{msgText}}</span>
+    </div>
+</div>
+
+<app-scan-item-or-location *ngIf="step1"
+    (code)="updateList($event)"
+    (msg)="showMsg($event)">
+</app-scan-item-or-location>
+
+<app-location-details *ngIf="step2"
+    [check]="checkItemOrLoc"
+    [dataSource]="locList"
+    [itemNumber]="itemNumber"
+    (checkAgain)="changeStep(1)">
+</app-location-details>
