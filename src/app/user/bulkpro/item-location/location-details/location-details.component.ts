@@ -1,9 +1,7 @@
 import { Input, Output, Component, OnInit, ViewChild, EventEmitter, SimpleChanges } from '@angular/core';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
-import { BatchCompletedComponent } from 'src/app/dialogs/batch-completed/batch-completed.component';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,19 +17,23 @@ export class LocationDetailsComponent implements OnInit {
   @Input() itemNumber : any;
   @Input() check : any;
 
-  @ViewChild(MatSort) sort: MatSort = new MatSort;  
-
   @Output() checkAgain : EventEmitter<any> = new EventEmitter();
+
+  @ViewChild(MatSort) sort: MatSort = new MatSort;  
 
   constructor(private router            : Router,
               private _liveAnnouncer    : LiveAnnouncer) {}
 
   ngOnInit(): void {
+    
+    this.itemNumber = this.itemNumber.toUpperCase();
+
     if (this.check) {
       this.displayedColumns[0] = 'LocationDisplay';
     } else {
       this.displayedColumns[0] = 'ItemNumber';
     }
+    
   }  
 
   ngOnChanges(changes: SimpleChanges) {

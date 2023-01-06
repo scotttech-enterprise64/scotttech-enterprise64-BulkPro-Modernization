@@ -33,9 +33,9 @@ export class ScanItemOrLocationComponent implements OnInit {
   async scanItemLoc() {
     try {
 
-      if (!this.itemNumber) {
+      if (!this.itemNumber) {        
         this.msg.emit({
-          msg  : "Please enter/scan valid Item or Location",
+          msg  : "Please Enter/Scan valid Item or Location",
           icon : "notification_important",
           type : "danger"
         });
@@ -69,6 +69,9 @@ export class ScanItemOrLocationComponent implements OnInit {
           type : "danger"
         });
       }
+      
+      this.itemNumber = "";
+
     } catch (error) {
       console.log(error);
     }
