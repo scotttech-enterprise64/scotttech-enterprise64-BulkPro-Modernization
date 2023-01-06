@@ -18,7 +18,7 @@
                             <mat-card class="mat-elevation-z g-card mb-3">
                                 <mat-card-content>
                                     
-                                    <ng-scrollbar style="height: 200px">
+                                    <ng-scrollbar style="height: 200px;">
                                         <table mat-table [dataSource]="dataSource" matSort
                                             (matSortChange)="announceSortChange($event)"
                                             class="mat-elevation-z bp-inline-table" style="border-collapse: separate">
@@ -62,13 +62,11 @@
                             <mat-card class="mat-elevation-z g-card mb-3">
                                 <mat-card-content>
                                     <mat-list role="list" class="action-list-wrap zones-list-wrap" style="height: 200px">
-                                        <mat-list-item role="listitem" class="zones-list-item">
+                                        <mat-list-item role="listitem" class="zones-list-item">                                            
                                             <div class="action-list-wrap d-flex align-items-center">
                                                 <span class="material-symbols-outlined icon-auto-activity">pin_drop</span>
                                                 <span>
-                                                    {{ check ? 'Locations For Item' : 'Item For Location'}}: 
-                                                    <br/>
-                                                    {{itemNumber}}
+                                                    {{ check ? 'Locations For Item' : 'Item For Location'}}: {{itemNumber}}
                                                 </span>
                                             </div>
                                         </mat-list-item>
