@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.loading = false;
 
     let routeName = this.router.url;
-    let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
+    let curMenu = JSON.parse(localStorage.getItem('curMenu') || '{}');
 
     if (curMenu && routeName !== "/dashboard") {
       if ( routeName.split('/').length > 2 ) {
@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       } 
       else 
       {
-        let curMenu = JSON.parse(localStorage.getItem('curMenu') || '');
+        let curMenu = JSON.parse(localStorage.getItem('curMenu') || '{}');
         if (curMenu) {
           this.pageName = curMenu.MenuDisplayName ? curMenu.MenuDisplayName : curMenu.AppDisplayName;
         } else {

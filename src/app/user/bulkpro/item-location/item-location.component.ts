@@ -15,6 +15,7 @@ export class ItemLocationComponent implements OnInit {
   msgType : string = "";
 
   itemNumber : string = "";
+  checkItemOrLoc : boolean = false;
   locList : any = [];
 
   constructor() { }
@@ -57,9 +58,12 @@ export class ItemLocationComponent implements OnInit {
   }
 
   updateList(data : any) {
-    console.log(data);
-    // this.itemNumber = data.itemNumber;
-    // this.locList = data.Data;
-    // this.changeStep(2);
+    // console.log(data);
+    if (data) {
+      this.itemNumber = data.itemNumber;
+      this.locList = data.Data;
+      this.checkItemOrLoc = data.ResponseSubType == "LOCATIONSLIST" ? true : false;
+      this.changeStep(2); 
+    }    
   }
 }

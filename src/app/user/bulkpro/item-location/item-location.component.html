@@ -12,6 +12,7 @@
 </app-scan-item-or-location>
 
 <app-location-details *ngIf="step2"
+    [check]="checkItemOrLoc"
     [dataSource]="locList"
     [itemNumber]="itemNumber"
     (checkAgain)="changeStep(1)">
