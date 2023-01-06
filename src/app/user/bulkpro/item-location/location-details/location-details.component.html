@@ -12,24 +12,9 @@
                 <!-- Scan Order/Tote/Batch -->
                 <div class="mt-0 bp-inline-step step-scan-order">
 
-                    <div class="row">
+                    <div class="row">                    
 
-                        <div class="col-12">
-                            <mat-card class="mat-elevation-z g-card mb-3">
-                                <mat-card-content>
-                                    <mat-list role="list" class="action-list-wrap zones-list-wrap">
-                                        <mat-list-item role="listitem" class="zones-list-item">
-                                            <div class="action-list-wrap d-flex align-items-center">
-                                                <span class="material-symbols-outlined icon-auto-activity">pin_drop</span>
-                                                <span>Location For Item: {{itemNumber}}</span>
-                                            </div>
-                                        </mat-list-item>
-                                    </mat-list>
-                                </mat-card-content>
-                            </mat-card>
-                        </div>
-
-                        <div class="col-12">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
                             <mat-card class="mat-elevation-z g-card mb-3">
                                 <mat-card-content>
                                     
@@ -39,30 +24,32 @@
                                         class="mat-elevation-z bp-inline-table">
 
                                                 <!-- Position Column -->
-                                        <ng-container matColumnDef="tote">
+                                        <ng-container matColumnDef="{{ check ? 'LocationDisplay' : 'ItemNumber'}}">
                                             <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                sortActionDescription="Sort by Tote">
+                                                sortActionDescription="Sort by {{ check ? 'LocationDisplay' : 'ItemNumber'}}">
                                                 Location
                                             </th>
-                                            <td mat-cell *matCellDef="let element"> {{element.tote}} </td>
+                                            <td mat-cell *matCellDef="let element"> 
+                                                {{ check ? element.LocationDisplay : element.ItemNumber }} 
+                                            </td>
                                         </ng-container>
 
                                         <!-- Name Column -->
-                                        <ng-container matColumnDef="tr">
+                                        <ng-container matColumnDef="ItemQuantity">
                                             <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                sortActionDescription="Sort by Tr">
+                                                sortActionDescription="Sort by ItemQuantity">
                                                 Qty
                                             </th>
-                                            <td mat-cell *matCellDef="let element"> {{element.tr}} </td>
+                                            <td mat-cell *matCellDef="let element"> {{element.ItemQuantity}} </td>
                                         </ng-container>
 
                                         <!-- Order Column -->
-                                        <ng-container matColumnDef="order">
+                                        <ng-container matColumnDef="QuantityAllocatedPick">
                                             <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                sortActionDescription="Sort by order">
+                                                sortActionDescription="Sort by QuantityAllocatedPick">
                                                 Available
                                             </th>
-                                            <td mat-cell *matCellDef="let element"> {{element.order}} </td>
+                                            <td mat-cell *matCellDef="let element"> {{element.QuantityAllocatedPick}} </td>
                                         </ng-container>
 
 
@@ -76,6 +63,21 @@
                                 </mat-card-content>
                             </mat-card>
                         </div>
+
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <mat-card class="mat-elevation-z g-card mb-3">
+                                <mat-card-content>
+                                    <mat-list role="list" class="action-list-wrap zones-list-wrap">
+                                        <mat-list-item role="listitem" class="zones-list-item">
+                                            <div class="action-list-wrap d-flex align-items-center">
+                                                <span class="material-symbols-outlined icon-auto-activity">pin_drop</span>
+                                                <span>{{ check ? 'Location For Item' : 'Item For Location'}}: {{itemNumber}}</span>
+                                            </div>
+                                        </mat-list-item>
+                                    </mat-list>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
                         
                     </div>
 
@@ -83,7 +85,7 @@
 
                 <div class="action-buttons-wrap">
                     <button mat-flat-button color="primary" (click)="checkNext()">Check another item/location</button>
-                    <button mat-stroked-button color="warn" (click)="exit()">Exit</button>
+                    <button mat-stroked-button color="warn" class="btn-primary-ex" (click)="exit()">Exit</button>
                 </div>
 
             </div>
