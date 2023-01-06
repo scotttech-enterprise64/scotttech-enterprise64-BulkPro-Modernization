@@ -1,4 +1,4 @@
-import { Input, Output, Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
+import { Input, Output, Component, OnInit, ViewChild, EventEmitter, SimpleChanges } from '@angular/core';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -13,12 +13,13 @@ import { Router } from '@angular/router';
 })
 export class LocationDetailsComponent implements OnInit {
 
-  displayedColumns: string[] = ['tote', 'tr', 'order'];
+  displayedColumns: string[] = ['', 'ItemQuantity', 'QuantityAllocatedPick'];
+  
   @Input() dataSource = new MatTableDataSource();
-
-  @ViewChild(MatSort) sort: MatSort = new MatSort;
-
   @Input() itemNumber : any;
+  @Input() check : any;
+
+  @ViewChild(MatSort) sort: MatSort = new MatSort;  
 
   @Output() checkAgain : EventEmitter<any> = new EventEmitter();
 
@@ -26,7 +27,16 @@ export class LocationDetailsComponent implements OnInit {
               private _liveAnnouncer    : LiveAnnouncer) {}
 
   ngOnInit(): void {
+    if (this.check) {
+      this.displayedColumns[0] = 'LocationDisplay';
+    } else {
+      this.displayedColumns[0] = 'ItemNumber';
+    }
   }  
+
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log(changes);
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
