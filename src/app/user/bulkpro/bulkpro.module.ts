@@ -16,6 +16,8 @@ import { ScanOrdBatTotComponent } from './pick/scan-ord-bat-tot/scan-ord-bat-tot
 import { ItemLocationComponent } from './item-location/item-location.component';
 import { ScanItemOrLocationComponent } from './item-location/scan-item-or-location/scan-item-or-location.component';
 import { LocationDetailsComponent } from './item-location/location-details/location-details.component';
+import { PickCusWinComponent } from './pick/pick-cus-win/pick-cus-win.component';
+import { PickScanItemLocComponent } from './pick/pick-scan-item-loc/pick-scan-item-loc.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { LocationDetailsComponent } from './item-location/location-details/locat
     ScanOrdBatTotComponent,
     ItemLocationComponent,
     ScanItemOrLocationComponent,
-    LocationDetailsComponent
+    LocationDetailsComponent,
+    PickCusWinComponent,
+    PickScanItemLocComponent
   ],
   imports: [
     CommonModule,
