@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GuardGuard } from './guards/guard.guard';
+import { GuardService } from './guards/guard.guard';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { MainComponent } from './user/dashboard/main/main.component';
@@ -22,20 +22,20 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: MainComponent,
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       },
       {
         path: 'dashboard/:appName',
         component: MainComponent,
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       },
       { 
         path: 'bulkpro',
         loadChildren: () => import('./user/bulkpro/bulkpro.module').then(m => m.BulkproModule),
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       }
     ],
-    canActivate: [GuardGuard]
+    canActivate: [GuardService]
   },
 ];
 

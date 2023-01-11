@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GuardGuard } from '../../guards/guard.guard';
+import { GuardService } from '../../guards/guard.guard';
 import { BulkproComponent } from './bulkpro.component';
 import { CycleCountComponent } from './cycle-count/cycle-count.component';
 import { DesignCycleCountComponent } from './Design/cycle-count/cycle-count.component';
@@ -13,27 +13,27 @@ const routes: Routes = [
       {
         path: 'design-cycle-count',
         component: DesignCycleCountComponent,
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       },
       {
         path: 'design-pick',
         component: DesignPickComponent,
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       },
       {
         path: 'cycle-count',
         component: CycleCountComponent,
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       },
       {
         path: 'pick',
         component: PickComponent,
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       },
       {
         path: 'item-location',
         component: ItemLocationComponent,
-        canActivate:[GuardGuard]
+        canActivate:[GuardService]
       },
 ];
 

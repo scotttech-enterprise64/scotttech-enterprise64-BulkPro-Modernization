@@ -72,6 +72,7 @@ export class ScanOrderComponent implements OnInit {
     } else {
       this.code += event.key;
     }
+    event.preventDefault();
   }
 
   async assignOrder() {
