@@ -6,7 +6,7 @@ import { SessionHandlerService } from '../services/sessionHandler/session-handle
 @Injectable({
   providedIn: 'root'
 })
-export class GuardGuard implements CanActivate {
+export class GuardService implements CanActivate {
 
   constructor(private auth    : SessionHandlerService,
               private router  : Router) {}

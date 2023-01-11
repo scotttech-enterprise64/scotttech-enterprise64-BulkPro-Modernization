@@ -4,5 +4,6 @@ export const environment = {
   getDeviceInfo: "/device/DeviceAPI",
   login: "/login/LoginAPI",
   count: "/count/CountAPI",
-  itemLoc: "/itemloc/ItemLocAPI"
+  itemLoc: "/itemloc/ItemLocAPI",
+  pick: "/pick/PickAPI"
 };
