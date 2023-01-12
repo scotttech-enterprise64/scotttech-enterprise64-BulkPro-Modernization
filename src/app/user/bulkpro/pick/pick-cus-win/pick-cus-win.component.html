@@ -1,0 +1,80 @@
+<div class="bp-pick-option">
+    <div class="container-fluid">
+        <div class="row g-4">
+            <div class="mt-0 col-12">
+                
+                <h2 mat-subheader class="bp-option-heading mt-3 mb-0">
+                    <div class="mat-icon-wrap">
+                        <span class="material-symbols-outlined mat-icon"> archive </span>
+                    </div>
+                    <span class="mat-subheader-space">Pick</span>
+                </h2>
+
+                <!-- Confirmation -->
+                <div class="mt-0 bp-inline-step step-confirmation" *ngIf="text">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            <div class="action-info-wrap">
+                                <p class="d-flex align-items-center">
+                                    <span class="action-info-desc-icon material-symbols-outlined">
+                                    {{icon}}
+                                    </span>
+                                    {{text}}
+                                </p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <!-- User Fields -->
+                <div class="mt-0 bp-inline-step step-user-fields" *ngIf="list && list.length > 0">
+                    <mat-card class="mat-elevation-z g-card mb-3">
+                        <mat-card-content>
+                            <div class="action-info-wrap">
+                                <div class="table-responsive">
+                                    <ng-scrollbar style="height: 200px">
+                                        <table class="table action-table-info">
+                                            <tbody>
+                                                <tr *ngFor="let e of list; let i = index">
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <span class="material-symbols-outlined">
+                                                                featured_play_list
+                                                            </span>
+                                                            <span class="">User Field 0{{i+1}}:</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span><strong class="spacer">{{e}}</strong></span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </ng-scrollbar>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+
+                <div class="action-buttons-wrap">
+
+                    <button mat-stroked-button color="warn" class="btn-primary-ex" *ngIf="cancelBtnText" (click)="cancelClicked()">
+                        {{cancelBtnText}}
+                    </button>
+                    
+                    <button mat-stroked-button color="primary" class="btn-primary-o" *ngIf="actionBtnText" (click)="actionClicked()">
+                        {{actionBtnText}}
+                    </button>
+
+                    <button mat-flat-button color="primary" *ngIf="okBtnText" (click)="okClicked()">
+                        {{okBtnText}}
+                    </button>
+                                        
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
