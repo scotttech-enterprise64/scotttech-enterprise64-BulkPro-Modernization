@@ -160,3 +160,7 @@ mat-grid-tile {
   .form-control:focus{
     background: #F2F2FF;
   }
+
+  ::-ms-reveal {
+    display: none
+  }
