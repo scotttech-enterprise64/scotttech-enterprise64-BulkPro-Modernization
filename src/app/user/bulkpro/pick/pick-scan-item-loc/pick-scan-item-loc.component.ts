@@ -26,12 +26,68 @@ export class PickScanItemLocComponent implements OnInit {
   item       : boolean = false;
   codeItem   : string = "";
 
+  tote       : boolean = false;
+  codeTote   : string = "";
+
+  descriptionLength : number = 35;
+
   constructor(private api             : ApiHandlerService,
               private session         : SessionHandlerService,
               private route           : Router) { }
 
   ngOnInit(): void {
     this.nextPick();
+  }
+
+  scanItemLoc(event : KeyboardEvent) {
+
+    if (this.tote) {
+      if (event.key === 'Enter') {
+        if( (`${this.orderDetails.ToteID.toString().toLowerCase()}${this.orderDetails.ToteNumber.toString().toLowerCase()}`) == this.codeTote.toLowerCase() ) {
+          this.next.emit(this.orderDetails);
+        } else {
+          this.msg.emit({
+            msg : "Tote scan verify failed. Please scan valid item.",
+            icon : "notification_important",
+            type : "danger"
+          });
+        }
+        this.codeTote = "";
+      }
+    }
+    
+    if (this.item) {
+      if (event.key === 'Enter') {
+        if(this.orderDetails.ItemNumber.toLowerCase() == this.codeItem.toLowerCase()) {
+          this.item = false;
+          this.tote = true;
+        } else {
+          this.msg.emit({
+            msg : "Item scan verify failed. Please scan valid item.",
+            icon : "notification_important",
+            type : "danger"
+          });
+        }
+        this.codeItem = "";
+      }
+    }
+    
+    if (this.location) {
+      if (event.key === 'Enter') {
+        if(this.orderDetails.LocationScan.toLowerCase() == this.codeLocation.toLowerCase()) {
+          this.location = false;
+          this.item = true;
+        } else {
+          this.msg.emit({
+            msg : "Location scan verify failed. Please scan valid location.",
+            icon : "notification_important",
+            type : "danger"
+          });
+        }
+        this.codeLocation = "";
+      }
+    }  
+
   }
 
   async nextPick() {
@@ -56,6 +112,8 @@ export class PickScanItemLocComponent implements OnInit {
 
       if (ResponseType == "OK") {
         if (Data) {
+          // console.log(Data);
+          Data.Description = Data.Description.substring(0, this.descriptionLength);
           this.orderDetails = Data; 
         } else {
           this.route.navigate(['/dashboard/BulkPro']);
@@ -70,7 +128,16 @@ export class PickScanItemLocComponent implements OnInit {
   }
 
   skipTransaction() {
-    this.skip.emit(this.orderDetails);
+    var data = {
+      icon : "help",
+      text : "Are you sure you want to skip this transaction?",
+      cancelBtnText : "No",
+      okBtnText : "Yes",
+      visible : true,
+      type : 2,
+      order : this.orderDetails
+    }
+    this.skip.emit(data);
   }
 
   exitClick() {
