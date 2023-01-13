@@ -18,7 +18,8 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
                                     <mat-label>Scan Verify Location</mat-label>
-                                    <input type="text" placeholder="Scan Verify Location" aria-label="Scan Verify Location" matInput [(ngModel)]="codeLocation">
+                                    <input type="text" placeholder="Scan Verify Location" aria-label="Scan Verify Location" 
+                                        #scanLoc autofocus matInput (keydown)="scanItemLoc($event)" [(ngModel)]="codeLocation">
                                 </mat-form-field>
                                 <div class="action-des-icon-wrap">
                                     <span class="scan-option-wrap">
@@ -37,7 +38,28 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
                                     <mat-label>Scan Verify Item</mat-label>
-                                    <input type="text" placeholder="Scan Verify Item" aria-label="Scan Verify Location" matInput [(ngModel)]="codeItem">
+                                    <input type="text" placeholder="Scan Verify Item" aria-label="Scan Verify Location" 
+                                        #scanItem autofocus matInput (keydown)="scanItemLoc($event)" [(ngModel)]="codeItem">
+                                </mat-form-field>
+                                <div class="action-des-icon-wrap">
+                                    <span class="scan-option-wrap">
+                                        <img src="./assets/images/scan-option.svg" width="58" height="32">
+                                    </span>
+                                </div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <!-- Scan Verify Tote -->
+                    <mat-card class="mat-elevation-z g-card mb-3" *ngIf="tote">
+                        <mat-card-content>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <mat-form-field class="w-100 action-field wrap-p-0" appearance="outline">
+                                    <mat-label>Scan Verify Tote</mat-label>
+                                    <input type="text" placeholder="Scan Verify Tote" aria-label="Scan Verify Tote" 
+                                        #scanTote autofocus matInput (keydown)="scanItemLoc($event)" [(ngModel)]="codeTote">
                                 </mat-form-field>
                                 <div class="action-des-icon-wrap">
                                     <span class="scan-option-wrap">
@@ -90,11 +112,11 @@
                                                         <span class="material-symbols-outlined">
                                                             text_snippet
                                                         </span>
-                                                        <span class="">Description:</span>
+                                                        <span class="">{{orderDetails.Description}}</span>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span><strong class="spacer">{{orderDetails.Description}}</strong></span>
+                                                    <span><strong class="spacer"></strong></span>
                                                 </td>
                                             </tr>
     
@@ -154,19 +176,24 @@
                                                 </td>
                                             </tr>
 
-                                            <tr *ngIf="orderDetails.OrderNumber">
+                                            <tr *ngIf="orderDetails.UserField3">
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="material-symbols-outlined">
-                                                            demography
+                                                            inbox
                                                         </span>
-                                                        <span class="">Order No:</span>
+                                                        <span class="">Tote:</span>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span><strong class="spacer">{{orderDetails.OrderNumber}}</strong></span>
+                                                    <span>
+                                                        <strong class="spacer">
+                                                            {{orderDetails.ToteID}}
+                                                            ({{orderDetails.ToteNumber}})
+                                                        </strong>
+                                                    </span>
                                                 </td>
-                                            </tr>                                            
+                                            </tr>
                                             
                                         </tbody>
                                     </table>
@@ -177,6 +204,7 @@
                 </div>
 
                 <div class="action-buttons-wrap">
+                    <button mat-flat-button color="primary" *ngIf="tote">Short to 0</button>
                     <button mat-flat-button color="primary" (click)="skipTransaction()">Skip Transaction</button>
                     <button mat-stroked-button color="warn" (click)="exitClick()">Exit</button>
                 </div>

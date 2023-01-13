@@ -11,7 +11,9 @@
     (next)="changeStep(2)">
 </app-scan-ord-bat-tot>
 
-<app-pick-scan-item-loc *ngIf="step2">
+<app-pick-scan-item-loc *ngIf="step2"
+    (msg)="showMsg($event)"
+    (next)="changeStep(3);">
 </app-pick-scan-item-loc>
 
 <app-pick-cus-win *ngIf="dataCusWin.visible"
