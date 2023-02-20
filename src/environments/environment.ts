@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://40.77.0.219:8041/api", // DEV
+  apiUrl: "https://staging-e64.com:8041/api", // DEV
   // apiUrl: "http://40.77.0.219:8042/api", // QA
   // apiUrl: "http://localhost:55380/api", // Local
   getDeviceInfo: "/device/DeviceAPI",
